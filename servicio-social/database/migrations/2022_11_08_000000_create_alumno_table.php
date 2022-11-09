@@ -53,6 +53,6 @@ class CreateAlumnoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('divisions');
+        Schema::dropIfExists('alumno');
     }
 }
