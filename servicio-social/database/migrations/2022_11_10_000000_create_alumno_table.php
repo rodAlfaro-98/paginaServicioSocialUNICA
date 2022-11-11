@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAlumnoTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -40,8 +40,9 @@ class CreateAlumnoTable extends Migration
             $table->integer('departamento_id');
             $table->foreign('departamento_id')->references('departamento_id')->on('departamento');
             $table->integer('estado_id');
-            $table->integer('estado_id')->references('estado_id')->on('estado');
-            $table->integer('historico_estado_id')->references('historico_estado_id')->on('historico_estado');
+            $table->foreign('estado_id')->references('estado_id')->on('estado');
+            $table->integer('historico_estado_id');
+            $table->foreign('historico_estado_id')->references('historico_estado_id')->on('historico_estado');
             $table->timestamps();
         });
     }
@@ -55,4 +56,4 @@ class CreateAlumnoTable extends Migration
     {
         Schema::dropIfExists('alumno');
     }
-}
+};

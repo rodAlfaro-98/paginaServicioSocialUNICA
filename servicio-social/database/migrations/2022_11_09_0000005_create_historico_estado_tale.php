@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHistoricoEstadoTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,7 @@ class CreateHistoricoEstadoTable extends Migration
             $table->date('fecha_estado');
             $table->integer('estado_id');
             $table->foreign('estado_id')->references('estado_id')->on('estado');
+            $table->integer('departamento_id');
             $table->foreign('departamento_id')->references('departamento_id')->on('departamento');
             $table->timestamps();
         });
@@ -32,4 +33,4 @@ class CreateHistoricoEstadoTable extends Migration
     {
         Schema::dropIfExists('historico_estado');
     }
-}
+};
