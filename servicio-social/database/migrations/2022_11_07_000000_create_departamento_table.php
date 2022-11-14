@@ -16,10 +16,9 @@ return new class extends Migration
         Schema::create('departamento', function (Blueprint $table) {
             $table->increments('departamento_id');
             $table->string('departamento');
-            $table->string('titulo_jefe');
-            $table->string('jefe');
-            $table->string('uid')->unique();
-            $table->string('contraseña');
+            $table->string('abreviatura_departamento');
+            $table->integer('jefe_departamento_id');
+            $table->foreign('jefe_departamento_id')->references('jefe_departamento_id')->on('jefe_departamento');
             $table->timestamps();
         });
     }
