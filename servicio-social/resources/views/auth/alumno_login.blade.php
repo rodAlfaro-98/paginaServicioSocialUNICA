@@ -9,7 +9,7 @@
     <body>
         <div class="container">
             <div class = "row">
-                <div class = "col-md-4 col-md-offset-4" style="margin-top:20px;">
+                <div class = "col-md-6 col-md-offset-6" style="margin-top:20px;">
                     <h4>Login Alumno</h4>
                     <hr>
                     <form action="{{route('alumno.login.usuario')}}" method="post">
@@ -30,11 +30,18 @@
                             <input type="password" class="form-control" placeholder="Ingresa contraseña" name="contraseña" value="">
                             <span class="text-danger">@error('contraseña') {{$message}} @enderror</span>
                         </div>
+                        <br>
                         <div class="form-group">
                             <button class="btn btn-block btn-primary" type="submit">Ingresar</button>
                         </div>
                     </form>
-                </div>
+                    <hr>
+                    <button class="btn btn-block btn-primary" type="submit" onclick="location.href='/'">Cambiar de tipo de usuario</button>
+                    <br>
+                    <br>
+                    <p>Si no está registrado en el sistema da click en el siguiente botón</p>
+                    <button class="btn btn-block btn-primary" type="submit" onclick="location.href='/alumno/registro'">Cambiar de tipo de usuario</button>
+                    </div>
             </div>
         </div>
         <!-- JavaScript Bundle with Popper -->

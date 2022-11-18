@@ -32,6 +32,7 @@ class AlumnoAuthController extends Controller
         if($user){
             if(Hash::check($request->contraseña,$user->contraseña)){
                 $request->session()->put('loginId',$user->alumno_id);
+                $request->session()->put('tipo','alumno');
                 return redirect('alumno/home');
             }else{
                 return back()->with('fail','Contraseña errónea.');    
@@ -44,8 +45,11 @@ class AlumnoAuthController extends Controller
     public function home(){
         $data = array();
         if(Session::has('loginId')){
-            $data = DB::table('alumno')
-                ->where('alumno_id','=',Session::get('loginId'))->first();
+            $data = DB::table('alumno as a')
+                ->select('a.*','c.clave_carrera','d.departamento')
+                ->join('carrera as c', 'a.carrera_id','=','c.carrera_id')
+                ->join('departamento as d','a.departamento_id','=','d.departamento_id')
+                ->where('a.alumno_id','=',Session::get('loginId'))->first();
             return view('homeAlumno')
                 ->with('data',$data);
         }else {
@@ -53,4 +57,7 @@ class AlumnoAuthController extends Controller
         }
     }
 
+    public function formulario(){
+        
+    }
 }

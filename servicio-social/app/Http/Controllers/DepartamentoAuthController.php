@@ -32,6 +32,7 @@ class DepartamentoAuthController extends Controller
         if($user){
             if(Hash::check($request->contraseña,$user->contraseña)){
                 $request->session()->put('loginId',$user->jefe_departamento_id);
+                $request->session()->put('tipo','Jefe de departamento');
                 return redirect('departamento/home');
             }else{
                 return back()->with('fail','Contraseña errónea.');    

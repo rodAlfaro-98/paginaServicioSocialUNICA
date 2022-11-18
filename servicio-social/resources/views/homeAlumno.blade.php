@@ -4,7 +4,7 @@
         <meta charset = "UTF-8">
         <!-- CSS only -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <title>Login Departamento</title>
+        <title>Home Alumno</title>
     </head>
     <body>
         <div class="container">
@@ -19,6 +19,8 @@
                             <th>Fecha de inicio</th>
                             <th>Fecha de terminación</th>
                             <th>Duración en meses</th>
+                            <th>Clave Carrera</th>
+                            <th>Departamento</th>
                             <th>Accion</th>
                         </thead>
                         <tbody>
@@ -28,7 +30,9 @@
                                 <td>{{$data->fecha_inicio}}</td>
                                 <td>{{$data->fecha_fin}}</td>
                                 <td>{{$data->duracion_servicio}}</td>
-                                <td><a href="/departamento/logout">Logout</a></td>
+                                <td>{{$data->clave_carrera}}</td>
+                                <td>{{$data->departamento}}</td>
+                                <td><a href="/alumno/logout">Logout</a></td>
                             </tr>
                         </tbody>
                     </table>
