@@ -16,7 +16,10 @@ return new class extends Migration
         Schema::create('jefe_departamento', function (Blueprint $table) {
             $table->increments('jefe_departamento_id');
             $table->string('titulo');
-            $table->string('nombre');
+            $table->string('nombres');
+            $table->string('apellido_paterno');
+            $table->string('apellido_materno');
+            $table->string('email');
             $table->string('uid')->unique();
             $table->string('contraseña');
             $table->timestamps();

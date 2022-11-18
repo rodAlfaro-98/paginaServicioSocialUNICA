@@ -23,8 +23,8 @@ return new class extends Migration
             $table->date('fecha_nacimiento');
             $table->string('curp')->unique();
             $table->string('genero');
-            $table->integer('telefono_casa');
-            $table->integer('telefono_celular');
+            $table->double('telefono_casa');
+            $table->double('telefono_celular');
             $table->integer('creditos_pagados');
             $table->double('avance_porcentaje');
             $table->double('promedio');
@@ -33,6 +33,8 @@ return new class extends Migration
             $table->integer('horas_semana');
             $table->string('hora_inicio');
             $table->string('hora_fin');
+            $table->date('fecha_inicio');
+            $table->date('fecha_fin');
             $table->string('contraseña');
             $table->boolean('interno');
             $table->integer('carrera_id');

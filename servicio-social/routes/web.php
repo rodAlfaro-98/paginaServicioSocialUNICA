@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\JefeDepartamentoController;
+use App\Http\Controllers\DepartamentoAuthController;
+use App\Http\Controllers\AlumnoAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('seleccionUsuario');
 });
+//Departamento
+Route::get('/departamento/login',[DepartamentoAuthController::class,'login'])->name('departamento.login');
+Route::get('/departamento/logout',[DepartamentoAuthController::class,'logout'])->name('departamento.logout');
+Route::post('/departamento/login/usuario',[DepartamentoAuthController::class,'loginUser'])->name('departamento.login.usuario');
+Route::get('/departamento/home',[DepartamentoAuthController::class,'home'])->name('departamento.home')->middleware('isDepartamentoLoggedIn');
+//Alumno
+Route::get('/alumno/login',[AlumnoAuthController::class,'login'])->name('alumno.login');
+Route::get('/alumno/logout',[AlumnoAuthController::class,'logout'])->name('alumno.logout');
+Route::post('/alumno/login/usuario',[AlumnoAuthController::class,'loginUser'])->name('alumno.login.usuario');
+Route::get('/alumno/home',[AlumnoAuthController::class,'home'])->name('alumno.home')->middleware('isAlumnoLoggedIn');
+

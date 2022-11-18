@@ -4,8 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
-class DepartamentoSeeder extends Seeder
+class EstadoSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,10 +15,9 @@ class DepartamentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('departamento')->insert([
-            'departamento' => 'prueba',
-            'abreviatura_departamento' => 'DP',
-            'jefe_departamento_id' => 1,
+        DB::table('estado')->insert([
+            'estado' => 'ACEPTADO',
+            'fecha_estado' => now(),
         ]);
     }
 }

@@ -14,55 +14,55 @@ class CarreraSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //1
             "clave_carrera" => "107",
             "carrera" => "Ingeniería Civil",
             "division_id" => 1
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //2
             "clave_carrera" => "125",
             "carrera" => "Ingeniería Geomática",
             "division_id" => 1
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //3
             "clave_carrera" => "137",
             "carrera" => "Ingeniería Ambiental",
             "division_id" => 1
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //4
             "clave_carrera" => "114",
             "carrera" => "Ingeniería Industrial",
             "division_id" => 2
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //5
             "clave_carrera" => "115",
             "carrera" => "Ingeniería Mecánica",
             "division_id" => 2
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //6
             "clave_carrera" => "124",
             "carrera" => "Ingeniería Mecatrónica",
             "division_id" => 2
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //7
             "clave_carrera" => "135",
             "carrera" => "Ingeniería en Sistemas Biomédicos",
             "division_id" => 2
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //8
             "clave_carrera" => "109",
             "carrera" => "Ingeniería Eléctrica Electrónica",
             "division_id" => 3
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //9
             "clave_carrera" => "110",
             "carrera" => "Ingeniería en Computación",
             "division_id" => 3
