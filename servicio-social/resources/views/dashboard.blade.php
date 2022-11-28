@@ -9,23 +9,34 @@
     <body>
         <div class="container">
             <div class = "row">
-                <div class = "col-md-4 col-md-offset-4" style="margin-top:20px;">
-                    <h4>Bienvenido al dashboard</h4>
+                <div class = "col-md-offset-4" style="margin-top:20px;">
+                    <h4>Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
                     <hr>
+                    <p>Alumnos de la {{$departamento}}</p>
                     <table class="table">
-                        <thead>
-                            <th>Usuario</th>
-                            <th>Nombre</th>
-                            <th>Accion</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{$data->uid}}</td>
-                                <td>{{$data->nombres}} {{$data->apellido_paterno}} {{$data->apellido_materno}}</td>
-                                <td><a href="/departamento/logout">Logout</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <thead>
+                        <th>Número de cuenta</th>
+                        <th>Nombre</th>
+                        <th>Fecha de inicio</th>
+                        <th>Fecha de terminación</th>
+                        <th>Duración en meses</th>
+                        <th>Clave Carrera</th>
+                        <th>Departamento</th>
+                    </thead>
+                    <tbody>
+                        @foreach($alumnos as $data)
+                        <tr>
+                            <td>{{$data->numero_cuenta}}</td>
+                            <td>{{$data->nombres}}</td>
+                            <td>{{$data->fecha_inicio}}</td>
+                            <td>{{$data->fecha_fin}}</td>
+                            <td>{{$data->duracion_servicio}}</td>
+                            <td>{{$data->clave_carrera}}</td>
+                            <td>{{$data->departamento}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 </div>
             </div>
         </div>

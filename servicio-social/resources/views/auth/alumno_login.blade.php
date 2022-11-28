@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <div class = "row">
+            <div class = "row justify-content-center">
                 <div class = "col-md-6 col-md-offset-6" style="margin-top:20px;">
                     <h4>Login Alumno</h4>
                     <hr>
@@ -40,7 +40,7 @@
                     <br>
                     <br>
                     <p>Si no está registrado en el sistema da click en el siguiente botón</p>
-                    <button class="btn btn-block btn-primary" type="submit" onclick="location.href='/alumno/registro'">Cambiar de tipo de usuario</button>
+                    <button class="btn btn-block btn-primary" type="submit" onclick="location.href='/alumno/registro'">Ingresar solicitud</button>
                     </div>
             </div>
         </div>

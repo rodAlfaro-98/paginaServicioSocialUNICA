@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="container">
-            <div class = "row">
+            <div class = "row justify-content-center">
                 <div class = "col-md-6 col-md-offset-6" style="margin-top:20px;">
                     <h4>Seleccione su tipo de usuario</h4>
                     <hr>

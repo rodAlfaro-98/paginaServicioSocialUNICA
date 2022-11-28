@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('alumno', function (Blueprint $table) {
-            $table->increments('alumno_id');
+            $table->increments('id');
             $table->string('correo')->unique();
             $table->integer('numero_cuenta')->unique();
             $table->string('nombres');
@@ -38,13 +38,11 @@ return new class extends Migration
             $table->string('contraseña');
             $table->boolean('interno');
             $table->integer('carrera_id');
-            $table->foreign('carrera_id')->references('carrera_id')->on('carrera');
+            $table->foreign('carrera_id')->references('id')->on('carrera');
             $table->integer('departamento_id');
-            $table->foreign('departamento_id')->references('departamento_id')->on('departamento');
+            $table->foreign('departamento_id')->references('id')->on('departamento');
             $table->integer('estado_id');
-            $table->foreign('estado_id')->references('estado_id')->on('estado');
-            $table->integer('historico_estado_id');
-            $table->foreign('historico_estado_id')->references('historico_estado_id')->on('historico_estado');
+            $table->foreign('estado_id')->references('id')->on('estado');
             $table->timestamps();
         });
     }

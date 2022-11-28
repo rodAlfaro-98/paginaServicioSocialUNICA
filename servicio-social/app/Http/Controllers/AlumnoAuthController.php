@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use DB;
 use Hash;
 use Session;
+use App\Models\Alumno;
 
 class AlumnoAuthController extends Controller
 {
@@ -27,11 +29,12 @@ class AlumnoAuthController extends Controller
             'num_cuenta' => 'required|numeric|min:9',
             'contraseña' => 'required|min:12',
         ]);
-        $user = DB::table('alumno')
-            ->where('numero_cuenta','=',$request->num_cuenta)->first();
+        $user = Alumno::where('numero_cuenta',$request->num_cuenta)->first();
+        //$user = DB::table('alumno')
+            //->where('numero_cuenta','=',$request->num_cuenta)->first();
         if($user){
             if(Hash::check($request->contraseña,$user->contraseña)){
-                $request->session()->put('loginId',$user->alumno_id);
+                $request->session()->put('loginId',$user->id);
                 $request->session()->put('tipo','alumno');
                 return redirect('alumno/home');
             }else{
@@ -45,11 +48,12 @@ class AlumnoAuthController extends Controller
     public function home(){
         $data = array();
         if(Session::has('loginId')){
-            $data = DB::table('alumno as a')
-                ->select('a.*','c.clave_carrera','d.departamento')
-                ->join('carrera as c', 'a.carrera_id','=','c.carrera_id')
-                ->join('departamento as d','a.departamento_id','=','d.departamento_id')
-                ->where('a.alumno_id','=',Session::get('loginId'))->first();
+            $data = Alumno::findOrFail(Session::get('loginId'))->getDatos();
+            //$data = DB::table('alumno as a')
+            //    ->select('a.*','c.clave_carrera','d.departamento')
+            //    ->join('carrera as c', 'a.carrera_id','=','c.id')
+            //    ->join('departamento as d','a.departamento_id','=','d.id')
+            //    ->where('a.id','=',Session::get('loginId'))->first();
             return view('homeAlumno')
                 ->with('data',$data);
         }else {
@@ -61,3 +65,4 @@ class AlumnoAuthController extends Controller
         
     }
 }
+

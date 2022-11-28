@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('jefe_departamento', function (Blueprint $table) {
-            $table->increments('jefe_departamento_id');
+            $table->increments('id');
             $table->string('titulo');
             $table->string('nombres');
             $table->string('apellido_paterno');

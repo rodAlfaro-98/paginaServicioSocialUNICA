@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('historico_estado', function (Blueprint $table) {
-            $table->increments('historico_estado_id');
+            $table->increments('id');
             $table->date('fecha_estado');
             $table->integer('estado_id');
-            $table->foreign('estado_id')->references('estado_id')->on('estado');
+            $table->foreign('estado_id')->references('id')->on('estado');
             $table->integer('departamento_id');
-            $table->foreign('departamento_id')->references('departamento_id')->on('departamento');
+            $table->foreign('departamento_id')->references('id')->on('departamento');
+            $table->integer('alumno_id');
+            $table->foreign('alumno_id')->references('id')->on('alumno');
             $table->timestamps();
         });
     }

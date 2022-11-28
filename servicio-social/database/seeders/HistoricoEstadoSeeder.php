@@ -18,7 +18,8 @@ class HistoricoEstadoSeeder extends Seeder
         DB::table('historico_estado')->insert([
             'fecha_estado' => now(),
             'estado_id' => 1,
-            'departamento_id' => 1
+            'departamento_id' => 1,
+            'alumno_id' => 1
         ]);
     }
 }

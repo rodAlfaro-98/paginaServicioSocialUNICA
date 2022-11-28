@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('departamento', function (Blueprint $table) {
-            $table->increments('departamento_id');
+            $table->increments('id');
             $table->string('departamento');
             $table->string('abreviatura_departamento');
             $table->integer('jefe_departamento_id');
-            $table->foreign('jefe_departamento_id')->references('jefe_departamento_id')->on('jefe_departamento');
+            $table->foreign('jefe_departamento_id')->references('id')->on('jefe_departamento');
             $table->timestamps();
         });
     }

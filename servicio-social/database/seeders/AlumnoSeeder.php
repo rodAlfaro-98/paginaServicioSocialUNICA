@@ -17,6 +17,7 @@ class AlumnoSeeder extends Seeder
     public function run()
     {
         DB::table('alumno')->insert([
+            'id' => 1,
             'correo' => 'rodrigoalfarod@gmail.com',
             'numero_cuenta' => '316355311',
             'nombres' => 'Rodrigo',
@@ -38,7 +39,6 @@ class AlumnoSeeder extends Seeder
             'carrera_id' => 9,
             'departamento_id' => 1,
             'estado_id' => 1,
-            'historico_estado_id' => 1,
             'fecha_nacimiento' => now(),
             'fecha_ingreso_facultad' => now(),
             'fecha_inicio' => now(),

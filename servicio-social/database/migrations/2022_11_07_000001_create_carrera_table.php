@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('carrera', function (Blueprint $table) {
-            $table->increments('carrera_id');
+            $table->increments('id');
             $table->string('clave_carrera');
             $table->string('carrera')->unique();
             $table->integer('division_id');
-            $table->foreign('division_id')->references('division_id')->on('division');
+            $table->foreign('division_id')->references('id')->on('division');
         });
     }
 
