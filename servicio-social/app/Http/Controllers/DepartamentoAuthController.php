@@ -48,9 +48,9 @@ class DepartamentoAuthController extends Controller
         if(Session::has('loginId')){
             $jefe = JefeDepartamento::findOrFail(Session::get('loginId'))->first();
             $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
-            $alumnos = $departamento->getAlumnos();
+            $alumnos = $departamento->getAlumnosAceptados();
             $departamento = $departamento->getAbreviatura();
-            return view('dashboard')
+            return view('homeDepartamento')
                 ->with('jefe',$jefe)
                 ->with('alumnos',$alumnos)
                 ->with('departamento',$departamento);
@@ -60,3 +60,4 @@ class DepartamentoAuthController extends Controller
     }
 
 }
+

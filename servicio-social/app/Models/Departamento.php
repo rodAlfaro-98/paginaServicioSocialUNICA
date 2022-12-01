@@ -23,11 +23,24 @@ class Departamento extends Model{
         return JefeDepartamento::where('id',$this->jefe_departamento_id)->first();
     }
 
-    public function getAlumnos(){
+    public function getAlumnosAceptados(){
         $alumnos = Alumno::where('departamento_id',$this->id)->get();
         $aux = array();
         foreach($alumnos as $alumno){
-            array_push($aux,$alumno->getDatos());
+            $estado = Estado::where('id',$alumno->estado_id)->first();
+            if(strcmp($estado->getEstado(),'ACEPTADO') == 0)
+                array_push($aux,$alumno->getDatos());
+        }
+        return $aux;
+    }
+
+    public function getAlumnosPendientes(){
+        $alumnos = Alumno::where('departamento_id',$this->id)->get();
+        $aux = array();
+        foreach($alumnos as $alumno){
+            $estado = Estado::where('id',$alumno->estado_id)->first();
+            if(strcmp($estado->getEstado(),'PENDIENTE') == 0)
+                array_push($aux,$alumno->getDatos());
         }
         return $aux;
     }

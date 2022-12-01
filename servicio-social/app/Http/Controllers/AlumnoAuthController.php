@@ -30,8 +30,6 @@ class AlumnoAuthController extends Controller
             'contraseña' => 'required|min:12',
         ]);
         $user = Alumno::where('numero_cuenta',$request->num_cuenta)->first();
-        //$user = DB::table('alumno')
-            //->where('numero_cuenta','=',$request->num_cuenta)->first();
         if($user){
             if(Hash::check($request->contraseña,$user->contraseña)){
                 $request->session()->put('loginId',$user->id);
@@ -49,11 +47,6 @@ class AlumnoAuthController extends Controller
         $data = array();
         if(Session::has('loginId')){
             $data = Alumno::findOrFail(Session::get('loginId'))->getDatos();
-            //$data = DB::table('alumno as a')
-            //    ->select('a.*','c.clave_carrera','d.departamento')
-            //    ->join('carrera as c', 'a.carrera_id','=','c.id')
-            //    ->join('departamento as d','a.departamento_id','=','d.id')
-            //    ->where('a.id','=',Session::get('loginId'))->first();
             return view('homeAlumno')
                 ->with('data',$data);
         }else {
@@ -61,8 +54,15 @@ class AlumnoAuthController extends Controller
         }
     }
 
-    public function formulario(){
-        
+    public function register(){
+        if(Session::has('loginId')){
+            return back();
+        }
+        return view('auth.alumno_register');
+    }
+
+    public function registerUser(Request $request){
+        return $request;
     }
 }
 

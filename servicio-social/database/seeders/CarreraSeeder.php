@@ -68,31 +68,31 @@ class CarreraSeeder extends Seeder
             "division_id" => 3
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //10
             "clave_carrera" => "111",
             "carrera" => "Ingeniería en Telecomunicaciones",
             "division_id" => 3
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //11
             "clave_carrera" => "108",
             "carrera" => "Ingeniería de Minas y Metalurgia",
             "division_id" => 4
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //12
             "clave_carrera" => "113",
             "carrera" => "Ingeniería Geológica",
             "division_id" => 5
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //13
             "clave_carrera" => "112",
             "carrera" => "Ingeniería Geofísica",
             "division_id" => 6
         ]);
 
-        DB::table('carrera')->insert([
+        DB::table('carrera')->insert([ //14
             "clave_carrera" => "113",
             "carrera" => "Ingeniería Petrolera",
             "division_id" => 7

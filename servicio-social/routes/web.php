@@ -25,10 +25,12 @@ Route::get('/departamento/login',[DepartamentoAuthController::class,'login'])->n
 Route::get('/departamento/logout',[DepartamentoAuthController::class,'logout'])->name('departamento.logout');
 Route::post('/departamento/login/usuario',[DepartamentoAuthController::class,'loginUser'])->name('departamento.login.usuario');
 Route::get('/departamento/home',[DepartamentoAuthController::class,'home'])->name('departamento.home')->middleware('isDepartamentoLoggedIn');
+Route::get('/departamento/pendientes',[DepartamentoController::class,'getPendientes'])->name('departamento.pendientes')->middleware('isDepartamentoLoggedIn');
+
 //Alumno
 Route::get('/alumno/login',[AlumnoAuthController::class,'login'])->name('alumno.login');
 Route::get('/alumno/logout',[AlumnoAuthController::class,'logout'])->name('alumno.logout');
 Route::post('/alumno/login/usuario',[AlumnoAuthController::class,'loginUser'])->name('alumno.login.usuario');
-Route::get('/alumno/registro',[AlumnoAuthController::class,'formulario'])->name('alumno.formulario');
+Route::get('/alumno/registro',[AlumnoAuthController::class,'register'])->name('alumno.register');
 Route::get('/alumno/home',[AlumnoAuthController::class,'home'])->name('alumno.home')->middleware('isAlumnoLoggedIn');
-
+Route::post('/alumno/registro/usuario',[AlumnoAuthController::class,'registerUser'])->name('alumno.register.usuario');

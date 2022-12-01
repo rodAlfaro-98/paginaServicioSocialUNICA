@@ -44,5 +44,34 @@ class AlumnoSeeder extends Seeder
             'fecha_inicio' => now(),
             'fecha_fin' => Carbon::now()->addMonths(6)
         ]);
+
+        DB::table('alumno')->insert([
+            'id' => 2,
+            'correo' => 'kevin@gmail.com',
+            'numero_cuenta' => '316355318',
+            'nombres' => 'Kevin',
+            'apellido_paterno' => 'López',
+            'apellido_materno' => 'González',
+            'curp' => 'LOGK10022001HGRLMD01',
+            'genero' => 'H',
+            'telefono_casa' => 5522239482,
+            'telefono_celular' => 5548967939,
+            'creditos_pagados' => 210,
+            'avance_porcentaje' => 80.5,
+            'promedio' => 88.8,
+            'duracion_servicio' => 12,
+            'horas_semana' => 10,
+            'hora_inicio' => '13:00',
+            'hora_fin' => '15:00',
+            'contraseña' => Hash::make('kevin123456789'),
+            'interno' => True,
+            'carrera_id' => 9,
+            'departamento_id' => 1,
+            'estado_id' => 3,
+            'fecha_nacimiento' => now(),
+            'fecha_ingreso_facultad' => now(),
+            'fecha_inicio' => now(),
+            'fecha_fin' => Carbon::now()->addMonths(6)
+        ]);
     }
 }
