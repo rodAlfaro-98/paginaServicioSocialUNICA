@@ -14,6 +14,10 @@
                 display: none;
             }
         </style>
+        <link rel="preload" href="css/normalize.css" as="style">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="preload" href="css/style.css" as="style">
+        <link rel="stylesheet" href="css/style.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <title>Registro Alumno</title>
     </head>
@@ -24,7 +28,7 @@
                     <h4>Registro Alumno</h4>
                     <hr>
                     <form action="{{route('alumno.register.usuario')}}" method="post">
-                        @if(Session::has('succes'))
+                        @if(Session::has('success'))
                         <div class="alert alert-success">{{Session::get('success')}}</div>
                         @endif
                         @if(Session::has('fail'))
@@ -33,13 +37,13 @@
                         @csrf
                         <div class="form-group">
                             <label for="numero_cuenta">Numero de cuenta</label>
-                            <input type="text" class="form-control" placeholder="#########" name="numero_cuenta" value="{{old('numero_cuenta')}}">
+                            <input type="text" class="form-control input" placeholder="#########" name="numero_cuenta" value="{{old('numero_cuenta')}}">
                             <span class="text-danger">@error('numero_cuenta') {{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="correo">Correo</label>
                             <input type="email" class="form-control" placeholder="ejemplo_correo@prueba.com" name="correo" value="{{old('correo')}}">
-                            <span class="text-danger">@error('contraseña') {{$message}} @enderror</span>
+                            <span class="text-danger">@error('correo') {{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="nombres">Nombre(s)</label>
@@ -137,38 +141,33 @@
                             <span class="text-danger">@error('fecha_ingreso_fac') {{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
-                            <label for="fecha_fin">Fecha fin</label>
-                            <input type="date" class="form-control" name="fecha_fin" value="{{old('fecha_fin')}}">
-                            <span class="text-danger">@error('fecha_ingreso_fac') {{$message}} @enderror</span>
-                        </div>
-                        <div class="form-group">
                             <label>Procedencia</label><br>
                             <div style="margin-left: 30px;">
-                                <input type="radio" id="procedencia_interno" onclick="internoEspecificacion()" name="interno" value="True">
+                                <input type="radio" id="procedencia_interno" onclick="internoEspecificacion()" name="interno" value="interno">
                                 <label for="interno">Interno</label><br>
-                                <input type="radio" id="procedencia_externo" onclick="internoEspecificacion()" name="interno" value="False">
+                                <input type="radio" id="procedencia_externo" onclick="internoEspecificacion()" name="interno" value="externo">
                                 <label for="interno">Externo</label><br>
                                 <div class="especificacion_externo" id="especificacion_externo" style="margin-left: 20px;">
                                     <label for="carrera">Especifique: </label>
-                                    <input type="text" id="especificacion_externo" name="carrera" value="{{old('genero')}}">
+                                    <input type="text" id="especificacion_externo" name="carrera_externo" value="{{old('genero')}}">
                                 </div>
                                 <div class="especificacion_interno" id="especificacion_interno" style="margin-left: 20px;">
                                     <label for="carrera">Seleccione su carrera: </label>
-                                    <select name="carrera" id="especificacion_interno">
-                                        <option value="3">Ingeniería Ambiental</option>
-                                        <option value="1">Ingeniería Civil</option>
-                                        <option value="11">Ingeniería de Minas y Metalurgia</option>
-                                        <option value="8">Ingeniería Eléctrica Electrónica</option>
-                                        <option value="9">Ingeniería en Computación</option>
-                                        <option value="7">Ingeniería en Sistemas Biomédicos</option>
-                                        <option value="10">Ingeniería en Telecomunicaciones</option>
-                                        <option value="13">Ingeniería Geofísica</option>
-                                        <option value="12">Ingeniería Geológica</option>
-                                        <option value="2">Ingeniería Geomática</option>
-                                        <option value="4">Ingeniería Industrial</option>
-                                        <option value="5">Ingeniería Mecánica</option>
-                                        <option value="6">Ingeniería Mecatrónica</option>
-                                        <option value="14">Ingeniería Petrolera</option>
+                                    <select name="carrera_interno" id="especificacion_interno">
+                                        <option value="Ingeniería Ambiental">Ingeniería Ambiental</option>
+                                        <option value="Ingeniería Civil">Ingeniería Civil</option>
+                                        <option value="Ingeniería de Minas y Metalurgia">Ingeniería de Minas y Metalurgia</option>
+                                        <option value="Ingeniería Eléctrica Electrónica">Ingeniería Eléctrica Electrónica</option>
+                                        <option value="Ingeniería en Computación">Ingeniería en Computación</option>
+                                        <option value="Ingeniería en Sistemas Biomédicos">Ingeniería en Sistemas Biomédicos</option>
+                                        <option value="Ingeniería en Telecomunicaciones">Ingeniería en Telecomunicaciones</option>
+                                        <option value="Ingeniería Geofísica">Ingeniería Geofísica</option>
+                                        <option value="Ingeniería Geológica">Ingeniería Geológica</option>
+                                        <option value="Ingeniería Geomática">Ingeniería Geomática</option>
+                                        <option value="Ingeniería Industrial">Ingeniería Industrial</option>
+                                        <option value="Ingeniería Mecánica">Ingeniería Mecánica</option>
+                                        <option value="Ingeniería Mecatrónica">Ingeniería Mecatrónica</option>
+                                        <option value="Ingeniería Petrolera">Ingeniería Petrolera</option>
                                     </select>
                                 </div>
                             </div>
@@ -186,7 +185,7 @@
                         </div>
                         <br>
                         <div class="form-group">
-                            <button class="btn btn-block btn-primary" type="submit">Registrar</button>
+                            <button class="btn btn-secondary register" type="submit">Registrar</button>
                         </div>
                         <br>
                     </form>

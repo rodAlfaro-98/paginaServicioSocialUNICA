@@ -15,8 +15,32 @@ class DepartamentoSeeder extends Seeder
     public function run()
     {
         DB::table('departamento')->insert([
-            'departamento' => 'prueba',
-            'abreviatura_departamento' => 'DP',
+            'departamento' => 'Departamento de Servicios Académicos',
+            'abreviatura_departamento' => 'DSA',
+            'jefe_departamento_id' => 1,
+        ]);
+
+        DB::table('departamento')->insert([
+            'departamento' => 'Departamento de Investigación y Desarrollo',
+            'abreviatura_departamento' => 'DID',
+            'jefe_departamento_id' => 1,
+        ]);
+
+        DB::table('departamento')->insert([
+            'departamento' => 'Departamento de Seguridad en Cómputo',
+            'abreviatura_departamento' => 'DSC',
+            'jefe_departamento_id' => 1,
+        ]);
+
+        DB::table('departamento')->insert([
+            'departamento' => 'Departamento de Redes y Operación de Servidores',
+            'abreviatura_departamento' => 'DROS',
+            'jefe_departamento_id' => 1,
+        ]);
+
+        DB::table('departamento')->insert([
+            'departamento' => 'Salas',
+            'abreviatura_departamento' => 'Salas',
             'jefe_departamento_id' => 1,
         ]);
     }

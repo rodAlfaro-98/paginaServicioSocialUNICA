@@ -12,6 +12,12 @@
                 <div class = "col-md-6 col-md-offset-6" style="margin-top:20px;">
                     <h4>Seleccione su tipo de usuario</h4>
                     <hr>
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @endif
+                    @if(Session::has('fail'))
+                        <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                    @endif
                     <table class="table">
                         <thead>
                             

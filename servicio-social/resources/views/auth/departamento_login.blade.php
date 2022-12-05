@@ -13,7 +13,7 @@
                     <h4>Login Departamento</h4>
                     <hr>
                     <form action="{{route('departamento.login.usuario')}}" method="post">
-                        @if(Session::has('succes'))
+                        @if(Session::has('success'))
                         <div class="alert alert-success">{{Session::get('success')}}</div>
                         @endif
                         @if(Session::has('fail'))
