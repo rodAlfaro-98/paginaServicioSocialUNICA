@@ -7,15 +7,22 @@ use Illuminate\Support\Str;
 use DB;
 use Hash;
 use Session;
+use Redirect;
+use Validator;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Estado;
 use App\Models\HistoricoEstado;
 use Carbon\Carbon;
+use App\Mail\Registro;
+use App\Mail\CambioContraseña;
+use App\Mail\Peticion;
+use Illuminate\Support\Facades\Mail;
 
 class AlumnoAuthController extends Controller
 {
     public function login(){
+        Session::forget('succes');
         if(Session::has('loginId')){
             return back();
         }
@@ -87,7 +94,7 @@ class AlumnoAuthController extends Controller
         $alumno->hora_fin = $request->hora_fin;
         $alumno->fecha_inicio = $request->fecha_inicio;
         $alumno->fecha_fin = Carbon::parse($request->fecha_inicio)->addMonth($request->duracion_servicio)->format('Y-m-d');
-        $contraseña = Str::random(8);
+        $contraseña = Str::random(12);
         $alumno->contraseña = Hash::make($contraseña);
         $alumno->interno = (strcmp($request->interno,'interno') == 0);
         $carrera = ($alumno->interno == true) ? $request->carrera_interno : $request->carrera_externo;
@@ -131,8 +138,54 @@ class AlumnoAuthController extends Controller
         $historico_estado->alumno_id = $alumno->id;
         $historico_estado->save();
 
+        $departamento = $alumno->getDepartamento();
+        $jefe_departamento = $departamento->getJefeDepartamento();
+
+        Mail::to($alumno->correo)->send(new Registro($alumno->correo,$alumno->getNombre(),$departamento->departamento,$jefe_departamento->getNombreTitulo(),$contraseña));
+        Mail::to($jefe_departamento->email)->send(new Peticion($jefe_departamento->email,$jefe_departamento->getNombreTitulo(),$alumno->numero_cuenta,$alumno->getNombreApellidos()));
+
         Session::put('success','Ha sido ingresado exitosamente al sistema. Favor de esperar a que su solicitud sea aceptada. Su contraseña para ingresar al sistema es: '.$contraseña);
         return redirect()->route('seleccion');
     }
+
+    public function vistaCambioContraseña(){
+        return view('auth.alumno_comfirma_contraseña');
+    }
+
+    public function comfirmaContraseña(Request $request){
+        $alumno = Alumno::findOrFail(Session::get('loginId'));
+        if(Hash::check($request->contraseña,$alumno->contraseña)){
+            return view('auth.alumno_cambia_contraseña');
+        }
+        else{
+            return redirect()->back()->with('fail','La contraseña ingresada es incorrecta.');
+        }
+    }
+
+    public function cambioContraseña(){
+        return view('auth.alumno_cambia_contraseña');
+    }
+
+    public function doCambioContraseña(Request $request){
+        $validator = Validator::make($request->all(),[
+            'contraseña' => 'required|min:12',
+            'comfirma_contraseña' => 'required|min:12',
+        ]);
+        
+        if($validator->fails()){
+            return redirect()->route('alumno.cambio.contraseña')->withErrors($validator);
+        }
+
+        if(strcmp($request->contraseña,$request->comfirma_contraseña) != 0){
+            return Redirect::route('alumno.cambio.contraseña')->with('fail','Las contraseñas no coinciden');
+        }
+        $alumno = Alumno::findOrFail(Session::get('loginId'));
+        $contraseña_nueva = Hash::make($request->contraseña);
+        $alumno->contraseña = $contraseña_nueva;
+        $alumno->save();
+        Mail::to($alumno->correo)->send(new CambioContraseña($alumno->getNombre(),$request->contraseña));
+        return redirect()->route('alumno.home')->with('success','La contraseña fue cambiada exitosamente');
+    }
 }
+
 

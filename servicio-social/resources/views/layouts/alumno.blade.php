@@ -8,11 +8,12 @@
             .topnav {
                 background-color: #0275d8;
                 overflow: hidden;
+                height: 55px;
             }
 
             /* Style the links inside the navigation bar */
             .topnav a {
-                float: right;
+                float: left;
                 color: #f2f2f2;
                 text-align: center;
                 padding: 14px 16px;
@@ -33,9 +34,9 @@
             }
 
              /* Dropdown Button */
-            .dropbtn {
+            button.dropdown-menu {
                 display: inline-block;
-                background-color: #0275d8;
+                background-color: #0275da;
                 color: white;
                 padding: 14px 16px;
                 font-size: 16px;
@@ -43,8 +44,9 @@
             }
 
             .dropdown {
-                float: right;
                 position: relative;
+                background-color: #0275d8;
+                height: 55px;
             }
 
             /* Dropdown Content (Hidden by Default) */
@@ -54,6 +56,7 @@
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
                 z-index: 1;
+                text-align: left;
             }
 
             /* Links inside the dropdown */
@@ -70,24 +73,29 @@
             /* Show the dropdown menu on hover */
             .dropdown:hover .dropdown-content {display: block;}
 
-            .dropdown:hover .dropbtn {background-color: #ddd; color: black;} 
+            .dropdown:hover .dropdown-menu {display: none; background-color: #ddd; color: black;} 
+
         </style>
+        <title>@yield('title') | Alumno</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-        <title>Inicio Alumno</title>
     </head>
     <body>
-        <nav>
-            <div class="topnav">
-                <div class="dropdown">
-                <button class="dropbtn">Sesión</button>
-                <div class="dropdown-content">
-                    <a href="#">Cambiar Contraseña</a>
-                    <a href="/alumno/logout">Cerrar Sesión</a>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="topnav col-10">
+                    <nav>
+                        <a href="{{route('alumno.home')}}">Inicio</a>
+                    </nav>
                 </div>
+                <div class="dropdown col-2">
+                    <button class="dropdown-menu" style="right: 0; left: auto;"><img class="img2" src="{{ asset(URL::to('/assets/img/hamburger.png')) }}" width="25" height="25">Sesión</button>
+                    <div class="dropdown-content dropdown-menu-right">
+                        <a href="{{route('alumno.cambia_contraseña')}}">Cambiar Contraseña</a>
+                        <a href="{{route('alumno.logout')}}">Cerrar Sesión</a>
+                    </div>
                 </div>
-                <a href="{{route('alumno.home')}}">Inicio</a>
             </div>
-        </nav>
+        </div>
         @yield('contenido')
             <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>

@@ -18,7 +18,7 @@ class AlumnoSeeder extends Seeder
     {
         DB::table('alumno')->insert([
             'id' => 1,
-            'correo' => 'rodrigoalfarod@gmail.com',
+            'correo' => 'rodrigoalfarod_falso@gmail.com',
             'numero_cuenta' => '316355311',
             'nombres' => 'Rodrigo',
             'apellido_paterno' => 'Alfaro',

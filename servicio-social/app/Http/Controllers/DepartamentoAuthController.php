@@ -12,6 +12,7 @@ use App\Models\Departamento;
 class DepartamentoAuthController extends Controller
 {
     public function login(){
+        Session::forget('succes');
         if(Session::has('loginId')){
             return back();
         }

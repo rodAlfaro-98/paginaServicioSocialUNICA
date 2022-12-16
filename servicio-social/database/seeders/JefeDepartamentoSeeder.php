@@ -20,7 +20,7 @@ class JefeDepartamentoSeeder extends Seeder
             'nombres' => 'Prueba',
             'apellido_paterno' => 'Prueba',
             'apellido_materno' => 'Prueba',
-            'email' => 'prueba@prueba.com',
+            'email' => 'rodrigoalfarod@gmail.com',
             'uid' => 'usuario_prueba',
             'contraseña' => Hash::make('prueba123456789')
         ]);

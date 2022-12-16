@@ -18,6 +18,10 @@ class JefeDepartamento extends Model{
         return "".$this->nombres." ".$this->apellido_paterno;
     }
 
+    public function getNombreTitulo(){
+        return "".$this->titulo." ".$this->nombres." ".$this->apellido_paterno." ".$this->apellido_materno;
+    }
+
     public function getEmail(){
         return $this->email;
     }
