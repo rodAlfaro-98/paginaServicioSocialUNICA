@@ -37,11 +37,11 @@ return new class extends Migration
             $table->date('fecha_fin');
             $table->string('contraseña');
             $table->boolean('interno');
-            $table->integer('carrera_id');
+            $table->integer('carrera_id')->unsigned();
             $table->foreign('carrera_id')->references('id')->on('carrera');
-            $table->integer('departamento_id');
+            $table->integer('departamento_id')->unsigned();
             $table->foreign('departamento_id')->references('id')->on('departamento');
-            $table->integer('estado_id');
+            $table->integer('estado_id')->unsigned();
             $table->foreign('estado_id')->references('id')->on('estado');
             $table->timestamps();
         });
