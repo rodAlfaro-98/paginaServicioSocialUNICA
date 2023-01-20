@@ -36,6 +36,7 @@
                 </form>
                 <button class="span btn_border_opacity" type="submit" onclick="location.href='/alumno/registro'">Registrarse</button>
                 <button class="span btn_border_opacity">Olvide mi contraseña</button>
+
                 <div class="return1 return">
                     <i class="fa fa-arrow-circle-left" aria-hidden="true"></i><button class="return1 btn_border_opacity pointer_button" type="submit" onclick="location.href='/'">Volver al inicio</button>
                 </div>

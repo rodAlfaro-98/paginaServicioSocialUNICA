@@ -184,10 +184,15 @@ body {
     font-weight: 300;
     letter-spacing: 1px;
     box-sizing: border-box;
+    background-color: var(--blanco);
 }
 
 .input:hover {
     border: 1px solid var(--negro);
+}
+
+.input-select{
+    margin-top:1em;
 }
 
 .btn {
@@ -210,6 +215,19 @@ body {
 .btn-container{
     width: 90%;
 
+}
+
+.radio-button-container{
+    display: flex;
+    width: 20%;
+}
+
+.radio-button-container label{
+    margin-left: 10px;
+}
+
+.radio-button-container input{
+    transform: scale(1.5);
 }
 
 .btn-seleccion{
