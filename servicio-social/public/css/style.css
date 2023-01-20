@@ -250,6 +250,11 @@ body {
     background-color: var(--gris-hr);
 }
 
+
+.pointer_button{
+    cursor: pointer;
+}
+
 /*-----Register-----*/
 
 .container-register {
