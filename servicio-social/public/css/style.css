@@ -227,6 +227,12 @@ body {
     transition: all ease 0.3s;
 }
 
+
+.btn_border_opacity{
+    background-color: var(--login-bg);
+    border-color: transparent;
+}
+
 .span {
     padding: 0.5rem;
     color: var(--negro);
