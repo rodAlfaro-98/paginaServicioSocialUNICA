@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('historico_estado', function (Blueprint $table) {
             $table->increments('id');
             $table->date('fecha_estado');
-            $table->integer('estado_id');
+            $table->integer('estado_id')->unsigned();
             $table->foreign('estado_id')->references('id')->on('estado');
-            $table->integer('departamento_id');
+            $table->integer('departamento_id')->unsigned();
             $table->foreign('departamento_id')->references('id')->on('departamento');
-            $table->integer('alumno_id');
+            $table->integer('alumno_id')->unsigned();
             $table->foreign('alumno_id')->references('id')->on('alumno');
             $table->timestamps();
         });

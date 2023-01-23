@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('departamento');
             $table->string('abreviatura_departamento');
-            $table->integer('jefe_departamento_id');
+            $table->integer('jefe_departamento_id')->unsigned();
             $table->foreign('jefe_departamento_id')->references('id')->on('jefe_departamento');
             $table->timestamps();
         });

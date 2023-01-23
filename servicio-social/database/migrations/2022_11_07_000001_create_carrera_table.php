@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('clave_carrera');
             $table->string('carrera')->unique();
-            $table->integer('division_id');
+            $table->integer('division_id')->unsigned();
             $table->foreign('division_id')->references('id')->on('division');
         });
     }
