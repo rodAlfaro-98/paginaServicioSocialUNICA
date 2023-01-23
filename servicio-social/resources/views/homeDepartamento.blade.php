@@ -6,7 +6,9 @@
                 <div class = "col-md-offset-4" style="margin-top:20px;">
                     <h4>Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
                     <hr>
-                    <p>Alumnos de la {{$departamento}}</p>
+                    @if (Session::get('departamento') != 'DSA')
+                        <p>Alumnos de la {{$departamento}}</p>
+                    @endif
                     <table class="table">
                     <thead>
                         <th>Número de cuenta</th>

@@ -101,9 +101,9 @@
                             <span class="text-danger">@error('creditos_pagados') {{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
-                            <label for="avance_porcentaje">Creditos pagados</label>
+                            <label for="avance_porcentaje">Avance porcentaje</label>
                             <input type="number" step = "0.01" min = "30.00" max = "100.00" class="form-control" placeholder="81.73" name="avance_porcentaje" value="{{old('avance_porcentaje')}}">
-                            <span class="text-danger">@error('creditos_pagados') {{$message}} @enderror</span>
+                            <span class="text-danger">@error('avance_porcentaje') {{$message}} @enderror</span>
                         </div>
                         <div class="form-group">
                             <label for="promedio">promedio</label>
@@ -143,9 +143,9 @@
                         <div class="form-group">
                             <label>Procedencia</label><br>
                             <div style="margin-left: 30px;">
-                                <input type="radio" id="procedencia_interno" onclick="internoEspecificacion()" name="interno" value="interno">
+                                <input type="radio" id="procedencia_interno" onclick="internoEspecificacion()" name="procedencia" value="interno">
                                 <label for="interno">Interno</label><br>
-                                <input type="radio" id="procedencia_externo" onclick="internoEspecificacion()" name="interno" value="externo">
+                                <input type="radio" id="procedencia_externo" onclick="internoEspecificacion()" name="procedencia" value="externo">
                                 <label for="interno">Externo</label><br>
                                 <div class="especificacion_externo" id="especificacion_externo" style="margin-left: 20px;">
                                     <label for="carrera">Especifique: </label>
@@ -171,11 +171,13 @@
                                     </select>
                                 </div>
                             </div>
+                            <span class="text-danger">@error('procedencia') {{$message}} @enderror</span>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Departamento</label>
                             <select name="departamento_id" id="eleccion_departamento">
+                                <option value="" selected disabled hidden>Elija su departamento</option>
                                 <option value="1">Departamento de Servicios Académicos</option>
                                 <option value="2">Departamento de Investigación y Desarrollo</option>
                                 <option value="3">Departamento de Seguridad en Cómputo</option>
@@ -183,6 +185,7 @@
                                 <option value="5">Salas</option>
                             </select>
                         </div>
+                        <span class="text-danger">@error('departamento_id') {{$message}} @enderror</span>
                         <br>
                         <div class="form-group">
                             <button class="btn btn-secondary register" type="submit">Registrar</button>
