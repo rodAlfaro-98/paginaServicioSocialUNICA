@@ -23,6 +23,13 @@
         .main {
           margin-left: 20%; /* Same as the width of the sidenav */
         } 
+
+        a:link { text-decoration: none; }
+
+        a:visited { text-decoration: none; }
+
+        a:hover { text-decoration: none; }
+
         </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <title>Coordinador</title>
@@ -36,6 +43,7 @@
                 <h5><a>Alumnos pendientes</a></h5>
                 <h5><a>Alumnos inscritos</a></h5>
                 <h5><a>Estadísticas</a></h5>
+                <h5><a href="{{route('departamento.logout')}}" style="color: white;">Cerrar Sesión</a></h5>
             </div>
         </nav>
         <div class = "main">

@@ -17,7 +17,7 @@ class DepartamentoSeeder extends Seeder
         DB::table('departamento')->insert([
             'departamento' => 'Departamento de Servicios Académicos',
             'abreviatura_departamento' => 'DSA',
-            'jefe_departamento_id' => 1,
+            'jefe_departamento_id' => 2,
         ]);
 
         DB::table('departamento')->insert([

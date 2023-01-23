@@ -20,7 +20,7 @@ class DepartamentoAuthController extends Controller
     }
     public function logout(){
         if(Session::has('loginId')){
-            Session::pull('loginId');
+            Session::flush();
             return redirect()->route('departamento.login');
         }
     }
@@ -35,6 +35,8 @@ class DepartamentoAuthController extends Controller
             if(Hash::check($request->contraseña,$user->contraseña)){
                 $request->session()->put('loginId',$user->id);
                 $request->session()->put('tipo','Jefe de departamento');
+                $departamento = Departamento::where('jefe_departamento_id',$user->id)->first();
+                $request->session()->put('departamento',$departamento->getAbreviatura());
                 return redirect('departamento/home');
             }else{
                 return back()->with('fail','Contraseña errónea.');    
@@ -46,18 +48,14 @@ class DepartamentoAuthController extends Controller
 
     public function home(){
         $data = array();
-        if(Session::has('loginId')){
             $jefe = JefeDepartamento::findOrFail(Session::get('loginId'))->first();
             $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
-            $alumnos = $departamento->getAlumnosAceptados();
+            $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosAceptados(true) : $departamento->getAlumnosAceptados();
             $departamento = $departamento->getAbreviatura();
             return view('homeDepartamento')
                 ->with('jefe',$jefe)
                 ->with('alumnos',$alumnos)
                 ->with('departamento',$departamento);
-        }else {
-            return redirect()->route('departamento.login');
-        }
     }
 
 }

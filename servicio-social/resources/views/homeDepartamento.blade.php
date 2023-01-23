@@ -2,7 +2,7 @@
 
 @section('contenido')
         <div class="container">
-            <div class = "row" style="margin: 60px 50px;>
+            <div class = "row" style="margin: 60px 50px;">
                 <div class = "col-md-offset-4" style="margin-top:20px;">
                     <h4>Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
                     <hr>

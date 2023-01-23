@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Html\HtmlServiceProvider;
 
-class JefeDepartamentoController extends Controller {
+class DepartamentoController extends Controller {
 
     public function index(){
         $data = array();

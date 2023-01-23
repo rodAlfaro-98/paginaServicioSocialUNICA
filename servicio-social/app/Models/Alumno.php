@@ -60,7 +60,7 @@ class Alumno extends Model{
         $carrera = $this->getCarrera();
         $departamento = $this->getDepartamento();
         $estado = $this->getEstado();
-        return (object) array('numero_cuenta' => $this->numero_cuenta,'nombres' => $this->getNombre(),
+        return (object) array('numero_cuenta' => $this->numero_cuenta,'nombres' => $this->getNombreApellidos(),
             'fecha_inicio' => $this->fecha_inicio,'fecha_fin'=>$this->fecha_fin,
             'duracion_servicio' => $this->duracion_servicio, 'clave_carrera' => $carrera->clave_carrera,
             'departamento' => $departamento->departamento, 'estado' => $estado->estado);

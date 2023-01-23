@@ -30,7 +30,7 @@ class AlumnoAuthController extends Controller
     }
     public function logout(){
         if(Session::has('loginId')){
-            Session::pull('loginId');
+            Session::flush();
             return redirect()->route('alumno.login');
         }
     }
@@ -73,6 +73,28 @@ class AlumnoAuthController extends Controller
     }
 
     public function registerUser(Request $request){
+        $request->validate([
+            'numero_cuenta' => 'required|numeric|min:9',
+            'correo' => 'required',
+            'nombres' => 'required',
+            'apellido_paterno' => 'required',
+            'apellido_materno' => 'required',
+            'fecha_nacimiento' => 'required',
+            'curp' => 'required',
+            'genero' => 'required',
+            'telefono_casa' => 'required',
+            'telefono_celular' => 'required',
+            'creditos_pagados' => 'required',
+            'avance_porcentaje' => 'required',
+            'promedio' => 'required',
+            'fecha_ingreso_fac' => 'required',
+            'duracion_servicio' => 'required',
+            'horas_semana' => 'required',
+            'hora_inicio' => 'required',
+            'hora_fin' => 'required',
+            'procedencia' => 'required',
+            'departamento_id' => 'required'
+        ]);
         $alumno = new Alumno();
         $alumno->correo = $request->correo;
         $alumno->numero_cuenta = $request->numero_cuenta;
@@ -96,7 +118,7 @@ class AlumnoAuthController extends Controller
         $alumno->fecha_fin = Carbon::parse($request->fecha_inicio)->addMonth($request->duracion_servicio)->format('Y-m-d');
         $contraseña = Str::random(12);
         $alumno->contraseña = Hash::make($contraseña);
-        $alumno->interno = (strcmp($request->interno,'interno') == 0);
+        $alumno->interno = (strcmp($request->procedencia,'interno') == 0);
         $carrera = ($alumno->interno == true) ? $request->carrera_interno : $request->carrera_externo;
         $datos_carrera = Carrera::where('carrera',$carrera)->first();
         $carrera_id = 0;
@@ -144,8 +166,7 @@ class AlumnoAuthController extends Controller
         Mail::to($alumno->correo)->send(new Registro($alumno->correo,$alumno->getNombre(),$departamento->departamento,$jefe_departamento->getNombreTitulo(),$contraseña));
         Mail::to($jefe_departamento->email)->send(new Peticion($jefe_departamento->email,$jefe_departamento->getNombreTitulo(),$alumno->numero_cuenta,$alumno->getNombreApellidos()));
 
-        Session::put('success','Ha sido ingresado exitosamente al sistema. Favor de esperar a que su solicitud sea aceptada. Su contraseña para ingresar al sistema es: '.$contraseña);
-        return redirect()->route('seleccion');
+        return redirect()->route('seleccion')->with('success','Ha sido ingresado exitosamente al sistema. Favor de esperar a que su solicitud sea aceptada. Su contraseña para ingresar al sistema es: '.$contraseña);
     }
 
     public function vistaCambioContraseña(){

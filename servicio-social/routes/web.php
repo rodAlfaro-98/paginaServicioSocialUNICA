@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlumnoController;
-use App\Http\Controllers\JefeDepartamentoController;
+use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\DepartamentoAuthController;
 use App\Http\Controllers\AlumnoAuthController;
 use App\Http\Controllers\SeleccionUsuarioController;
@@ -20,6 +20,7 @@ use App\Http\Controllers\SeleccionUsuarioController;
 */
 
 Route::get('/', [SeleccionUsuarioController::class,'seleccionPage'])->name('seleccion');
+
 //Departamento
 Route::get('/departamento/login',[DepartamentoAuthController::class,'login'])->name('departamento.login');
 Route::get('/departamento/logout',[DepartamentoAuthController::class,'logout'])->name('departamento.logout');
@@ -34,6 +35,7 @@ Route::post('/alumno/login/usuario',[AlumnoAuthController::class,'loginUser'])->
 Route::get('/alumno/registro',[AlumnoAuthController::class,'register'])->name('alumno.register');
 Route::get('/alumno/home',[AlumnoAuthController::class,'home'])->name('alumno.home')->middleware('isAlumnoLoggedIn');
 Route::post('/alumno/registro/usuario',[AlumnoAuthController::class,'registerUser'])->name('alumno.register.usuario');
+
 //Cambio de contraseña
 Route::get('/alumno/cambia_contraseña',[AlumnoAuthController::class,'vistaCambioContraseña'])->name('alumno.cambia_contraseña')->middleware('isAlumnoLoggedIn');
 Route::post('/alumno/cambia/confirma_contraseña',[AlumnoAuthController::class,'comfirmaContraseña'])->name('alumno.comfirma.contraseña')->middleware('isAlumnoLoggedIn');
