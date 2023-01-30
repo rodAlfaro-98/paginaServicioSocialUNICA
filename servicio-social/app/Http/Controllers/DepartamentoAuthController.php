@@ -46,17 +46,5 @@ class DepartamentoAuthController extends Controller
         }
     }
 
-    public function home(){
-        $data = array();
-            $jefe = JefeDepartamento::findOrFail(Session::get('loginId'))->first();
-            $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
-            $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosAceptados(true) : $departamento->getAlumnosAceptados();
-            $departamento = $departamento->getAbreviatura();
-            return view('homeDepartamento')
-                ->with('jefe',$jefe)
-                ->with('alumnos',$alumnos)
-                ->with('departamento',$departamento);
-    }
-
 }
 

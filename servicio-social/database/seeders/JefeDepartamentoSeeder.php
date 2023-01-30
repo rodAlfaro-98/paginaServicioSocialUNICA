@@ -15,7 +15,7 @@ class JefeDepartamentoSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('jefe_departamento')->insert([
+        DB::table('jefe_departamento')->insert([ //1
             'titulo' => 'Ing.',
             'nombres' => 'Prueba',
             'apellido_paterno' => 'Prueba',
@@ -25,7 +25,7 @@ class JefeDepartamentoSeeder extends Seeder
             'contraseña' => Hash::make('prueba123456789')
         ]);
 
-        DB::table('jefe_departamento')->insert([
+        DB::table('jefe_departamento')->insert([ //2
             'titulo' => 'Ing.',
             'nombres' => 'Rodrigo',
             'apellido_paterno' => 'Alfaro',
@@ -33,6 +33,36 @@ class JefeDepartamentoSeeder extends Seeder
             'email' => 'rodrigo.alfaro@ingenieria.unam.edu',
             'uid' => 'roalfa98',
             'contraseña' => Hash::make('Th3B3@tl3s123456789')
+        ]);
+
+        DB::table('jefe_departamento')->insert([ //3
+            'titulo' => 'Ing.',
+            'nombres' => 'Prueba2',
+            'apellido_paterno' => 'Prueba2',
+            'apellido_materno' => 'Prueba2',
+            'email' => 'prueba2@gmail.com',
+            'uid' => 'usuario_prueba2',
+            'contraseña' => Hash::make('prueba123456789')
+        ]);
+
+        DB::table('jefe_departamento')->insert([ //4
+            'titulo' => 'Ing.',
+            'nombres' => 'Prueba3',
+            'apellido_paterno' => 'Prueba3',
+            'apellido_materno' => 'Prueba3',
+            'email' => 'prueba2@gmail.com',
+            'uid' => 'usuario_prueba3',
+            'contraseña' => Hash::make('prueba123456789')
+        ]);
+
+        DB::table('jefe_departamento')->insert([ //5
+            'titulo' => 'Ing.',
+            'nombres' => 'Prueba4',
+            'apellido_paterno' => 'Prueba4',
+            'apellido_materno' => 'Prueba4',
+            'email' => 'prueba2@gmail.com',
+            'uid' => 'usuario_prueba4',
+            'contraseña' => Hash::make('prueba123456789')
         ]);
     }
 }

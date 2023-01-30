@@ -85,7 +85,7 @@ class AlumnoSeeder extends Seeder
             "Camila",
             "Valeria",
             "Ximena",
-            "María_Fernanda",
+            "María Fernanda",
             "Victoria",
             "Renata",
             "Santiago",
@@ -136,7 +136,7 @@ class AlumnoSeeder extends Seeder
             $alumno->creditos_pagados = rand(210,420);
             $alumno->avance_porcentaje = rand(60,99)+0.5;
             $alumno->promedio = rand(60,99)+0.5;
-            $alumno->duracion_servicio = 12;
+            $alumno->duracion_servicio = 6;
             $alumno->horas_semana = 10;
             $alumno->hora_inicio = '13:00';
             $alumno->hora_fin = '15:00';
@@ -147,9 +147,10 @@ class AlumnoSeeder extends Seeder
             $alumno->estado_id = 1;
             $alumno->fecha_nacimiento = now();
             $alumno->fecha_ingreso_facultad = now();
-            $fecha_inicio = Carbon::now()->subMonths(rand(0,5));
+            $sub = rand(0,5);
+            $fecha_inicio = Carbon::now()->subMonths($sub);
             $alumno->fecha_inicio = $fecha_inicio;
-            $alumno->fecha_fin = $fecha_inicio->addMonths(6);
+            $alumno->fecha_fin = Carbon::now()->addMonths(6-$sub);
             $alumno->save();
         }
     }

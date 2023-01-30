@@ -9,6 +9,7 @@ use Hash;
 use Session;
 use Redirect;
 use Validator;
+use Exception;
 use App\Models\Alumno;
 use App\Models\Carrera;
 use App\Models\Estado;
@@ -37,7 +38,7 @@ class AlumnoAuthController extends Controller
 
     public function loginUser(Request $request){
         $request->validate([
-            'num_cuenta' => 'required|numeric|min:9',
+            'num_cuenta' => 'required|digits_between:9,10',
             'contraseña' => 'required|min:12',
         ]);
         $user = Alumno::where('numero_cuenta',$request->num_cuenta)->first();
@@ -92,7 +93,7 @@ class AlumnoAuthController extends Controller
             'horas_semana' => 'required',
             'hora_inicio' => 'required',
             'hora_fin' => 'required',
-            'procedencia' => 'required',
+            'interno' => 'required',
             'departamento_id' => 'required'
         ]);
         $alumno = new Alumno();
@@ -118,7 +119,7 @@ class AlumnoAuthController extends Controller
         $alumno->fecha_fin = Carbon::parse($request->fecha_inicio)->addMonth($request->duracion_servicio)->format('Y-m-d');
         $contraseña = Str::random(12);
         $alumno->contraseña = Hash::make($contraseña);
-        $alumno->interno = (strcmp($request->procedencia,'interno') == 0);
+        $alumno->interno = (strcmp($request->interno,'interno') == 0);
         $carrera = ($alumno->interno == true) ? $request->carrera_interno : $request->carrera_externo;
         $datos_carrera = Carrera::where('carrera',$carrera)->first();
         $carrera_id = 0;
@@ -166,7 +167,7 @@ class AlumnoAuthController extends Controller
         Mail::to($alumno->correo)->send(new Registro($alumno->correo,$alumno->getNombre(),$departamento->departamento,$jefe_departamento->getNombreTitulo(),$contraseña));
         Mail::to($jefe_departamento->email)->send(new Peticion($jefe_departamento->email,$jefe_departamento->getNombreTitulo(),$alumno->numero_cuenta,$alumno->getNombreApellidos()));
 
-        return redirect()->route('seleccion')->with('success','Ha sido ingresado exitosamente al sistema. Favor de esperar a que su solicitud sea aceptada. Su contraseña para ingresar al sistema es: '.$contraseña);
+        return redirect()->route('alumno.login')->with('success','Ha sido ingresado exitosamente al sistema. Favor de esperar a que su solicitud sea aceptada. Su contraseña para ingresar al sistema es: '.$contraseña);
     }
 
     public function vistaCambioContraseña(){

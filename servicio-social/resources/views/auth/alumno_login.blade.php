@@ -4,27 +4,26 @@
         <meta charset = "UTF-8">
         <!-- CSS only -->
         <!-- Boostrap necesario para alertas -->
-        <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <title>Alumno</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="preload" href="../css/normalize.css" as="style">
         <link rel="stylesheet" href="../css/normalize.css">
         <link rel="preload" href="../css/style.css" as="style">
         <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
         <div class="container">
             <div class="info-container">
                 <h2 class="title">Iniciar Sesión</h2>
                 <form action="{{route('alumno.login.usuario')}}" method="post" class="inputs-container">
-
-                    @if(Session::has('succes'))
-                    <div class="alert alert-success">{{Session::get('success')}}</div>
+                    @if(Session::has('success'))
+                        <div class="alert alert-success">{{Session::get('success')}}</div>
                     @endif
                     @if(Session::has('fail'))
-                    <div class="alert alert-danger">{{Session::get('fail')}}</div>
+                        <div class="alert alert-danger">{{Session::get('fail')}}</div>
                     @endif
                     @csrf
                     <input class="input" type="text" placeholder="Número de cuenta" name="num_cuenta" value="{{old('num_cuenta')}}">

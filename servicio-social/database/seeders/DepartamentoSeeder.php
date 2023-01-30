@@ -29,19 +29,19 @@ class DepartamentoSeeder extends Seeder
         DB::table('departamento')->insert([
             'departamento' => 'Departamento de Seguridad en Cómputo',
             'abreviatura_departamento' => 'DSC',
-            'jefe_departamento_id' => 1,
+            'jefe_departamento_id' => 3,
         ]);
 
         DB::table('departamento')->insert([
             'departamento' => 'Departamento de Redes y Operación de Servidores',
             'abreviatura_departamento' => 'DROS',
-            'jefe_departamento_id' => 1,
+            'jefe_departamento_id' => 4,
         ]);
 
         DB::table('departamento')->insert([
             'departamento' => 'Salas',
             'abreviatura_departamento' => 'Salas',
-            'jefe_departamento_id' => 1,
+            'jefe_departamento_id' => 5,
         ]);
     }
 }

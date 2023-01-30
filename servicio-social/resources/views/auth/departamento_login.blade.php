@@ -3,7 +3,7 @@
     <head>
         <meta charset = "UTF-8">
         <!-- CSS only -->
-        <!--<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <title>Departamento</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,23 +12,18 @@
         <link rel="preload" href="../css/style.css" as="style">
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            .input{
-                margin: 0 0 -10em 0;
-            }
-        </style>
     </head>
     <body>
         <div class="container">
             <div class="info-container">
                 <h2 class="title">Iniciar Sesión</h2>
-                <form action="{{route('departamento.login.usuario')}}" method="post" class="inputs-container">
-                    @if(Session::has('success'))
+                @if(Session::has('success'))
                     <div class="alert alert-success">{{Session::get('success')}}</div>
-                    @endif
-                    @if(Session::has('fail'))
-                    <div class="alert alert-danger">{{Session::get('fail')}}</div>
-                    @endif
+                @endif
+                @if(Session::has('fail'))
+                    <div class="alert alert-danger" style = "margin-bottom:0px;">{{Session::get('fail')}}</div>
+                @endif
+                <form action="{{route('departamento.login.usuario')}}" method="post" class="inputs-container">
                     @csrf
                     <input class="input" type="text" placeholder="Usuario" name="usuario" value="{{old('uid')}}">
                     <span class="text-danger">@error('usuario') {{$message}} @enderror</span>

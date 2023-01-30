@@ -25,7 +25,7 @@ Route::get('/', [SeleccionUsuarioController::class,'seleccionPage'])->name('sele
 Route::get('/departamento/login',[DepartamentoAuthController::class,'login'])->name('departamento.login');
 Route::get('/departamento/logout',[DepartamentoAuthController::class,'logout'])->name('departamento.logout');
 Route::post('/departamento/login/usuario',[DepartamentoAuthController::class,'loginUser'])->name('departamento.login.usuario');
-Route::get('/departamento/home',[DepartamentoAuthController::class,'home'])->name('departamento.home')->middleware('isDepartamentoLoggedIn');
+Route::get('/departamento/home',[DepartamentoController::class,'index'])->name('departamento.home')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/pendientes',[DepartamentoController::class,'getPendientes'])->name('departamento.pendientes')->middleware('isDepartamentoLoggedIn');
 
 //Login y registro

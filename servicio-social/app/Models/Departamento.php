@@ -25,7 +25,7 @@ class Departamento extends Model{
 
     public function getAlumnosAceptados($superUsuario = false){
         $aux = array();
-        $alumnos = ($superUsuario) ? Alumno::all() : Alumno::where('departamento_id',$this->id)->get();
+        $alumnos = ($superUsuario) ? Alumno::select('*')->orderBy('departamento_id')->orderBy('numero_cuenta')->get() : Alumno::where('departamento_id',$this->id)->get();
         foreach($alumnos as $alumno){
         $estado = Estado::where('id',$alumno->estado_id)->first();
         if(strcmp($estado->getEstado(),'ACEPTADO') == 0)
@@ -36,7 +36,7 @@ class Departamento extends Model{
 
     public function getAlumnosPendientes($superUsuario = false){
         $aux = array();
-        $alumnos = ($superUsuario) ? Alumno::all() : Alumno::where('departamento_id',$this->id)->get();
+        $alumnos = ($superUsuario) ? Alumno::select('*')->orderBy('departamento_id')->orderBy('numero_cuenta')->get() : Alumno::where('departamento_id',$this->id)->get();
         foreach($alumnos as $alumno){
             $estado = Estado::where('id',$alumno->estado_id)->first();
             if(strcmp($estado->getEstado(),'PENDIENTE') == 0)

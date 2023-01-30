@@ -62,8 +62,9 @@ class Alumno extends Model{
         $estado = $this->getEstado();
         return (object) array('numero_cuenta' => $this->numero_cuenta,'nombres' => $this->getNombreApellidos(),
             'fecha_inicio' => $this->fecha_inicio,'fecha_fin'=>$this->fecha_fin,
-            'duracion_servicio' => $this->duracion_servicio, 'clave_carrera' => $carrera->clave_carrera,
-            'departamento' => $departamento->departamento, 'estado' => $estado->estado);
+            'duracion_servicio' => $this->duracion_servicio, 'clave_carrera' => $carrera->carrera,
+            'departamento' => $departamento->departamento, 'estado' => $estado->estado,
+            'abreviatura_departamento' => $departamento->abreviatura_departamento);
     }
 
 }
