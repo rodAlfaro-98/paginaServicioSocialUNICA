@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 use Illuminate\Html\HtmlServiceProvider;
 use App\Models\JefeDepartamento;
 use App\Models\Departamento;
+use App\Models\Alumno;
 
 class DepartamentoController extends Controller {
 
@@ -41,6 +42,23 @@ class DepartamentoController extends Controller {
         }else {
             return redirect()->route('departamento.login');
         }
+    }
+
+    public function getDatosAlumno(int $num_cuenta){
+        $alumno = Alumno::where('numero_cuenta',$num_cuenta)->first();
+        $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
+        return $alumno;
+    }
+
+    public function bajaAlumno(int $num_cuenta){
+        if($alumno = Alumno::where('numero_cuenta',$num_cuenta)->first()){
+            Alumno::where('numero_cuenta',$num_cuenta)->delete();
+            return redirect()->back()->with('success','El alumno con número de cuenta: '.$num_cuenta." fue dado de baja exitosamente del sistema");
+        }
+        else{
+            return redirect()->back()->with('fail','No existe alumno con número de cuenta: '.$num_cuenta);
+        }
+        
     }
 }
 
