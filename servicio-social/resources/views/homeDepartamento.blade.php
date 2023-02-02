@@ -12,7 +12,7 @@
                     @endif
                     @csrf
                     <h4>Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
-                    <hr>
+                    
                     <div class="container">
                         <div class="row">
                             @if ($departamento != 'DSA')
