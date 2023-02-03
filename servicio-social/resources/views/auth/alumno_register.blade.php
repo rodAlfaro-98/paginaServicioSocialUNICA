@@ -6,27 +6,14 @@
         <title>Registro Alumno</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preload" href="../css/normalize.css" as="style">
-        <link rel="stylesheet" href="../css/normalize.css">
-        <link rel="preload" href="../css/style.css" as="style">
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="preload" href="{{URL::asset('css/normalize.css')}}" as="style">
+        <link rel="stylesheet" href="{{URL::asset('css/normalize.css')}}">
+        <link rel="preload" href="{{URL::asset('css/style.css')}}" as="style">
+        <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
+        <link rel="preload" href="{{URL::asset('css/alumno_register.css')}}" as="style">
+        <link rel="stylesheet" href="{{URL::asset('css/alumno_register.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-        <!-- CSS only -->
-        <style>
-            .especificacion{
-                display: none;
-            }
-            .especificacion_externo{
-                display: none;
-            }
-            .especificacion_interno{
-                display: none;
-            }
-            .input{
-                margin-top: 0.5em;
-            }
-        </style>
     </head>
     <body>
     <div class="container">
@@ -212,27 +199,6 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <script>
-        function vistaEspecificacion(){
-            if(document.getElementById('genero_selector').value == "Otro") {
-                document.getElementById('especificacion').style.display = "block";
-            }else{
-                document.getElementById('especificacion').style.display = "none";
-                document.getElementById('especificacion_genero').value = null;
-            }
-        }
-        function internoEspecificacion(){
-            if(document.getElementById('procedencia_externo').checked){
-                document.getElementById('especificacion_externo').style.display = "block";
-            }else{
-                document.getElementById('especificacion_externo').style.display = "none";
-            }
-            if(document.getElementById('procedencia_interno').checked){
-                document.getElementById('especificacion_interno').style.display = "block";
-            }else{
-                document.getElementById('especificacion_interno').style.display = "none";
-            }
-        }
-    </script>
+    <script type="text/javascript" src="{{ URL::asset('assets/js/alumno_register.js')}}"></script>
     </body>
 </html>

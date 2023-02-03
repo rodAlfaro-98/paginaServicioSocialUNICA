@@ -13,6 +13,7 @@ use Illuminate\Html\HtmlServiceProvider;
 use App\Models\JefeDepartamento;
 use App\Models\Departamento;
 use App\Models\Alumno;
+use App\Models\Carrera;
 
 class DepartamentoController extends Controller {
 
@@ -46,8 +47,19 @@ class DepartamentoController extends Controller {
 
     public function getDatosAlumno(int $num_cuenta){
         $alumno = Alumno::where('numero_cuenta',$num_cuenta)->first();
-        $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
-        return $alumno;
+        if($alumno){
+            $carrera = Carrera::find($alumno->carrera_id)->first();
+            $departamento = Departamento::find($alumno->departamento_id)->first();
+            $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
+            return view('datos_alumno')
+                ->with('jefe',$jefe)
+                ->with('alumno',$alumno)
+                ->with('carrera',$carrera->carrera)
+                ->with('departamento',$departamento->departamento);
+        }else{
+            return redirect()->back()->with('fail','No existe alumno con número de cuenta: '.$num_cuenta);
+        }
+        
     }
 
     public function bajaAlumno(int $num_cuenta){
