@@ -25,11 +25,12 @@
                 @endif
                 <form action="{{route('departamento.login.usuario')}}" method="post" class="inputs-container">
                     @csrf
-                    <input class="input" type="text" placeholder="Usuario" name="usuario" value="{{old('uid')}}">
-                    <span class="text-danger">@error('usuario') {{$message}} @enderror</span>
-                    <input class="input" type="password" placeholder="Contraseña" name="contraseña" value="">
-                    <span class="text-danger">@error('contraseña') {{$message}} @enderror</span>
-                    <button class="btn" type="submit">Ingresar</button>
+                    <input class="input" type="text" placeholder="Usuario" name="usuario" value="{{old('uid')}}" style = "margin-top:-25.5px;">
+                    <span class="text-danger" style = "margin-top:-80px;">@error('usuario') {{$message}} @enderror</span>
+                    <input class="input" type="password" placeholder="Contraseña" name="contraseña" value="" style = "margin-top:-70px;">
+                    <span class="text-danger" style = "margin-top:-80px;">@error('contraseña') {{$message}} @enderror</span>
+                    <button class="btn" type="submit" style = "margin-top:-70px; margin-bottom:-70px">Ingresar</button>
+                    <div class="hr1"></div>
                 </form>
                 <div class="hr1"></div>
                 <div class="return1 return">
