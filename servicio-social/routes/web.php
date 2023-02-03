@@ -29,6 +29,8 @@ Route::get('/departamento/home',[DepartamentoController::class,'index'])->name('
 Route::get('/departamento/pendientes',[DepartamentoController::class,'getPendientes'])->name('departamento.pendientes')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/datos/{num_cuenta}',[DepartamentoController::class,'getDatosAlumno'])->name('departamento.alumno.datos')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/baja/{num_cuenta}',[DepartamentoController::class,'bajaAlumno'])->name('departamento.alumno.baja')->middleware('isDepartamentoLoggedIn');
+Route::get('/departamento/rechazo/{num_cuenta}',[DepartamentoController::class,'rechazoAlumno'])->name('departamento.alumno.rechazar')->middleware('isDepartamentoLoggedIn');
+Route::get('/departamento/aceptar/{num_cuenta}',[DepartamentoController::class,'aceptarAlumno'])->name('departamento.alumno.aceptar')->middleware('isDepartamentoLoggedIn');
 
 //Login y registro
 Route::get('/alumno/login',[AlumnoAuthController::class,'login'])->name('alumno.login');
