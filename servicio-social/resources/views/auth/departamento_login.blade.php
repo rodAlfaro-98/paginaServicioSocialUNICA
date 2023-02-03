@@ -30,7 +30,7 @@
                     <input class="input" type="password" placeholder="Contraseña" name="contraseña" value="" style = "margin-top:-70px;">
                     <span class="text-danger" style = "margin-top:-80px;">@error('contraseña') {{$message}} @enderror</span>
                     <button class="btn" type="submit" style = "margin-top:-70px; margin-bottom:-70px">Ingresar</button>
-                    <div class="hr1"></div>
+                    <div class="hr1" style="opacity:0;"></div>
                 </form>
                 <div class="hr1"></div>
                 <div class="return1 return">
