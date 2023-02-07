@@ -86,10 +86,13 @@
                             <td>
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-5">
+                                            <button type="button" class="btn btn-success" style="color:white;" onclick="window.location='{{route("departamento.alumno.finalizar",["num_cuenta" => $data->numero_cuenta])}}'">Finalizar</Button>
+                                        </div>
+                                        <div class="col-sm-4">
                                             <button type="button" class="btn btn-info" style="color:white;" onclick="window.location='{{route("departamento.alumno.datos",["num_cuenta" => $data->numero_cuenta])}}'">Datos</Button>
                                         </div>
-                                        <div class="col-sm-6">
+                                        <div class="col-sm-3">
                                             <button type="button" class="btn btn-danger" onclick="confirmacionBaja({{$data->numero_cuenta}})">Baja</button>    
                                         </div>
                                     </div>

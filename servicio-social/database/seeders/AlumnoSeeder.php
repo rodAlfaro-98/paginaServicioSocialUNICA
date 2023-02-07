@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use App\Models\Estado;
+use App\Models\HistoricoEstado;
 
 use App\Models\Alumno;
 
@@ -20,7 +22,7 @@ class AlumnoSeeder extends Seeder
     {
         //Alumno 1
         $alumno = new Alumno();
-        $alumno->correo = 'rodrigoalfarod_falso@gmail.com';
+        $alumno->correo = 'rodrigoalfarod@gmail.com';
         $alumno->numero_cuenta = '316355311';
         $alumno->nombres = 'Rodrigo';
         $alumno->apellido_paterno = 'Alfaro';
@@ -79,13 +81,14 @@ class AlumnoSeeder extends Seeder
 
         $nombres = [
             "Sofía",
-            "María_José",
+            "José",
             "Valentina",
             "Regina",
             "Camila",
             "Valeria",
             "Ximena",
-            "María Fernanda",
+            "María",
+            "Fernanda",
             "Victoria",
             "Renata",
             "Santiago",
@@ -144,14 +147,30 @@ class AlumnoSeeder extends Seeder
             $alumno->interno = True;
             $alumno->carrera_id = rand(1,14);
             $alumno->departamento_id = rand(1,5);
-            $alumno->estado_id = 1;
             $alumno->fecha_nacimiento = now();
             $alumno->fecha_ingreso_facultad = now();
             $sub = rand(0,5);
             $fecha_inicio = Carbon::now()->subMonths($sub);
             $alumno->fecha_inicio = $fecha_inicio;
             $alumno->fecha_fin = Carbon::now()->addMonths(6-$sub);
+
+            $estado_num = rand(1,2);
+            $estado = new Estado();
+            $estado->estado = ($estado_num == 1) ? 'ACEPTADO' : 'PENDIENTE';
+            $estado->fecha_estado = Carbon::now();
+            $estado->save();
+            $alumno->estado_id = $estado->id;
             $alumno->save();
+
+            $alumno->estado_id = $estado->id;
+            $alumno->save();
+
+            $historico = new HistoricoEstado();
+            $historico->fecha_estado = Carbon::now();
+            $historico->estado_id = $estado->id;
+            $historico->departamento_id = $alumno->departamento_id;
+            $historico->alumno_id = $alumno->id;
+            $historico->save();
         }
     }
 }

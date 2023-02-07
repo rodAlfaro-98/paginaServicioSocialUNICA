@@ -1,5 +1,5 @@
 @component('mail::message')
-# Registro
+# Aceptación de solicitud
 
 Estimado {{$nombre_alumno}}
 

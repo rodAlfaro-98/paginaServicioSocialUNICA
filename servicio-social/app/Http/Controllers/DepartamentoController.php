@@ -18,6 +18,9 @@ use App\Models\Estado;
 use App\Models\HistoricoEstado;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\Aceptacion;
+use App\Mail\Baja;
+use App\Mail\Rechazo;
+use Carbon\Carbon;
 
 class DepartamentoController extends Controller {
 
@@ -69,9 +72,23 @@ class DepartamentoController extends Controller {
     public function bajaAlumno(int $num_cuenta){
         $alumno = Alumno::where('numero_cuenta',$num_cuenta)->first();
         if($alumno){
+            $departamento = Departamento::findOrFail($alumno->departamento_id);
             //Enviar correo al alumno
-            //Alumno::where('numero_cuenta',$num_cuenta)->delete();
-            //return redirect()->back()->with('success','El alumno con número de cuenta: '.$num_cuenta." fue dado de baja exitosamente del sistema");
+            $estado = Estado::findOrFail($alumno->estado_id);
+            $estado->estado = 'BAJA';
+            $estado->fecha_estado = Carbon::now();
+            $estado->save();
+
+            $historico = new HistoricoEstado();
+            $historico->fecha_estado = Carbon::now();
+            $historico->estado_id = $estado->id;
+            $historico->departamento_id = $alumno->departamento_id;
+            $historico->alumno_id = $alumno->id;
+            $historico->save();
+
+            Mail::to($alumno->correo)->send(new Baja($alumno->correo,$alumno->getNombre(),$departamento->departamento));
+
+            return redirect()->back()->with('success','El alumno con número de cuenta: '.$num_cuenta." fue dado de baja exitosamente del sistema");
         }
         else{
             return redirect()->back()->with('fail','No existe alumno con número de cuenta: '.$num_cuenta);
@@ -80,7 +97,31 @@ class DepartamentoController extends Controller {
     }
 
     public function rechazoAlumno(int $num_cuenta){
-        //Enviar correo al alumno
+        $alumno = Alumno::where('numero_cuenta',$num_cuenta)->first();
+        if($alumno){
+            $departamento = Departamento::findOrFail($alumno->departamento_id);
+            //Enviar correo al alumno
+            $estado = Estado::findOrFail($alumno->estado_id);
+            $estado->estado = 'Rechazo';
+            $estado->fecha_estado = Carbon::now();
+            $estado->save();
+            $alumno->estado_id = $estado->id;
+            $alumno->save();
+
+            $historico = new HistoricoEstado();
+            $historico->fecha_estado = Carbon::now();
+            $historico->estado_id = $estado->id;
+            $historico->departamento_id = $alumno->departamento_id;
+            $historico->alumno_id = $alumno->id;
+            $historico->save();
+
+            Mail::to($alumno->correo)->send(new Rechazo($alumno->correo,$alumno->getNombre(),$departamento->departamento));
+
+            return redirect()->back()->with('success','El alumno con número de cuenta: '.$num_cuenta." fue dado de baja exitosamente del sistema");
+        }
+        else{
+            return redirect()->back()->with('fail','No existe alumno con número de cuenta: '.$num_cuenta);
+        }
     }
 
     public function aceptarAlumno(int $num_cuenta){
@@ -89,26 +130,31 @@ class DepartamentoController extends Controller {
 
             $departamento = Departamento::findOrFail($alumno->departamento_id);
 
-            $estado = new Estado();
+            $estado = Estado::findOrFail($alumno->estado_id);
             $estado->estado = 'ACEPTADO';
             $estado->fecha_estado = Carbon::now();
             $estado->save();
             $alumno->estado_id = $estado->id;
-            
+            $alumno->save();
+
             $historico = new HistoricoEstado();
             $historico->fecha_estado = Carbon::now();
             $historico->estado_id = $estado->id;
             $historico->departamento_id = $alumno->departamento_id;
-            $historico_estado->alumno_id = $alumno->id;
+            $historico->alumno_id = $alumno->id;
             $historico->save();
             
             Mail::to($alumno->correo)->send(new Aceptacion($alumno->correo,$alumno->getNombre(),$departamento->departamento));
 
-            return redirect()->back->with('success','Se acaba de dar de alta al alumno con número de cuenta: '.$num_cuenta);
+            return redirect()->back()->with('success','Se acaba de dar de alta al alumno con número de cuenta: '.$num_cuenta);
         }
         else{
             return redirect()->back()->with('fail','No existe alumno con número de cuenta: '.$num_cuenta);
         }
+    }
+
+    public function finalizarAlumno(int $num_cuenta){
+
     }
 }
 

@@ -4,6 +4,8 @@
         <div class="container">
             <div class = "row" style="margin: 60px 50px;">
                 <div class = "col-md-offset-4" style="margin-top:20px;">
+                    
+                    <div class="container">
                     @if(Session::has('success'))
                         <div class="alert alert-success">{{Session::get('success')}}</div>
                     @endif
@@ -12,8 +14,6 @@
                     @endif
                     @csrf
                     <h4>Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
-                    
-                    <div class="container">
                         <div class="row">
                             @if ($departamento != 'DSA')
                                 <h6>Alumnos de la {{$departamento}}</h6>
@@ -86,13 +86,13 @@
                             <td>
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-sm-4">
-                                            <button type="button" class="btn btn-info" style="color:white;" onclick="window.location='{{route("departamento.alumno.aceptar",["num_cuenta" => $data->numero_cuenta])}}'">Aceptar</Button>
+                                        <div class="col-sm-5">
+                                            <button type="button" class="btn btn-success" style="color:white;" onclick="window.location='{{route("departamento.alumno.aceptar",["num_cuenta" => $data->numero_cuenta])}}'">Aceptar</Button>
                                         </div>
                                         <div class="col-sm-4">
                                             <button type="button" class="btn btn-info" style="color:white;" onclick="window.location='{{route("departamento.alumno.datos",["num_cuenta" => $data->numero_cuenta])}}'">Datos</Button>
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-3">
                                             <button type="button" class="btn btn-danger" onclick="confirmacionRechazo({{$data->numero_cuenta}})">Rechazar</button>    
                                         </div>
                                     </div>
