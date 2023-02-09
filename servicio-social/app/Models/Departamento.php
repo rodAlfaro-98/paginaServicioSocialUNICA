@@ -44,4 +44,15 @@ class Departamento extends Model{
         }
         return $aux;
     }
+
+    public function getAlumnosRechazados($superUsuario = false){
+        $aux = array();
+        $alumnos = ($superUsuario) ? Alumno::select('*')->orderBy('departamento_id')->orderBy('numero_cuenta')->get() : Alumno::where('departamento_id',$this->id)->get();
+        foreach($alumnos as $alumno){
+            $estado = Estado::where('id',$alumno->estado_id)->first();
+            if((strcmp($estado->getEstado(),'RECHAZO') == 0) || (strcmp($estado->getEstado(),'BAJA') == 0))
+                array_push($aux,$alumno->getDatos());
+        }
+        return $aux;
+    }
 }

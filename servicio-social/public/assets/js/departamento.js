@@ -4,13 +4,20 @@ function confirmacionBaja(numero_cuenta){
     }
 }
 
-function confirmacionBaja(numero_cuenta){
+function confirmacionRechazo(numero_cuenta){
     if( confirm("Se va a rechazar la solicitud del alumno con numero de cuenta: "+numero_cuenta+"\nDesea confirmar la acción?") == true ){
         window.location.href = "/departamento/rechazo/"+numero_cuenta;
     }
 }
+
+function confirmacionNuevaAlta(numero_cuenta){
+    if( confirm("Se va a volver a dar de alta al alumno con numero de cuenta: "+numero_cuenta+"\nDesea confirmar la acción?") == true ){
+        window.location.href = "/departamento/aceptar/"+numero_cuenta;
+    }
+}
+
 function getAlumnos(){
-    var tablr,tr,txtValue,txtInput,filter;
+    var table,tr,txtValue,txtInput,filter;
     table = document.getElementById('TablaAlumnos')
     tr = table.getElementsByTagName("tr");
     filter = document.getElementById('nombre_becario');

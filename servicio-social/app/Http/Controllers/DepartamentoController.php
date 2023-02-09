@@ -21,6 +21,9 @@ use App\Mail\Aceptacion;
 use App\Mail\Baja;
 use App\Mail\Rechazo;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\AlumnosExport;
+use PDF;
 
 class DepartamentoController extends Controller {
 
@@ -38,18 +41,26 @@ class DepartamentoController extends Controller {
 
     public function getPendientes(){
         $data = array();
-        if(Session::has('loginId')){
-            $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
-            $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
-            $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosPendientes(true) : $departamento->getAlumnosPendientes();
-            $departamento = $departamento->getAbreviatura();
-            return view('alumnosPendientes')
-                ->with('jefe',$jefe)
-                ->with('alumnos',$alumnos)
-                ->with('departamento',$departamento);
-        }else {
-            return redirect()->route('departamento.login');
-        }
+        $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
+        $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
+        $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosPendientes(true) : $departamento->getAlumnosPendientes();
+        $departamento = $departamento->getAbreviatura();
+        return view('alumnosPendientes')
+            ->with('jefe',$jefe)
+            ->with('alumnos',$alumnos)
+            ->with('departamento',$departamento);
+    }
+
+    public function getRechazados(){
+        $data = array();
+        $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
+        $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
+        $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosRechazados(true) : $departamento->getAlumnosRechazados();
+        $departamento = $departamento->getAbreviatura();
+        return view('alumnosRechazados')
+            ->with('jefe',$jefe)
+            ->with('alumnos',$alumnos)
+            ->with('departamento',$departamento);
     }
 
     public function getDatosAlumno(int $num_cuenta){
@@ -102,7 +113,7 @@ class DepartamentoController extends Controller {
             $departamento = Departamento::findOrFail($alumno->departamento_id);
             //Enviar correo al alumno
             $estado = Estado::findOrFail($alumno->estado_id);
-            $estado->estado = 'Rechazo';
+            $estado->estado = 'RECHAZO';
             $estado->fecha_estado = Carbon::now();
             $estado->save();
             $alumno->estado_id = $estado->id;
@@ -153,9 +164,41 @@ class DepartamentoController extends Controller {
         }
     }
 
+
+    public function descargarTablaExcel(string $tipo, string $departamento){
+        $date = Carbon::now();
+        return Excel::download(new AlumnosExport($tipo,$departamento),'alumnos_'.$tipo.'_'.$departamento.'_'.$date->format('Y_m_d').'.xlsx');
+    }
+
+    public function descargarTablaPDF(string $tipo, string $departamento){
+        $date = Carbon::now();
+        $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
+        $alumnos = array();
+        
+        if(strcmp($tipo,'ACEPTADO') == 0)
+            $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosAceptados(true) : $departamento->getAlumnosAceptados();
+        else if(strcmp($tipo,'PENDIENTE') == 0)
+            $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosPendientes(true) : $departamento->getAlumnosPendientes();
+        else
+            $alumnos = (Session::get('departamento') == 'DSA') ? $departamento->getAlumnosRechazados(true) : $departamento->getAlumnosRechazados();
+        
+        $departamento = $departamento->getAbreviatura();
+        $data = [
+            "alumnos" => $alumnos,
+            "departamento" => $departamento,
+            "estado" => $tipo
+        ];
+
+        $pdf = PDF::loadView('pdf.tablaAlumnos', $data)->setOptions(['defaultFont' => 'sans-serif']);
+
+        return $pdf->download('alumnos_'.$tipo.'_'.$departamento.'_'.$date->format('Y_m_d').'.pdf');
+
+    }
+
     public function finalizarAlumno(int $num_cuenta){
 
     }
+
 }
 
 

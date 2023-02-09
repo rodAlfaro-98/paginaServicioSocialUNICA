@@ -4,6 +4,8 @@
         <div class="container">
             <div class = "row" style="margin: 60px 50px;">
                 <div class = "col-md-offset-4" style="margin-top:20px;">
+                    
+                    <div class="container">
                     @if(Session::has('success'))
                         <div class="alert alert-success">{{Session::get('success')}}</div>
                     @endif
@@ -12,15 +14,12 @@
                     @endif
                     @csrf
                     <h4>Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
-                    <hr>
-                    <div class="container">
                         <div class="row">
                             @if ($departamento != 'DSA')
                                 <h6>Alumnos de la {{$departamento}}</h6>
                             @else
-                                <h5>Filtro por Datos</h5>
                                 <div class="col">
-                                    <label>Filtro por division:</label>
+                                    <p>Filtro por división:</p>
                                     <div class="container">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" id="DSA" name="DSA" value="DSA" onclick="getSelected()">
@@ -61,38 +60,6 @@
                             </div>
                         </div>
                     </div>
-                    <hr>
-                    <div class="container">
-                        <div class="row">
-                            <h5>Descargar datos:</h5>
-                            <br>
-                            <div class="col-4">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <p><img src="{{ URL::asset('assets/img/excel_icon.svg')}}" style="width:30px;height:30px;">Descargar tabla en Excel:</p>
-                                        </div>
-                                        <div class="col-3">
-                                            <button type="button" class="btn" style="color:white; background-color: #1D6F42" onclick="window.location='{{route("departamento.excel",["tipo"=> "ACEPTADO","departamento" =>$departamento])}}'" >Descargar</Button>
-                                        </div>
-                                    </div>
-                                </div>    
-                            </div>
-                            <div class="col-4">
-                            <div class="container">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <p><img src="{{ URL::asset('assets/img/pdf_icon.svg')}}" style="width:30px;height:30px;">Descargar tabla en PDF:</p>
-                                        </div>
-                                        <div class="col-3">
-                                            <button type="button" class="btn" style="color:white; background-color: #F40F02" onclick="window.location='{{route("departamento.pdf",["tipo"=> "ACEPTADO","departamento" =>$departamento])}}'" >Descargar</Button>
-                                        </div>
-                                    </div>
-                                </div>    
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
                     <table class="table" id="TablaAlumnos">
                     <thead>
                         <th>Número de cuenta</th>
@@ -100,9 +67,6 @@
                         <th>Fecha de inicio</th>
                         <th>Fecha de terminación</th>
                         <th>Carrera</th>
-                        @if ($departamento == 'DSA')    
-                            <th>Depto.</th>
-                        @endif
                         <th>Acciones<th>
                     </thead>
                     <tbody>
@@ -113,20 +77,14 @@
                             <td>{{$data->fecha_inicio}}</td>
                             <td>{{$data->fecha_fin}}</td>
                             <td>{{$data->clave_carrera}}</td>
-                            @if($departamento == 'DSA')
-                            <td>{{$data->abreviatura_departamento}}</td>
-                            @endif
                             <td>
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-sm-5">
-                                            <button type="button" class="btn btn-success" style="color:white;" onclick="window.location='{{route("departamento.alumno.finalizar",["num_cuenta" => $data->numero_cuenta])}}'">Finalizar</Button>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <button type="button" class="btn btn-info" style="color:white;" onclick="window.location='{{route("departamento.alumno.datos",["num_cuenta" => $data->numero_cuenta])}}'">Datos</Button>
+                                        <div class="col-sm-9">
+                                            <button type="button" class="btn btn-success" style="color:white;" onclick="confirmacionNuevaAlta({{$data->numero_cuenta}})">Volver a dar de alta</Button>
                                         </div>
                                         <div class="col-sm-3">
-                                            <button type="button" class="btn btn-danger" onclick="confirmacionBaja({{$data->numero_cuenta}})">Baja</button>    
+                                            <button type="button" class="btn btn-info" style="color:white;" onclick="window.location='{{route("departamento.alumno.datos",["num_cuenta" => $data->numero_cuenta])}}'">Datos</Button>
                                         </div>
                                     </div>
                                 </div>
