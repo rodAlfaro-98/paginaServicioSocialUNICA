@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <h4>Alumnos de con estado {{$estado}} del departamento {{$departamento}}</h4>
+        <h4>Alumnos de con {{$estado}} del departamento {{$departamento}}</h4>
         <hr>
         <hr>
         <table class="table" id="TablaAlumnos">
@@ -32,7 +32,7 @@
                 @if($departamento == 'DSA')
                     <td>{{$data->abreviatura_departamento}}</td>
                 @endif
-                <td>{{$estado}}</td>
+                <td>{{$dato}}</td>
             </tr>
             @endforeach
         </tbody>

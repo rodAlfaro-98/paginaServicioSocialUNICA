@@ -28,7 +28,7 @@ class AlumnoSeeder extends Seeder
         $alumno->apellido_paterno = 'Alfaro';
         $alumno->apellido_materno = 'Domínguez';
         $alumno->curp = 'AADR980715HDFLMD69';
-        $alumno->genero = 'H';
+        $alumno->genero = 'Hombre';
         $alumno->telefono_casa = 5520796326;
         $alumno->telefono_celular = 5548967649;
         $alumno->creditos_pagados = 218;
@@ -57,7 +57,7 @@ class AlumnoSeeder extends Seeder
         $alumno->apellido_paterno = 'López';
         $alumno->apellido_materno = 'González';
         $alumno->curp = 'LOGK10022001HGRLMD01';
-        $alumno->genero = 'H';
+        $alumno->genero = 'Hombre';
         $alumno->telefono_casa = 5522239482;
         $alumno->telefono_celular = 5548967939;
         $alumno->creditos_pagados = 210;
@@ -115,7 +115,7 @@ class AlumnoSeeder extends Seeder
             "Ramírez",
             "Cruz",
         ];
-        $genero = ['H','M'];
+        $genero = ['Hombre','Mujer'];
 
         //Alumnos 3-13
         for($i=0; $i<20; $i++){

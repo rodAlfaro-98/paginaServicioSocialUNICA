@@ -20,9 +20,9 @@ class DepartamentoAuthController extends Controller
     }
     public function logout(){
         if(Session::has('loginId')){
-            Session::flush();
-            return redirect()->route('departamento.login');
+            Session::flush();         
         }
+        return redirect()->route('departamento.login');
     }
 
     public function loginUser(Request $request){

@@ -28,6 +28,8 @@ Route::post('/departamento/login/usuario',[DepartamentoAuthController::class,'lo
 Route::get('/departamento/home',[DepartamentoController::class,'index'])->name('departamento.home')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/pendientes',[DepartamentoController::class,'getPendientes'])->name('departamento.pendientes')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/rechazados',[DepartamentoController::class,'getRechazados'])->name('departamento.rachazados')->middleware('isDepartamentoLoggedIn');
+Route::get('/departamento/estadistica',[DepartamentoController::class,'getEstadistica'])->name('departamento.estadistica')->middleware('isDepartamentoLoggedIn');
+Route::post('/departamento/estadistica/descarga',[DepartamentoController::class,'getDescargaEstadistica'])->name('departamento.descarga.estadistica')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/datos/{num_cuenta}',[DepartamentoController::class,'getDatosAlumno'])->name('departamento.alumno.datos')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/baja/{num_cuenta}',[DepartamentoController::class,'bajaAlumno'])->name('departamento.alumno.baja')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/rechazo/{num_cuenta}',[DepartamentoController::class,'rechazoAlumno'])->name('departamento.alumno.rechazar')->middleware('isDepartamentoLoggedIn');
@@ -42,7 +44,7 @@ Route::get('/alumno/login',[AlumnoAuthController::class,'login'])->name('alumno.
 Route::get('/alumno/logout',[AlumnoAuthController::class,'logout'])->name('alumno.logout');
 Route::post('/alumno/login/usuario',[AlumnoAuthController::class,'loginUser'])->name('alumno.login.usuario');
 Route::get('/alumno/registro',[AlumnoAuthController::class,'register'])->name('alumno.register');
-Route::get('/alumno/home',[AlumnoAuthController::class,'home'])->name('alumno.home')->middleware('isAlumnoLoggedIn');
+Route::get('/alumno/home',[AlumnoController::class,'home'])->name('alumno.home')->middleware('isAlumnoLoggedIn');
 Route::post('/alumno/registro/usuario',[AlumnoAuthController::class,'registerUser'])->name('alumno.register.usuario');
 
 //Cambio de contraseña

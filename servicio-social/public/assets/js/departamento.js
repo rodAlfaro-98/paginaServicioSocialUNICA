@@ -68,3 +68,22 @@ function getSelected(){
     }
 
 }
+
+function filtroTipoDato(){
+    document.getElementById('genero_selector').style.display = "none";
+    document.getElementById('carrera_selector').style.display = "none";
+    document.getElementById('procedencia_selector').style.display = "none";
+    document.getElementById('fecha_selector').style.display = "none";
+    document.getElementById('titulo2').style.display = "block";
+    var options = document.getElementById('tipo_dato_selector');
+    var selected = options.options[options.selectedIndex].text;
+    if(selected == 'Semestre de servicio'){
+        document.getElementById('fecha_selector').style.display = "block";
+    }else if(selected == 'Género del alumno'){
+        document.getElementById('genero_selector').style.display = "block";
+    }else if(selected == "Procedencia del alumno"){
+        document.getElementById('procedencia_selector').style.display = "block";
+    }else if(selected == 'Carrera del alumno'){
+        document.getElementById('carrera_selector').style.display = "block";
+    }
+}

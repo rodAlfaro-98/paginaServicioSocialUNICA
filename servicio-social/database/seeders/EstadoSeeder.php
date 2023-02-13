@@ -21,7 +21,7 @@ class EstadoSeeder extends Seeder
         ]);
 
         DB::table('estado')->insert([ //2
-            'estado' => 'RECHAZADO',
+            'estado' => 'RECHAZO',
             'fecha_estado' => now(),
         ]);
 

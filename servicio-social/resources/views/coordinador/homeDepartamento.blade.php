@@ -4,8 +4,6 @@
         <div class="container">
             <div class = "row" style="margin: 60px 50px;">
                 <div class = "col-md-offset-4" style="margin-top:20px;">
-                    
-                    <div class="container">
                     @if(Session::has('success'))
                         <div class="alert alert-success">{{Session::get('success')}}</div>
                     @endif
@@ -14,12 +12,15 @@
                     @endif
                     @csrf
                     <h4>Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
+                    <hr>
+                    <div class="container">
                         <div class="row">
                             @if ($departamento != 'DSA')
                                 <h6>Alumnos de la {{$departamento}}</h6>
                             @else
+                                <h5>Filtro por Datos</h5>
                                 <div class="col">
-                                    <p>Filtro por división:</p>
+                                    <label>Filtro por division:</label>
                                     <div class="container">
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="checkbox" id="DSA" name="DSA" value="DSA" onclick="getSelected()">
@@ -72,7 +73,7 @@
                                             <p><img src="{{ URL::asset('assets/img/excel_icon.svg')}}" style="width:30px;height:30px;">Descargar tabla en Excel:</p>
                                         </div>
                                         <div class="col-3">
-                                            <button type="button" class="btn" style="color:white; background-color: #1D6F42" onclick="window.location='{{route("departamento.excel",["tipo"=> "PENDIENTE","departamento" =>$departamento])}}'" >Descargar</Button>
+                                            <button type="button" class="btn" style="color:white; background-color: #1D6F42" onclick="window.location='{{route("departamento.excel",["tipo"=> "ACEPTADO","departamento" =>$departamento])}}'" >Descargar</Button>
                                         </div>
                                     </div>
                                 </div>    
@@ -84,7 +85,7 @@
                                             <p><img src="{{ URL::asset('assets/img/pdf_icon.svg')}}" style="width:30px;height:30px;">Descargar tabla en PDF:</p>
                                         </div>
                                         <div class="col-3">
-                                            <button type="button" class="btn" style="color:white; background-color: #F40F02" onclick="window.location='{{route("departamento.pdf",["tipo"=> "PENDIENTE","departamento" =>$departamento])}}'" >Descargar</Button>
+                                            <button type="button" class="btn" style="color:white; background-color: #F40F02" onclick="window.location='{{route("departamento.pdf",["tipo"=> "ACEPTADO","departamento" =>$departamento])}}'" >Descargar</Button>
                                         </div>
                                     </div>
                                 </div>    
@@ -119,13 +120,13 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-sm-5">
-                                            <button type="button" class="btn btn-success" style="color:white;" onclick="window.location='{{route("departamento.alumno.aceptar",["num_cuenta" => $data->numero_cuenta])}}'">Aceptar</Button>
+                                            <button type="button" class="btn btn-success" style="color:white;" onclick="window.location='{{route("departamento.alumno.finalizar",["num_cuenta" => $data->numero_cuenta])}}'">Finalizar</Button>
                                         </div>
                                         <div class="col-sm-4">
                                             <button type="button" class="btn btn-info" style="color:white;" onclick="window.location='{{route("departamento.alumno.datos",["num_cuenta" => $data->numero_cuenta])}}'">Datos</Button>
                                         </div>
                                         <div class="col-sm-3">
-                                            <button type="button" class="btn btn-danger" onclick="confirmacionRechazo({{$data->numero_cuenta}})">Rechazar</button>    
+                                            <button type="button" class="btn btn-danger" onclick="confirmacionBaja({{$data->numero_cuenta}})">Baja</button>    
                                         </div>
                                     </div>
                                 </div>

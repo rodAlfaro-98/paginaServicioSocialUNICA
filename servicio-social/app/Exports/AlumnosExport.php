@@ -20,25 +20,16 @@ class AlumnosExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        if($this->departamento == 'DSA'){
-            $toReturn = DB::Table('alumno')
+        $toReturn = DB::Table('alumno')
                 ->join('estado','estado.id', '=', 'alumno.estado_id')
                 ->join('departamento','departamento.id', '=', 'alumno.departamento_id')
                 ->join('carrera','carrera.id','=','alumno.carrera_id')
-                ->select('alumno.nombres','alumno.apellido_paterno','alumno.apellido_materno','alumno.fecha_inicio','alumno.fecha_fin','carrera.clave_carrera','estado.estado','departamento.departamento')
-                ->where('estado.estado','=',$this->estado)
-                ->get();
-        }else{
-            $toReturn = DB::Table('alumno')
-                ->join('estado','estado.id', '=', 'alumno.estado_id')
-                ->join('departamento','departamento.id', '=', 'alumno.departamento_id')
-                ->join('carrera','carrera.id','=','alumno.carrera_id')
-                ->select('alumno.nombres','alumno.apellido_paterno','alumno.apellido_materno','alumno.fecha_inicio','alumno.fecha_fin','carrera.clave_carrera','estado.estado','departamento.departamento')
-                ->where('estado.estado','=',$this->estado)
-                ->where('departamento.departamento','=',$this->departamento)
-                ->get();
+                ->select('alumno.nombres','alumno.apellido_paterno','alumno.apellido_materno','alumno.numero_cuenta','alumno.fecha_inicio','alumno.fecha_fin','carrera.clave_carrera','estado.estado','departamento.departamento')
+                ->where('estado.estado','=',$this->estado);
+        if($this->departamento !== 'DSA' ){
+            $toReturn->where('departamento.departamento','=',$this->departamento);
         }
-        return $toReturn;
+        return $toReturn->get();
     }
 
     public function headings(): array{

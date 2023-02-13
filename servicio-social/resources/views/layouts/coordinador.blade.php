@@ -49,7 +49,7 @@
                         <span class="button-text">Alumnos rechazados</span></a>
                         </h5>
 
-                        <h5 class="learn-more-h5 btnh5"><a href="#">
+                        <h5 class="learn-more-h5 btnh5"><a href="{{route('departamento.estadistica')}}">
                         <span class="circle" aria-hidden="true">
                         <span class="icon-h5 arrow"></span>
                         </span>

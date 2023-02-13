@@ -60,9 +60,9 @@
                     <h6 class="register-date-fac">Género:</h6>
                     <select class="input input-select" onchange="vistaEspecificacion()" name="genero" id="genero_selector" required>
                         <option value="" disabled selected>Género</option>
-                        <option id="genero_mujer" name="genero" value="H">Femenino</option>
-                        <option id="genero_hombre" name="genero" value="M">Masculino</option>
-                        <option id="genero_otro" name="genero" value="O">Otro</option>
+                        <option id="genero_mujer" name="genero" value="Hombre">Femenino</option>
+                        <option id="genero_hombre" name="genero" value="Mujer">Masculino</option>
+                        <option id="genero_otro" name="genero" value="Otro">Otro</option>
                     </select>
                     <div id="especificacion" style="display: none;">
                         <input type="text" class="input" id="especificacion_genero" name="genero_especifico" placeholder="Especifique" value="{{old('genero')}}">
@@ -147,7 +147,7 @@
                         </div>
 
                     <div class="especificacion_externo" id="especificacion_externo" style="margin-left: 20px;">
-                        <input class="input" type="text" id="especificacion_externo" placeholder="Especifique" name="carrera_externo" value="{{old('genero')}}">
+                        <input class="input" type="text" id="especificacion_externo" placeholder="Especifique" name="carrera_externo" value="{{old('especificacion_externo')}}">
                     </div>
 
                     <div class="especificacion_interno" id="especificacion_interno" style="margin-left: 20px;">
