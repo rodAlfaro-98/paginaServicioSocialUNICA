@@ -3,6 +3,7 @@
 @section('title','Home')
 
 @section('contenido')
+    <link href="{{ asset('css/alumno_layout.css') }}" rel="stylesheet">
     <div class="container">
         <div class = "row">
             <div class = "col-md-offset-4" style="margin-top:20px;">
@@ -13,9 +14,9 @@
                     <div class="alert alert-danger">{{Session::get('fail')}}</div>
                 @endif
                 <h2>Bienvenido.<h2> 
-                <hr>
+                <div class="hr1"></div>
                 <h4>Datos del alumno</h4>
-                <hr>
+                <div class="hr1"></div>
                 <table class="table">
                     <thead>
                         <th>Número de cuenta</th>

@@ -16,6 +16,6 @@ class SeleccionUsuarioController extends Controller
             }
         }
 
-        return view("SeleccionUsuario");
+        return view("seleccionUsuario");
     }
 }
