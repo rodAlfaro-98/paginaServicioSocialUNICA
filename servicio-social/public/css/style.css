@@ -39,13 +39,14 @@ body {
 }
 
 .image-container {
-    height: 576px;
-    background: url("https://thelogisticsworld.com/wp-content/uploads/2020/10/0000069281-scaled.jpg") no-repeat fixed;
-    background-size:contain;
+    /*height: 576px;*/
+    background: url("https://thelogisticsworld.com/wp-content/uploads/2020/10/0000069281-scaled.jpg") no-repeat;
+    background-size: cover;
     padding: 2rem;
     width: 50%;
     box-sizing: border-box;
     background-position: 90% 40%;
+    border-radius: 0px 10px 10px 0px;
 }
 
 .title {
