@@ -1,0 +1,40 @@
+@use 'var' as v;
+
+html{
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: v.$main-font;
+    font-size: 1.6rem;
+}
+
+p{
+    font-size: 2rem;
+    color: v.$black;
+}
+
+a{
+    text-decoration: none;
+}
+
+h1 { font-size: 4rem;}
+h2 { font-size: 3.6rem;}
+h3 { font-size: 3rem;}
+
+.container{
+    width: 100%;
+    margin: 0;
+    display: flex;
+
+    height: 100vh;
+}
