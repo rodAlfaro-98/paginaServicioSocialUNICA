@@ -388,7 +388,7 @@ h3 {
   position: fixed;
   transition: 0.3s all ease;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 1000px) {
   .sidebar__contenedor {
     max-width: 75%;
   }
@@ -464,32 +464,40 @@ h3 {
   padding: 15px 25px;
   display: flex;
   gap: 15px;
-  color: rgb(210, 210, 210);
+  color: white;
   transition: all 0.3s ease;
   justify-content: flex-start;
 }
 .sidebar__contenedor-opciones-item-titulo {
   font-weight: 500;
 }
-.sidebar__contenedor-opciones-item.btn-logout {
-  color: rgb(231, 47, 47);
-  margin-top: auto;
-  margin-bottom: 20px;
-}
-.sidebar__contenedor-opciones-item.btn-logout:hover {
-  background-color: rgb(231, 47, 47);
+.sidebar__contenedor-opciones-item-titulo a {
   color: white;
+}
+.sidebar__contenedor-opciones-item-titulo.logout {
+  color: rgb(231, 47, 47);
+}
+.sidebar__contenedor-opciones-item-logo.logout {
+  color: rgb(231, 47, 47);
 }
 .sidebar__contenedor-opciones-item:hover {
   color: rgb(210, 210, 210);
   background-color: rgb(40, 40, 40);
+}
+.sidebar__contenedor-opciones-item:hover a {
+  color: rgb(210, 210, 210);
+}
+
+.btn-logout {
+  margin-top: auto;
+  margin-bottom: 20px;
 }
 
 .main {
   width: 100%;
   height: 100%;
   background-color: white;
-  margin-left: 60px;
+  margin-left: 30px;
 }
 
 .info_container {
@@ -507,8 +515,9 @@ h3 {
   justify-content: space-between;
   align-items: flex-end;
   padding: 10px 20px;
+  margin-top: 40px;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 1000px) {
   .info_general {
     flex-direction: column;
     justify-content: center;
@@ -517,9 +526,21 @@ h3 {
     gap: 10px;
   }
 }
+.info_general .nombre_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .info_general .nombre_container .nombre {
   font-size: 35px;
   font-weight: bold;
+}
+@media (max-width: 1000px) {
+  .info_general .nombre_container .nombre {
+    text-align: center;
+    font-size: 22px;
+    margin: auto;
+  }
 }
 .info_general .info_estado {
   display: flex;
@@ -528,7 +549,7 @@ h3 {
   justify-content: flex-end;
   width: 300px;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 1000px) {
   .info_general .info_estado {
     flex-direction: column;
     align-items: center;
@@ -542,7 +563,7 @@ h3 {
   display: flex;
   width: 80%;
   max-width: 200px;
-  background-color: rgb(252, 252, 59);
+  background-color: rgb(88, 240, 88);
   justify-content: space-around;
   align-items: center;
   border-radius: 10px;
@@ -550,7 +571,7 @@ h3 {
   font-size: 20px;
   padding: 0 10px;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 1000px) {
   .info_general .info_estado .estado_container {
     margin: auto;
   }
@@ -574,7 +595,7 @@ h3 {
   flex-flow: column wrap;
   width: 45%;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 1000px) {
   .info_total .info_total__container {
     width: 90%;
     justify-content: center;
@@ -604,7 +625,7 @@ h3 {
 .info_total .info_total__container.info_fill .info_total__input {
   width: 95%;
 }
-@media screen and (max-width: 768px) {
+@media (max-width: 1000px) {
   .info_total .info_total__container.info_fill .info_total__input {
     width: 90%;
   }
