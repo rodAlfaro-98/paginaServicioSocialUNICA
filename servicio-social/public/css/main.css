@@ -680,11 +680,7 @@ h3 {
   font-weight: normal;
   width: 100%;
   text-align: center;
-}
-@media (max-width: 1000px) {
-  .cambio_contrasena__container .new_pass__title {
-    font-size: 20px;
-  }
+  font-size: 16px;
 }
 .cambio_contrasena__container .new_pass__in {
   padding: 30px;
@@ -701,11 +697,11 @@ h3 {
 .cambio_contrasena__container .new_pass__in-label {
   font-weight: lighter;
   margin-bottom: 20px;
-  font-size: 20px;
+  font-size: 14px;
 }
 @media (max-width: 1000px) {
   .cambio_contrasena__container .new_pass__in-label {
-    font-size: 14px;
+    font-size: 12px;
     text-align: center;
     margin-bottom: 10px;
   }
@@ -752,6 +748,11 @@ h3 {
   touch-action: manipulation;
   vertical-align: baseline;
   width: auto;
+}
+@media (max-width: 1000px) {
+  .cambio_contrasena__container .new_pass__enviar-btn {
+    font-size: 12px;
+  }
 }
 .cambio_contrasena__container .new_pass__enviar-btn:hover, .cambio_contrasena__container .new_pass__enviar-btn:focus {
   border-color: rgba(0, 0, 0, 0.15);
