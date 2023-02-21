@@ -19,3 +19,5 @@ docker-compose.yml
 xampp/
 
 resources/node_modules
+package-lock.json
+/.tinkerun/
