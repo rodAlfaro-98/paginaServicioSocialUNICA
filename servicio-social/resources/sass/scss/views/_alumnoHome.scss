@@ -1,0 +1,154 @@
+@use 'base/var' as v;
+@use 'base/mixins' as m;
+
+.main{
+    width: 100%;
+    height: 100%;
+    background-color: v.$white;
+    margin-left: 60px;
+}
+
+.info_container{
+    width: 80%;
+    max-width: 1400px;
+    margin: auto;
+    height: 100%;
+}
+
+.info_general{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 20px;
+    margin-top: 40px;
+
+    @include m.mobile{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 150px;
+        gap: 10px;
+    }
+
+    .nombre_container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .nombre{
+            font-size: 35px;
+            font-weight: bold;
+
+            @include m.mobile{
+                text-align: center;
+                font-size: 22px;
+                margin: auto;
+            }
+        }
+    }
+
+    .info_estado{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-end;
+        width: 300px;
+
+        @include m.mobile{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            gap: 10px;
+        }
+
+
+        .estado_container{
+            margin-left: 30px;
+            display: flex;
+            width: 80%;
+            max-width: 200px;
+            background-color: v.$green_state;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 10px;
+            height: 40px;
+            font-size: 20px;
+            padding: 0 10px;
+            
+
+            @include m.mobile{
+                margin: auto;
+            }
+        }
+    }
+}
+
+.info_hr{
+    width: 85%;
+    margin: 10px auto;
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.info_total{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    .info_total__container{
+        display: flex;
+        flex-flow: column wrap;
+        width: 45%;
+
+        @include m.mobile{
+            width: 90%;
+            justify-content: center;
+            align-items: center;
+
+            .info_total__input{
+                width: 90%;
+                text-align: center;
+            }
+
+        }
+
+        .info_total__label{
+            font-size: 18px;
+            font-weight: lighter;
+            margin: 10px 5px;
+            cursor: auto;
+        }
+
+        .info_total__input{
+            width: 90%;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgb(240, 240, 240);
+            border-style: none;
+
+        }
+
+        &.info_fill{
+            width: 90%;
+            .info_total__input{
+                width: 95%;
+                @include m.mobile{
+                    width: 90%;
+                }
+            }
+        }
+
+    }
+
+}
+
+
+
+
+
+

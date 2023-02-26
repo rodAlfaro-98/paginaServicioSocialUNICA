@@ -3,29 +3,36 @@
 @section('title','Cambio Contraseña')
 
 @section('contenido')
-<div class="container" style="margin-top:20px;">
-        <div class = "row justify-content-center">
-            <div class = "col-md-6 col-md-offset-6" style="margin-top:20px;">
-                @if(Session::has('fail'))
-                    <div class="alert alert-danger">{{Session::get('fail')}}</div>
-                @endif
-                <h1>Página de cambio de contraseña.<h1> 
-                <br>
-                <div>
-                    <form action="{{route('alumno.comfirma.contraseña')}}" method="post">
-                        @csrf
-                        <h3>Favor de confirmar sus datos antes de introducir una nueva contraseña</h3>
-                        <div class="form-group">
-                            <label for="password" style="font-size: 22px;">Contraseña</label>
-                            <input type="password" class="form-control" placeholder="Contraseña actual" name="contraseña" value="">
-                            <span class="text-danger">@error('contraseña') {{$message}} @enderror</span>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-primary register" type="submit">Confirmar</button>
-                        </div>
-                    </form>
-                </div>
+
+<main class="main">
+    <div class="cambio_contrasena__container">
+
+        <h2>UNICA</h2>
+
+        <!--
+        <div class="alert alert-info">La contraseña debe de ser de un mínimo de 12 caractéres.</div>
+        -->
+
+        @if(Session::has('fail'))
+            <div class="alert_password">{{Session::get('fail')}}</div>
+        @endif
+        
+        <form class="new_pass" action="{{route('alumno.comfirma.contraseña')}}" method="post">
+            @csrf
+            <h3 class="new_pass__title">Confirma tu contraseña antes de cambiarla<h3> 
+
+
+            <div class="new_pass__in">
+                <label class="new_pass__in-label" for="contraseña">Contraseña *</label>
+                <input class="new_pass__in-input" type="password" class="form-control" placeholder="" name="contraseña" value="">
+                <span class="text-danger">@error('contraseña') {{$message}} @enderror</span>
             </div>
-        </div>
+            <br>
+            <div class="new_pass__enviar">
+                <button class="new_pass__enviar-btn" class="btn btn-primary register" type="submit">Confirmar</button>
+            </div>
+        </form>
     </div>
+</main>
+
 @endsection
