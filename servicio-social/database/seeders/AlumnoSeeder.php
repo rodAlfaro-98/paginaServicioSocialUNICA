@@ -129,7 +129,7 @@ class AlumnoSeeder extends Seeder
             $alumno->apellido_paterno = $app_alumno;
             $alumno->apellido_materno = $apm_alumno;
             $alumno->curp = $app_alumno[0].$app_alumno[0].$apm_alumno[0].$nombre_alumno[0].((string) $i).((string) $i).((string) $i).((string) $i).((string) $i).((string) $i).'01HGRLMD01';
-            $alumno->genero = $genero[rand(0,1)];
+            $alumno->genero = (mb_substr($nombre_alumno,-1) == "a") ? "Mujer" : "Hombre";
             $numero = "";
             for($j = 0; $j<10; $j++){
                 $numero = $numero.((string) rand(0,9));

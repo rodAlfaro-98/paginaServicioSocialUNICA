@@ -1,3 +1,6 @@
+var filtros = [];
+var filtro_dato = [];
+
 function confirmacionBaja(numero_cuenta){
     if( confirm("Se va a dar de baja al alumno con numero de cuenta: "+numero_cuenta+"\nDesea confirmar la acción?") == true ){
         window.location.href = "/departamento/baja/"+numero_cuenta;
@@ -74,16 +77,77 @@ function filtroTipoDato(){
     document.getElementById('carrera_selector').style.display = "none";
     document.getElementById('procedencia_selector').style.display = "none";
     document.getElementById('fecha_selector').style.display = "none";
-    document.getElementById('titulo2').style.display = "block";
+    document.getElementById('estado_selector').style.display = "none";
+    document.getElementById('titulo2').style.display = "none";
+    if(document.getElementById('Semestre').checked){
+        document.getElementById('fecha_selector').style.display = "block";
+        document.getElementById('titulo2').style.display = "block";
+    }if(document.getElementById('Genero').checked){
+        document.getElementById('genero_selector').style.display = "block";
+        document.getElementById('titulo2').style.display = "block";
+    }if(document.getElementById('Interno').checked){
+        document.getElementById('procedencia_selector').style.display = "block";
+        document.getElementById('titulo2').style.display = "block";
+    }if(document.getElementById('Carrera').checked){
+        document.getElementById('carrera_selector').style.display = "block";
+        document.getElementById('titulo2').style.display = "block";
+    }if(document.getElementById('Estado').checked){
+        document.getElementById('estado_selector').style.display = "block";
+        document.getElementById('titulo2').style.display = "block";
+    }
+}
+
+function filtroDato(){
     var options = document.getElementById('tipo_dato_selector');
     var selected = options.options[options.selectedIndex].text;
     if(selected == 'Semestre de servicio'){
-        document.getElementById('fecha_selector').style.display = "block";
+        var selector = document.getElementById('fecha_selector');
+        if(filtros.includes('semestre')){
+            var index = filtros.indexOf("semestre");
+            filtro_dato[index] = selector.options[selector.selectedIndex].text;
+        }else{
+            filtros.push("semestre");
+            filtro_dato.push(selector.options[selector.selectedIndex].text);
+        }
     }else if(selected == 'Género del alumno'){
-        document.getElementById('genero_selector').style.display = "block";
+        var selector = document.getElementById('genero_selector');
+        if(filtros.includes('genero')){
+            var index = filtros.indexOf("genero");
+            filtro_dato[index] = selector.options[selector.selectedIndex].text;
+        }else{
+            filtros.push("genero");
+            filtro_dato.push(selector.options[selector.selectedIndex].text);
+        }
     }else if(selected == "Procedencia del alumno"){
-        document.getElementById('procedencia_selector').style.display = "block";
+        var selector = document.getElementById('procedencia_selector');
+        if(filtros.includes('procedencia')){
+            var index = filtros.indexOf("procedencia");
+            filtro_dato[index] = selector.options[selector.selectedIndex].text;
+        }else{
+            filtros.push("procedencia");
+            filtro_dato.push(selector.options[selector.selectedIndex].text);
+        }
     }else if(selected == 'Carrera del alumno'){
-        document.getElementById('carrera_selector').style.display = "block";
+        var selector = document.getElementById('carrera_selector');
+        if(filtros.includes('carrera')){
+            var index = filtros.indexOf("carrera");
+            filtro_dato[index] = selector.options[selector.selectedIndex].text;
+        }else{
+            filtros.push("carrera");
+            filtro_dato.push(selector.options[selector.selectedIndex].text);
+        }
+
+        return [filtros,filtro_dato];
+    }else if(selected == 'Estado del alumno'){
+        var selector = document.getElementById('estado_selector');
+        if(filtros.includes('estado')){
+            var index = filtros.indexOf("estado");
+            filtro_dato[index] = selector.options[selector.selectedIndex].text;
+        }else{
+            filtros.push("estado");
+            filtro_dato.push(selector.options[selector.selectedIndex].text);
+        }
+
+        return [filtros,filtro_dato];
     }
 }
