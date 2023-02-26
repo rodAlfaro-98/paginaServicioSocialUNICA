@@ -14,44 +14,64 @@ class EstadisticaExport implements FromCollection, WithHeadings
     * @return \Illuminate\Support\Collection
     */
 
-    public function __construct($filtro, $departamento, $dato){
+    public function __construct($filtro, $departamento, $datos){
         $this->filtro = $filtro;
-        $this->dato = $dato;
+        $this->datos = $datos;
         $this->departamento = $departamento;
     }
 
     public function collection()
     {
+        $datos = [];
         $toReturn = DB::Table('alumno')
             ->join('estado','estado.id', '=', 'alumno.estado_id')
             ->join('departamento','departamento.id', '=', 'alumno.departamento_id')
             ->join('carrera','carrera.id','=','alumno.carrera_id')
             ->select('alumno.nombres','alumno.apellido_paterno','alumno.apellido_materno','alumno.numero_cuenta','alumno.fecha_inicio','alumno.fecha_fin','carrera.clave_carrera','estado.estado','departamento.abreviatura_departamento');
-        switch( $this->filtro){
-            case "Semestre":
-                $toReturn ->where(function (Builder $query){
-                    $query->where('alumno.fecha_inicio' ,'>=', $this->dato[0])
-                        ->where('alumno.fecha_inicio' ,'<=', $this->dato[1]);
-                })->orWhere(function (Builder $query){
-                    $query->where('alumno.fecha_fin' ,'>=', $this->dato[0])
-                        ->where('alumno.fecha_fin' ,'<=', $this->dato[1]);
-                });
-                ["2022-08-01","2022-12-01"];
-            break;
-            case "Genero":
-                $toReturn->where('alumno.genero','=',$this->dato);
-            break;
-            case "Interno":
-                $toReturn->where('alumno.interno','=',$this->dato);
-            break;
-            case "Carrera":
-                $toReturn->where('carrera.carrera','=',$this->dato);
-            break;
+        foreach($this->datos as $llave => $valor){
+            print_r($llave.",");
+            if($valor !== Null)
+            switch($llave){
+                case "fecha_inicio":
+                    array_push($datos, $this->datos["fecha_inicio"],$this->datos["fecha_fin"]);
+                    //Retorna todo
+                    $toReturn->where(function($query){
+                        $query->whereBetween('alumno.fecha_inicio', [$this->datos["fecha_inicio"],$this->datos["fecha_fin"]])
+                            ->orWhereBetween('alumno.fecha_fin', [$this->datos["fecha_inicio"],$this->datos["fecha_fin"]]);
+                    });
+
+                        //Retorna todo
+                        /*$toReturn->where(function ($query){
+                            $query->where('alumno.fecha_inicio' ,'>=', $this->datos["fecha_inicio"])
+                                ->where('alumno.fecha_inicio' ,'<=', $this->datos["fecha_fin"]);
+                        })->orWhere(function ($query){
+                            $query->where('alumno.fecha_fin' ,'>=', $this->datos["fecha_inicio"])
+                                ->where('alumno.fecha_fin' ,'<=', $this->datos["fecha_fin"]);
+                        });*/
+                case "genero":
+                    array_push($datos, $valor);
+                    $toReturn->where('alumno.genero','=',$valor);
+                break;
+                case "interno":
+                    array_push($datos, $valor);
+                    $toReturn->where('alumno.interno','=',$valor);
+                break;
+                case "carrera":
+                    array_push($datos, $valor);
+                    $toReturn->where('carrera.carrera','=',$valor);
+                break;
+                case "estado":
+                    array_push($datos, $valor);
+                    $toReturn->where('estado.estado','=',$valor);
+                break;
+            }
         }
         if($this->departamento !== 'DSA' ){
-            $toReturn->where('departamento.abreviatura_departamento','=',$this->departamento);
+            $toReturn = $toReturn->where('departamento.abreviatura_departamento','=',$this->departamento);
         }
-        return $toReturn->get();
+        print_r($toReturn->toSql());
+        print_r($datos);
+        //return $toReturn->get();
     }
 
     public function headings(): array{

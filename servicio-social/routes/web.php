@@ -37,6 +37,7 @@ Route::get('/departamento/aceptar/{num_cuenta}',[DepartamentoController::class,'
 Route::get('/departamento/finalzar/{num_cuenta}',[DepartamentoController::class,'finalizarAlumno'])->name('departamento.alumno.finalizar')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/excel/{tipo}/{departamento}',[DepartamentoController::class,'descargarTablaExcel'])->name('departamento.excel')->middleware('isDepartamentoLoggedIn');
 Route::get('/departamento/pdf/{tipo}/{departamento}',[DepartamentoController::class,'descargarTablaPDF'])->name('departamento.pdf')->middleware('isDepartamentoLoggedIn');
+Route::post('/departamento/estadistica/departamento',[DepartamentoController::class,'getDocumentoDepartamento'])->name('departamento.documento_division.estadistica')->middleware('isDepartamentoLoggedIn');
 
 
 //Login y registro

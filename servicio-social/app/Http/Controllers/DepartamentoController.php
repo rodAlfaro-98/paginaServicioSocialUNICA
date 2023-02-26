@@ -275,51 +275,62 @@ class DepartamentoController extends Controller {
     }
 
     public function getDescargaEstadistica(Request $request){
+        $obtained = $request->collect();
+        $dataTypes = ["genero","carrera","interno","fecha"];
+        $datos = ["fecha_inicio" => Null, "fecha_fin" => Null, "genero" => Null, "carrera" => Null, "procedencia" => Null, "estado" => Null];
         $dato = '';
-        switch($request['tipo_dato_selector']){
-            case "Semestre":
-                $dato = $request['fecha'];
-                $elemFecha = explode('-',$dato);
-                $mes_inicio = 0;
-                $año_inicio = 0;
-                $mes_fin = 0;
-                $año_fin = 0;
-                if($elemFecha[1] == '2'){
-                    $mes_inicio = '1';
-                    $año_inicio = $elemFecha[0];
-                    $mes_fin = '8';
-                    $año_fin = $elemFecha[0]; 
-                }else{
-                    $mes_inicio = '8';
-                    $año_inicio = (string) ((int) $elemFecha[0] - 1);
-                    $mes_fin = '12';
-                    $año_fin = (string) ((int) $elemFecha[0] - 1); 
-                }
-                $dato = [$año_inicio.'-'.$mes_inicio.'-01',$año_fin.'-'.$mes_fin.'-01'];
-            break;
-            case "Genero":
-                $dato = $request['genero'];
-            break;
-            case "Interno":
-                $dato = ($request['interno'] == 'Interno') ? true : false;
-            break;
-            case "Carrera":
-                $dato = $request['carrera'];
-            break;
+        foreach($obtained as $key=>$value){
+            switch($key){
+                case "fecha":
+                    $dato = $request['fecha'];
+                    $elemFecha = explode('-',$dato);
+                    $mes_inicio = 0;
+                    $año_inicio = 0;
+                    $mes_fin = 0;
+                    $año_fin = 0;
+                    if($elemFecha[1] == '2'){
+                        $mes_inicio = '1';
+                        $año_inicio = $elemFecha[0];
+                        $mes_fin = '8';
+                        $año_fin = $elemFecha[0]; 
+                    }else{
+                        $mes_inicio = '8';
+                        $año_inicio = (string) ((int) $elemFecha[0] - 1);
+                        $mes_fin = '12';
+                        $año_fin = (string) ((int) $elemFecha[0] - 1); 
+                    }
+                    $datos["fecha_inicio"] = $año_inicio.'-'.$mes_inicio.'-01';
+                    $datos["fecha_fin"] = $año_fin.'-'.$mes_fin.'-01';
+                break;
+                case "genero":
+                    $datos["genero"] = $request['genero'];
+                break;
+                case "interno":
+                    $datos["interno"] = ($request['interno'] == 'Interno') ? true : false;
+                break;
+                case "carrera":
+                    $datos["carrera"] = $request['carrera'];
+                break;
+
+                case "estado":
+                    $datos["estado"] = $request['estado'];
+            }
         }
         $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
         $departamento = Departamento::where('jefe_departamento_id',Session::get('loginId'))->first();
-        return ($request['boton_descarga'] == 'Excel') ? $this->getExcelEstadistica($request,$departamento->abreviatura_departamento,$dato) : $this->getPDFEstadistica($request,$departamento->abreviatura_departamento,$dato);
+        return ($request['boton_descarga'] == 'Excel') ? $this->getExcelEstadistica($request,$departamento->abreviatura_departamento,$datos) : $this->getPDFEstadistica($request,$departamento->abreviatura_departamento,$datos);
     }
 
-    public function getExcelEstadistica(Request $request,$departamento,$dato){
+    public function getExcelEstadistica(Request $request,$departamento,$datos){
     $date = Carbon::now();
-    return Excel::download(new EstadisticaExport($request['tipo_dato_selector'],$departamento,$dato),'alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.xlsx');
+    $temp = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos);
+    return $temp->collection();
+    //return Excel::download(new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos),'alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.xlsx');
     }
 
-    public function getPDFEstadistica(Request $request,$departamento,$dato){ 
+    public function getPDFEstadistica(Request $request,$departamento,$datos){ 
         $date = Carbon::now();
-        $estadistica = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$dato);
+        $estadistica = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datosroalf);
         $alumnos = $estadistica->collection();
         $data = [
             "alumnos" => $alumnos,
@@ -331,6 +342,82 @@ class DepartamentoController extends Controller {
         $pdf = PDF::loadView('pdf.tablaAlumnos', $data)->setOptions(['defaultFont' => 'sans-serif']);
 
         return $pdf->download('alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.pdf');
+    }
+
+    public function getDocumentoDepartamento(Request $request){
+        $date = Carbon::now();
+        $request->validate([
+            'periodo' => 'required',
+            'departamento' => 'required',
+        ]);
+        $dato = $request['periodo'];
+        $elemFecha = explode('-',$dato);
+        $mes_inicio = 0;
+        $año_inicio = 0;
+        $mes_fin = 0;
+        $año_fin = 0;
+        if($elemFecha[1] == '2'){
+            $mes_inicio = '1';
+            $año_inicio = $elemFecha[0];
+            $mes_fin = '8';
+            $año_fin = $elemFecha[0]; 
+        }else{
+            $mes_inicio = '8';
+            $año_inicio = (string) ((int) $elemFecha[0] - 1);
+            $mes_fin = '12';
+            $año_fin = (string) ((int) $elemFecha[0] - 1); 
+        }
+        $fecha_inicio = $año_inicio.'-'.$mes_inicio.'-01';
+        $fecha_fin = $año_fin.'-'.$mes_fin.'-01';
+        $toReturn = DB::Table('alumno')
+            ->join('departamento','departamento.id', '=', 'alumno.departamento_id')
+            ->select('alumno.nombres','alumno.apellido_paterno','alumno.apellido_materno','alumno.fecha_inicio','alumno.fecha_fin')
+            ->whereBetween('alumno.fecha_inicio',[$fecha_inicio,$fecha_fin])
+            ->where('departamento.abreviatura_departamento','=',$request["departamento"]);
+        
+        $alumnos = $toReturn->get();
+        if(sizeof($alumnos) == 0){
+            return redirect()->back()->with('fail','No hay alumnos inscritos en el periodo '.$dato.' en el departamento '.$request["departamento"]);
+        }
+
+        $departamento = Departamento::where('abreviatura_departamento',$request['departamento'])->first();
+        $jefe_departamento_documento = $departamento->getJefeDepartamento();
+        $spanish_months = array(
+            'January' => 'enero',
+            'February' => 'febrero',
+            'March' => 'marzo',
+            'April' => 'abril',
+            'May' => 'mayo',
+            'June' => 'junio',
+            'July' => 'julio',
+            'August' => 'agosto',
+            'September' => 'septiembre',
+            'October' => 'octubre',
+            'November' => 'noviembre',
+            'December' => 'diciembre'
+        );
+
+        $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
+        $genero = ($jefe->nombres[strlen($jefe->nombres)-1] == "a") ? true : false;
+        $genero_2 = ($jefe_departamento_documento->nombres[strlen($jefe_departamento_documento->nombres)-1] == "a") ? true : false;
+
+        $data = [
+            'alumnos'=>$alumnos,
+            'periodo'=>$request['periodo'],
+            'fecha'=>$date,
+            'departamento'=>$departamento->getNombre(),
+            'spanish_months'=>$spanish_months,
+            'titulo' => $jefe->titulo,
+            'nombre_completo' => $jefe->nombres.' '.$jefe->apellido_paterno.' '.$jefe->apellido_materno,
+            'genero' => $genero,
+            'nombre_completo_2' => $jefe_departamento_documento->nombres.' '.$jefe_departamento_documento->apellido_paterno.' '.$jefe_departamento_documento->apellido_materno,
+            'titulo_2' => $jefe_departamento_documento->titulo,
+            'genero_2' => $genero_2
+        ];
+        
+        $pdf = PDF::loadView('pdf.servicio_social_division', $data)->setOptions(['defaultFont' => 'sans-serif']);
+
+        return $pdf->download('ServSocial_'.$request["departamento"].'_'.$request["periodo"].'.pdf');
     }
 }
 
