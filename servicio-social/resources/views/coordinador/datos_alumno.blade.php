@@ -1,6 +1,7 @@
 @extends('layouts.coordinador')
 
 @section('contenido')
+    <!--
     <link rel="preload" href="{{URL::asset('css/normalize.css')}}" as="style">
     <link rel="stylesheet" href="{{URL::asset('css/normalize.css')}}">
     <link rel="preload" href="{{URL::asset('css/style.css')}}" as="style">
@@ -8,10 +9,14 @@
     <link rel="preload" href="{{URL::asset('css/alumno_register.css')}}" as="style">
     <link rel="stylesheet" href="{{URL::asset('css/alumno_register.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <div class="container">
-        <div class="info-container-register" style="margin-top: 5%">
-            <h4 class="title-register">Datos de {{$alumno->nombres}} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h4>
-            <hr>
+    -->
+    <link rel="preload" href="{{URL::asset('css/main.css')}}" as="style">
+    <link rel="stylesheet" href="{{URL::asset('css/main.css')}}">
+    <link rel="preload" href="{{URL::asset('css/departamento.css')}}" as="style">
+    <link rel="stylesheet" href="{{URL::asset('css/departamento.css')}}">
+    <div class="container-datos-alumno">
+        <h4 class="title-register">Datos de ss{{$alumno->nombres}} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h4>
+            <div class="barra"></div>
             <form id="muestraDatos" class="inputs-container-register">
                 <!-- Sesion -->
                 @if(Session::has('success'))
@@ -22,263 +27,237 @@
                 @endif
                 @csrf
 
-
                 <!-- NOMBRES -->
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Nombre: </label>
+                <div class="datos-flex">
+                    <div class="container-data">
+                        <div class="first-row">
+                            <label class="">Nombre: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->nombres}}" disabled>
+                        </div>
                     </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->nombres}}" disabled>
+                    
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Apellido Paterno: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->apellido_paterno}}" disabled>
+                        </div>
                     </div>
-                </div>
-
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Apellido Paterno: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->apellido_paterno}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Apellido Materno: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->apellido_materno}}" disabled>
+                    
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Apellido Materno: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->apellido_materno}}" disabled>
+                        </div>
                     </div>
                 </div>
-
 
                 <!-- DATOS -->
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>CURP: </label>
+
+                <div class="datos-flex">
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>CURP: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->curp}}" disabled>
+                        </div>
                     </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->curp}}" disabled>
+                    <div class="container-data">
+                        <div class="row-size-text" >
+                            <label>Numero de cuenta: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->numero_cuenta}}" disabled>
+                        </div>
+                    </div>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Fecha de Nacimiento: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input date-birthday" type="date" value="{{$alumno->fecha_nacimiento}}" disabled>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Numero de cuenta: </label>
+                <div class="datos-flex">
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Género: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->genero}}" disabled>
+                        </div>
                     </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->numero_cuenta}}" disabled>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Correo: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="email" name="nombres" value="{{$alumno->correo}}" disabled>
+                        </div>
                     </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Fecha de Nacimiento: </label>
-                    </div>
-                    <div class="col-8" style="margin-left: 30px;">
-                        <input class="input date-birthday" type="date" value="{{$alumno->fecha_nacimiento}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Género: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->genero}}" disabled>
-                    </div>
-                </div>
-
                 <!-- DATOS DE CONTACTO -->
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Numero de cuenta: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="email" name="nombres" value="{{$alumno->correo}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Telefono de casa: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->telefono_casa}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Telefono celular: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->telefono_celular}}" disabled>
-                    </div>
-                </div>
-
-                
-
-
-                <!-- DATOS DE CARRERA -->               
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Créditos pagados: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->creditos_pagados}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Porcentaje de Avance: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->avance_porcentaje}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Promedio: </label>
-                    </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$alumno->promedio}}" disabled>
-                    </div>
-                </div>
-
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <label>Fecha de ingreso a la facultad: </label>
-                    </div>
-                    <div class="col-8" style="margin-left: 30px;">
-                        <input class="input date-birthday" type="date" value="{{$alumno->fecha_ingreso_facultad}}" disabled>
-                    </div>
-                </div>
-
-                
-                <!-- DATOS SERVICIO SOCIAL -->
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <label>Duración en meses del servicio social: </label>
-                    </div>
-                    <div class="col-9">
-                    <input class="input" type="name" name="nombres" value="{{$alumno->duracion_servicio}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <label>Horas del servicio social por semana: </label>
-                    </div>
-                    <div class="col-9">
-                    <input class="input" type="name" name="nombres" value="{{$alumno->horas_semana}}" disabled>
-                    </div>
-                </div>
-                
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Horas de entrada: </label>
-                    </div>
-                    <div class="col-9">
-                    <input class="input" type="name" name="nombres" value="{{$alumno->hora_inicio}}" disabled>
-                    </div>
-                </div>
-
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Horas de salida: </label>
-                    </div>
-                    <div class="col-9">
-                    <input class="input" type="name" name="nombres" value="{{$alumno->hora_fin}}" disabled>
-                    </div>
-                </div>
-
-                
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <label>Fecha de inicio del servicio social: </label>
-                    </div>
-                    <div class="col-8" style="margin-left: 30px;">
-                        <input class="input date-birthday" type="date" value="{{$alumno->fecha_inicio}}" disabled>
-                    </div>
-                </div>
-
-                <br>
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Procedencia: </label>
-                    </div>
-                    <div class="col-9" style="padding-left: 10%">
-                        <div class="radio-button-container">
-                            @if($alumno->interno)
-                                <input type="radio" id="procedencia_interno" name="interno" value="interno" checked = "checked" disabled>
-                            @else
-                                <input type="radio" id="procedencia_interno" name="interno" value="interno" disabled>
-                            @endif
-                            <label for="interno">Interno</label>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Telefono de casa: </label>
                         </div>
-
-                        <div class="radio-button-container">
-                            @if(!$alumno->interno)
-                                <input type="radio" id="procedencia_interno" name="interno" value="externo" checked = "checked" disabled>
-                            @else
-                                <input type="radio" id="procedencia_interno" name="interno" value="externo" disabled>
-                            @endif
-                            <label for="interno">Externo</label>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->telefono_casa}}" disabled>
                         </div>
                     </div>
                 </div>
-                <br>
 
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
-                        <label>Carrera: </label>
+                <div class="datos-flex">
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Telefono celular: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->telefono_celular}}" disabled>
+                        </div>
                     </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$carrera}}" disabled>
+                    <!-- DATOS DE CARRERA -->    
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Créditos pagados: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->creditos_pagados}}" disabled>
+                        </div>
+                    </div>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Porcentaje de Avance: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->avance_porcentaje}}" disabled>
+                        </div>
+                    </div>
+                </div> 
+                
+                <div class="datos-flex">
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Promedio: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->promedio}}" disabled>
+                        </div>
+                    </div>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Fecha de ingreso a la facultad: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input date-birthday" type="date" value="{{$alumno->fecha_ingreso_facultad}}" disabled>
+                        </div>
+                    </div>
+                    <!-- DATOS SERVICIO SOCIAL -->
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Horas de entrada: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->hora_inicio}}" disabled>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row" style="width: 100%">
-                    <div class="col-sm-3" style="text-align: left">
-                        <br>
+                <div class="datos-flex">
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Horas del servicio social <br>por semana: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->horas_semana}}" disabled>
+                        </div>
+                    </div>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label><br>Carrera:</label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$carrera}}" disabled>
+                        </div>
+                    </div>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label><br>Horas de salida: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->hora_fin}}" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="datos-flex">
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Duración en meses del <br> servicio social: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input" type="name" name="nombres" value="{{$alumno->duracion_servicio}}" disabled>
+                        </div>
+                    </div>
+                    <div class="container-data">
+                        <div class="row-size-text">
+                            <label>Fecha de inicio <br> del servicio social: </label>
+                        </div>
+                        <div class="row-input">
+                            <input class="input date-birthday" type="date" value="{{$alumno->fecha_inicio}}" disabled>
+                        </div>
+                    </div>
+                    <div class="container-data procedencia">
+                        <div class="row-size-text">
+                            <label><br>Procedencia: </label>
+                        </div>
+                        <div class="radio-button-container">
+                            <div class="">
+                                @if($alumno->interno)
+                                    <input type="radio" id="procedencia_interno" name="interno" value="interno" checked = "checked" disabled>
+                                @else
+                                    <input type="radio" id="procedencia_interno" name="interno" value="interno" disabled>
+                                @endif
+                                <label for="interno">Interno</label>
+                            </div>
+
+                            <div class="">
+                                @if(!$alumno->interno)
+                                    <input type="radio" id="procedencia_interno" name="interno" value="externo" checked = "checked" disabled>
+                                @else
+                                    <input type="radio" id="procedencia_interno" name="interno" value="externo" disabled>
+                                @endif
+                                <label for="interno">Externo</label>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+            </form>
+            <div class="datos-flex">
+                <div class="container-data">
+                    <div class="row-size-text row-dpto">
                         <label>Departamento: </label>
                     </div>
-                    <div class="col-9">
-                        <input class="input" type="name" name="nombres" value="{{$departamento}}" disabled>
+                    <div class="row-input">
+                        <input class="input last-input" type="name" name="nombres" value="{{$departamento}}" disabled>
                     </div>
                 </div>
-                
-
-            </form>
-
-        </div>
+                <div class="container-data">
+                    <br><br>
+                    <div class="return">
+                        <a href="{{route('departamento.home')}}"><button class="btn-acc btn-danger">Regresar</button></a>
+                    </div>
+                </div>
+            </div>
     </div>
-
+    <div class="space"></div>
 
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
