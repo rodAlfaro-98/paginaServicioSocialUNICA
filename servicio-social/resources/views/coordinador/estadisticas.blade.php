@@ -1,43 +1,46 @@
 @extends('layouts.coordinador')
 
 @section('contenido')
-        <div style="margin-top: 100px;">
-            <h4>Estadísticas de los alumnos del {{$departamento}}</h4>
+    <link rel="preload" href="{{URL::asset('css/main.css')}}" as="style">
+    <link rel="stylesheet" href="{{URL::asset('css/main.css')}}">
+    <link rel="preload" href="{{URL::asset('css/departamento.css')}}" as="style">
+    <link rel="stylesheet" href="{{URL::asset('css/departamento.css')}}">
+        <div class="container-estadisticas">
+            <h4 class="title-estadisticas">Estadísticas de los alumnos del {{$departamento}}</h4>
             <hr>
             <form action="{{route('departamento.descarga.estadistica')}}" method="post">
                 @csrf
-                <h5>Seleccione el tipo de dato</h5>
-                <select class="input input-select" onchange="filtroTipoDato()" name="tipo_dato_selector" id="tipo_dato_selector" style="width: 100%">
+                <h5 class="tipo-dato">Seleccione el tipo de dato</h5>
+                <div class="select-type">
+                <select class="input-select" onchange="filtroTipoDato()" name="tipo_dato_selector" id="tipo_dato_selector">
                     <option value="" disabled selected>Tipo de dato</option>
-                    <option id="tipo_semestre" name="tipo_dato" value="Semestre">Semestre de servicio</option>
-                    <option id="tipo_genero" name="tipo_dato" value="Genero">Género del alumno</option>
-                    <option id="tipo_interno" name="tipo_dato" value="Interno">Procedencia del alumno</option>
-                    <option id="tipo_carrera" name="tipo_dato" value="Carrera">Carrera del alumno</option>
+                    <option class="option-select" id="tipo_semestre" name="tipo_dato" value="Semestre">Semestre de servicio</option>
+                    <option class="option-select" id="tipo_genero" name="tipo_dato" value="Genero">Género del alumno</option>
+                    <option class="option-select" id="tipo_interno" name="tipo_dato" value="Interno">Procedencia del alumno</option>
+                    <option class="option-select" id="tipo_carrera" name="tipo_dato" value="Carrera">Carrera del alumno</option>
                 </select>
-                <div id="titulo2" style="display: none">
-                    <br>
-                    <br>
-                    <hr>
-                    <h5>Seleccione el dato</h5>
                 </div>
-                <select class="input input-select" name="genero" id="genero_selector" style="width: 100%; display: none">
+                <div id="titulo2" style="display: none">
+                    <h5 class="tipo-dato">Seleccione el dato</h5>
+                </div>
+                <select class="input-select" name="genero" id="genero_selector" style="width: 100%; display: none">
                     <option value="" disabled selected>Genero</option>
                     @foreach($generos as $genero)
                         <option id="genero_{{$genero->genero}}" name="genero" value="{{$genero->genero}}">{{$genero->genero}}</option>
                     @endforeach
                 </select>
-                <select class="input input-select" name="carrera" id="carrera_selector" style="width: 100%; display: none">
+                <select class="input-select" name="carrera" id="carrera_selector" style="width: 100%; display: none">
                     <option value="" disabled selected>Carrera</option>
                     @foreach($carreras as $carrera)
                         <option id="carrera_{{$carrera->carrera}}" name="genero" value="{{$carrera->carrera}}">{{$carrera->carrera}}</option>
                     @endforeach
                 </select>
-                <select class="input input-select" name="interno" id="procedencia_selector" style="width: 100%; display: none">
+                <select class="input-select" name="interno" id="procedencia_selector" style="width: 100%; display: none">
                     <option value="" disabled selected>Procedencia</option>
                     <option id="prodencia_interno" name="procedencia" value="Interno">Interno</option>
                     <option id="prodencia_externo" name="procedencia" value="Externo">Externo</option>
                 </select>
-                <select class="input input-select" name="fecha" id="fecha_selector" style="width: 100%; display: none">
+                <select class="input-select" name="fecha" id="fecha_selector" style="width: 100%; display: none">
                     <option value="" disabled selected>Fecha</option>
                     @foreach($años as $año)
                         @if($año == $min_año)
@@ -60,15 +63,14 @@
                         @endif
                     @endforeach
                 </select>
-                <br>
-                <br>
+                <div class="space2"></div>
                 <hr>
-                <div class = "row">
-                    <div class="col">
-                        <button type="submit" name="boton_descarga" class="btn" style="color:white; background-color: #1D6F42" value="Excel"><img src="{{ URL::asset('assets/img/excel_icon.svg')}}" style="width:30px;height:30px;">Exportar Excel</Button>
+                <div class = "exportar-pdf-excel">
+                    <div class="button-pdf-estadisticas">
+                        <button class="btn-excel" type="submit" name="boton_descarga" value="Excel"><img src="{{ URL::asset('assets/img/excel.svg')}}">Exportar Excel</Button>
                     </div>
-                    <div class="col">
-                        <button type="submit" name="boton_descarga" class="btn" style="color:white; background-color: #F40F02" value="PDF"><img src="{{ URL::asset('assets/img/pdf_icon.svg')}}" style="width:30px;height:30px;">Exportar PDF</Button>
+                    <div class="button-pdf-estadisticas">
+                        <button class="btn-pdf" type="submit" name="boton_descarga" value="PDF"><img src="{{ URL::asset('assets/img/pdf_icon.svg')}}" >Exportar PDF</Button>
                     </div>
                     </div>
                 </div>
