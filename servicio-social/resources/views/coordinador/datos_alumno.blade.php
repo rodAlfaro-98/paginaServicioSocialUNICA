@@ -15,7 +15,7 @@
     <link rel="preload" href="{{URL::asset('css/departamento.css')}}" as="style">
     <link rel="stylesheet" href="{{URL::asset('css/departamento.css')}}">
     <div class="container-datos-alumno">
-        <h4 class="title-register">Datos de ss{{$alumno->nombres}} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h4>
+        <h4 class="title-register">Datos de {{$alumno->nombres}} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h4>
             <div class="barra"></div>
             <form id="muestraDatos" class="inputs-container-register">
                 <!-- Sesion -->
