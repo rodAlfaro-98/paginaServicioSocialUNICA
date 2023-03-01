@@ -2,6 +2,11 @@
 
 @section('title','Home')
 
+@push('styles')
+    <link href="{{ asset('css/alumno.css') }}" rel="stylesheet">
+@endpush
+
+
 @section('contenido')
 <main class="main">
     @if(Session::has('success'))
@@ -17,10 +22,27 @@
             </div>
             <div class="info_estado">
                 <p>Estado </p>
-                <div class="estado_container">
-                    <i class="fa-solid fa-check"></i>
-                    <h4>{{$data->estado}}</h4>
-                </div>
+
+                @if ($data->estado == "ACEPTADO")
+
+                    <div class="estado_container bg-green">
+                        <i class="fa-solid fa-check"></i>
+                        <h4>{{$data->estado}}</h4>
+                    </div>
+
+                @elseif ($data->estado == "RECHAZO")
+
+                    <div class="estado_container bg-red">
+                        <i class="fa-solid fa-xmark"></i>
+                        <h4>{{$data->estado}}</h4>
+                    </div>
+
+                @else
+                    <div class="estado_container bg-yellow">
+                        <i class="fa-solid fa-hourglass-start"></i>
+                        <h4>{{$data->estado}}</h4>
+                    </div>
+                @endif
             </div>
         </div>
         <hr class="info_hr">
