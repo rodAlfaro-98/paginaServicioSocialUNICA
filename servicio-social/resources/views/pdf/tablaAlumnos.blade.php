@@ -15,6 +15,7 @@
 </head>
 <body>
     <div class="container">
+<<<<<<< HEAD
         <!--
         <h4>Alumnos de con {{$estado}} del departamento {{$departamento}}</h4>
         -->
@@ -62,6 +63,23 @@
                 @endif
                 <th>Estado</th>
             </tr>
+=======
+        <h4>Alumnos del departamento {{$departamento}}</h4>
+        <hr>
+        <hr>
+        <table class="table" id="TablaAlumnos">
+        <thead>
+            <th>Número de cuenta</th>
+            <th>Nombre</th>
+            <th>Fecha de inicio</th>
+            <th>Fecha de terminación</th>
+            <th>Carrera</th>
+            @if ($departamento == 'DSA')    
+                <th>Depto.</th>
+            @endif
+            <th>Estado</th>
+            <th>Becario</th>
+>>>>>>> cf5a655 (Se agregó el parámetro de si un alumno es becario de unica y se arregló el erro de consulta con fechas)
         </thead>
         <tbody class="table__registros">
             @foreach($alumnos as $data)
@@ -74,7 +92,12 @@
                 @if($departamento == 'DSA')
                     <td>{{$data->abreviatura_departamento}}</td>
                 @endif
-                <td>{{$dato}}</td>
+                <td>{{ucfirst(strtolower($data->estado))}}</td>
+                @if($data->becario_unica == 1)
+                    <td>Verdadero</td>
+                @else
+                    <td>Falso</td>
+                @endif
             </tr>
             @endforeach
         </tbody>

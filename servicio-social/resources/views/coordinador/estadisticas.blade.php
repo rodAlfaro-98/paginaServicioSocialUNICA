@@ -49,11 +49,18 @@
                         </div>
                         <label class="form-check-label" for="Estado">Estado del alumno</label>
                     </div>
+                    <div class="form-check-box">
+                        <div class="checkbox-wrapper-13">
+                            <input class="form-check-input" type="checkbox" id="becario_unica" name="becario_unica" value="becario_unica" onclick="filtroTipoDato()">
+                        </div>
+                        <label class="form-check-label" for="becario_unica">Becario de UNICA</label>
+                    </div>
                 </div>
                 <div id="titulo2" style="display: none">
                     <hr>
                     <h5 class="tipo-dato">Seleccione el dato</h5>
                 </div>
+                <div class="row">
                 <div class="col" id="fecha_selector" style="display: none">
                     <select class="input-select input-select-estadisticas" name="fecha"  onchange="filtroDato()">
                         <option value="" disabled selected>Fecha</option>
@@ -105,11 +112,19 @@
                 <div class="col" id="estado_selector" style="display: none">
                     <select class="input-select input-select-estadisticas" name="estado" id="estado_selector"  onchange="filtroDato()" style="width: 100%;">
                         <option value="" disabled selected>Estado</option>
-                        <option id="PENDIENTE" name="estado" value="PENDIENTE">PENDIENTE</option>
-                        <option id="ACEPTADO" name="estado" value="ACEPTADO">ACEPTADO</option>
-                        <option id="RECHAZADO" name="estado" value="RECHAZADO">RECHAZADO</option>
-                        <option id="BAJA" name="estado" value="BAJA">BAJA</option>
+                        <option id="PENDIENTE" name="estado" value="PENDIENTE">Pendiente</option>
+                        <option id="ACEPTADO" name="estado" value="ACEPTADO">Aceptado</option>
+                        <option id="RECHAZADO" name="estado" value="RECHAZADO">Rechazado</option>
+                        <option id="BAJA" name="estado" value="BAJA">Baja</option>
                     </select>
+                </div>
+                <div class="col" id="becario_selector"  style="display: none">
+                    <select class="input-select input-select-estadisticas" name="becario" id="becario_selector"  onchange="filtroDato()" style="width: 100%;">
+                        <option value="" disabled selected>Becario UNICA</option>
+                        <option id="becario_interno" name="becario" value="Interno">Interno</option>
+                        <option id="becario_externo" name="becario" value="Externo">Externo</option>
+                    </select>
+                </div>
                 </div>
                 <div class="barra2"></div>
                 <div class = "exportar-pdf-excel estadisticas-exportar-pdf-excel">
@@ -182,7 +197,6 @@
 >>>>>>> ce67869 (Se añadieron las vistas del jefe)
                     </div>
                 </div>  
-                 
             </form>
             <hr>
             <h5 class="tipo-dato">Generación del documento de prestación del Servicio Social por departamento</h5>

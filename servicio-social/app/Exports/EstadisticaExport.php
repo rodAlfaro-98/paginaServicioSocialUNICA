@@ -22,59 +22,31 @@ class EstadisticaExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-        $datos = [];
-        $toReturn = DB::Table('alumno')
-            ->join('estado','estado.id', '=', 'alumno.estado_id')
-            ->join('departamento','departamento.id', '=', 'alumno.departamento_id')
-            ->join('carrera','carrera.id','=','alumno.carrera_id')
-            ->select('alumno.nombres','alumno.apellido_paterno','alumno.apellido_materno','alumno.numero_cuenta','alumno.fecha_inicio','alumno.fecha_fin','carrera.clave_carrera','estado.estado','departamento.abreviatura_departamento');
-        foreach($this->datos as $llave => $valor){
-            print_r($llave.",");
-            if($valor !== Null)
-            switch($llave){
-                case "fecha_inicio":
-                    array_push($datos, $this->datos["fecha_inicio"],$this->datos["fecha_fin"]);
-                    //Retorna todo
-                    $toReturn->where(function($query){
-                        $query->whereBetween('alumno.fecha_inicio', [$this->datos["fecha_inicio"],$this->datos["fecha_fin"]])
-                            ->orWhereBetween('alumno.fecha_fin', [$this->datos["fecha_inicio"],$this->datos["fecha_fin"]]);
-                    });
+        $table = DB::table('alumno')
+            ->join('carrera','alumno.carrera_id','=','carrera.id')
+            ->join('departamento','alumno.departamento_id','=','departamento.id')
+            ->join('estado','estado.id','=','alumno.estado_id')
+            ->select('alumno.nombres','alumno.apellido_paterno','alumno.apellido_materno','alumno.numero_cuenta','alumno.fecha_inicio','alumno.fecha_fin','carrera.clave_carrera','estado.estado','departamento.abreviatura_departamento','alumno.becario_unica')
+            ->where(function (Builder $query){
+                if($this->datos['fecha_inicio'] != Null)
+                    $query->whereBetween('alumno.fecha_inicio',[date($this->datos['fecha_inicio']),date($this->datos['fecha_fin'])])
+                        ->orWhereBetween('alumno.fecha_fin',[date($this->datos['fecha_inicio']),date($this->datos['fecha_fin'])]);
 
-                        //Retorna todo
-                        /*$toReturn->where(function ($query){
-                            $query->where('alumno.fecha_inicio' ,'>=', $this->datos["fecha_inicio"])
-                                ->where('alumno.fecha_inicio' ,'<=', $this->datos["fecha_fin"]);
-                        })->orWhere(function ($query){
-                            $query->where('alumno.fecha_fin' ,'>=', $this->datos["fecha_inicio"])
-                                ->where('alumno.fecha_fin' ,'<=', $this->datos["fecha_fin"]);
-                        });*/
-                case "genero":
-                    array_push($datos, $valor);
-                    $toReturn->where('alumno.genero','=',$valor);
-                break;
-                case "interno":
-                    array_push($datos, $valor);
-                    $toReturn->where('alumno.interno','=',$valor);
-                break;
-                case "carrera":
-                    array_push($datos, $valor);
-                    $toReturn->where('carrera.carrera','=',$valor);
-                break;
-                case "estado":
-                    array_push($datos, $valor);
-                    $toReturn->where('estado.estado','=',$valor);
-                break;
-            }
-        }
-        if($this->departamento !== 'DSA' ){
-            $toReturn = $toReturn->where('departamento.abreviatura_departamento','=',$this->departamento);
-        }
-        print_r($toReturn->toSql());
-        print_r($datos);
-        //return $toReturn->get();
+            });
+        if($this->datos['genero'] != Null)
+            $table->where('alumno.genero','=',$this->datos['genero']);
+        if($this->datos['interno'] != Null)
+            $table->where('alumno.interno','=',$this->datos['interno']);
+        if($this->datos['carrera'] != Null)
+            $table->where('carrera.carrera','=',$this->datos['carrera']);
+        if($this->datos['estado'] != Null)
+            $table->where('estado.estado','=',$this->datos['estado']);
+        if($this->datos['becario'] != Null)
+            $table->where('alumno.becario_unica','=',$this->datos['becario']);
+        return $table->get();
     }
 
     public function headings(): array{
-        return ['Nombre','Apellido Paterno','Apellido Materno','Fehca de inicio','Fecha de término','Clave de la carrera','Estado del alumno','Departamento'];
+        return ['Nombre','Apellido Paterno','Apellido Materno','Número de cuenta','Fehca de inicio','Fecha de término','Clave de la carrera','Estado del alumno','Departamento','Es becario'];
     }
 }
