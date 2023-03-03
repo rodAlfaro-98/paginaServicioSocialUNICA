@@ -326,15 +326,21 @@ class DepartamentoController extends Controller {
 
     public function getExcelEstadistica(Request $request,$departamento,$datos){
         $date = Carbon::now();
-        $temp = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos);
-        //return $temp->collection();
-        return Excel::download(new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos),'alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.xlsx');
+        $estadistica = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos);
+        $alumnos = $estadistica->collection();
+        if(sizeof($alumnos) == 0){
+            return redirect()->back()->with('fail','No hay alumnos que cumplan con los criterios de búsqueda seleccionados');
+        }
+        return Excel::download($estadistica,'alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.xlsx');
     }
 
     public function getPDFEstadistica(Request $request,$departamento,$datos){ 
         $date = Carbon::now();
         $estadistica = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos);
         $alumnos = $estadistica->collection();
+        if(sizeof($alumnos) == 0){
+            return redirect()->back()->with('fail','No hay alumnos que cumplan con los criterios de búsqueda seleccionados');
+        }
         $data = [
             "alumnos" => $alumnos,
             "departamento" => " todos los departamentos"
