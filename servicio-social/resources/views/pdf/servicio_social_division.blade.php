@@ -1,7 +1,7 @@
 <!doctype HTML>
 <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
     <style>
         thead {
             background-color: #acc6fc;
@@ -13,25 +13,33 @@
     </style>
 </head>
 <body>
-    <div class="container" style="text-align:right">
-        <div class="row">
-            <div class="col">
-                <img src="{{ URL::asset('assets/img/escudo_unam.png')}}">
-            </div>
-            <div class="col">
-                <p><strong>FACULTAD DE INGENIERÍA</strong></p>
-                <p><strong>SECRETARÍA GENERAL</strong></p>
-                <p><strong>UNIDAD DE SERVICIO DE CÓMPUTO ACADÉMICO</strong></p>
-                <p><strong>UNICA</strong></p>
-                <br>
-                <br>
-                <p><strong>Asunto:</strong></p>
-                <p>Relación de Alumnos de Servicio Social en el {{$departamento}} {{$periodo}}</p>
-                <br>
-                <br>
-            </div>
-        </div>
-    </div>
+    <table>
+        <tbody>
+            <tr>
+                <td style="width: 50%">
+                    <?php
+                        $path = 'assets/img/escudo_unam.png';
+                        $type = pathinfo($path,PATHINFO_EXTENSION);
+                        $data = file_get_contents($path);
+                        $base64 = 'data:image/'.$type.';base64,'.base64_encode($data);
+                    ?>
+                    <img src="{{$base64}}" style="width: 75%">
+                </td>
+                <td style = "text-align: right">
+                    <p><strong>FACULTAD DE INGENIERÍA</strong></p>
+                    <p><strong>SECRETARÍA GENERAL</strong></p>
+                    <p><strong>UNIDAD DE SERVICIO DE CÓMPUTO ACADÉMICO</strong></p>
+                    <p><strong>UNICA</strong></p>
+                    <br>
+                    <br>
+                    <p><strong>Asunto:</strong></p>
+                    <p>Relación de Alumnos de Servicio Social en el {{$departamento}} {{$periodo}}</p>
+                    <br>
+                    <br>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <div id="inner_doc">
         <p><strong>{{mb_strtoupper($titulo_2)}} {{mb_strtoupper($nombre_completo_2)}}</strong></p>
         <p><strong>JEF{{($genero_2) ? 'A' : 'E'}} DEL {{mb_strtoupper($departamento)}}</strong></p>
