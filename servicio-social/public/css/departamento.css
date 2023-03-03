@@ -318,6 +318,14 @@ tr{
     height: 35px;
 }
 
+.space3{
+    height: 20px;
+}
+
+.space4{
+    height: 5px;
+}
+
 .exportar-pdf-excel{
     margin-top: 20px;
     display: flex;
@@ -602,6 +610,7 @@ tr{
 .input{
     padding: 10px;
     border-radius: 10px;
+    font-size: medium;
     background: rgb(240, 240, 240);
 }
 
@@ -621,6 +630,10 @@ tr{
 .space{
     width: 100%;
     height: 60px;
+}
+
+.label{
+    color: grey;
 }
 
 @media(min-width:1024px){
