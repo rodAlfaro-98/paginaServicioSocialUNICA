@@ -47,6 +47,7 @@ class AlumnoSeeder extends Seeder
         $alumno->fecha_ingreso_facultad = now();
         $alumno->fecha_inicio = now();
         $alumno->fecha_fin = Carbon::now()->addMonths(6);
+        $alumno->becario_unica = true;
         $alumno->save();
 
         //Alumno 2
@@ -77,6 +78,7 @@ class AlumnoSeeder extends Seeder
         $fecha_inicio = Carbon::now()->subMonths(2);
         $alumno->fecha_inicio = $fecha_inicio;
         $alumno->fecha_fin = $fecha_inicio->addMonths(6);
+        $alumno->becario_unica = true;
         $alumno->save();
 
         $nombres = [
@@ -149,10 +151,12 @@ class AlumnoSeeder extends Seeder
             $alumno->departamento_id = rand(1,5);
             $alumno->fecha_nacimiento = now();
             $alumno->fecha_ingreso_facultad = now();
-            $sub = rand(0,5);
+            $sub = rand(0,11);
             $fecha_inicio = Carbon::now()->subMonths($sub);
             $alumno->fecha_inicio = $fecha_inicio;
             $alumno->fecha_fin = Carbon::now()->addMonths(6-$sub);
+            $becario = rand(0,1);
+            $alumno->becario_unica = ($becario == 1)?true:false;
 
             $estado_num = rand(1,2);
             $estado = new Estado();

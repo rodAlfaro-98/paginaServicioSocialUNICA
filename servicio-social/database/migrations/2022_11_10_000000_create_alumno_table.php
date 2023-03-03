@@ -37,6 +37,7 @@ return new class extends Migration
             $table->date('fecha_fin');
             $table->string('contraseña');
             $table->boolean('interno');
+            $table->boolean('becario_unica');
             $table->integer('carrera_id')->unsigned();
             $table->foreign('carrera_id')->references('id')->on('carrera');
             $table->integer('departamento_id')->unsigned();

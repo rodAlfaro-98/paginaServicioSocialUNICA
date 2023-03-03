@@ -277,7 +277,7 @@ class DepartamentoController extends Controller {
     public function getDescargaEstadistica(Request $request){
         $obtained = $request->collect();
         $dataTypes = ["genero","carrera","interno","fecha"];
-        $datos = ["fecha_inicio" => Null, "fecha_fin" => Null, "genero" => Null, "carrera" => Null, "procedencia" => Null, "estado" => Null];
+        $datos = ["fecha_inicio" => Null, "fecha_fin" => Null, "genero" => Null, "carrera" => Null, "interno" => Null, "estado" => Null, "becario"];
         $dato = '';
         foreach($obtained as $key=>$value){
             switch($key){
@@ -314,6 +314,8 @@ class DepartamentoController extends Controller {
 
                 case "estado":
                     $datos["estado"] = $request['estado'];
+                case "becario":
+                    $datos['becario'] = ($request['becario'] == 'Interno') ? true : false;
             }
         }
         $jefe = JefeDepartamento::findOrFail(Session::get('loginId'));
@@ -322,21 +324,19 @@ class DepartamentoController extends Controller {
     }
 
     public function getExcelEstadistica(Request $request,$departamento,$datos){
-    $date = Carbon::now();
-    $temp = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos);
-    return $temp->collection();
-    //return Excel::download(new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos),'alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.xlsx');
+        $date = Carbon::now();
+        $temp = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos);
+        //return $temp->collection();
+        return Excel::download(new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos),'alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.xlsx');
     }
 
     public function getPDFEstadistica(Request $request,$departamento,$datos){ 
         $date = Carbon::now();
-        $estadistica = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datosroalf);
+        $estadistica = new EstadisticaExport($request['tipo_dato_selector'],$departamento,$datos);
         $alumnos = $estadistica->collection();
         $data = [
             "alumnos" => $alumnos,
-            "departamento" => " todos los departamentos",
-            "estado" =>$request['tipo_dato_selector']." igual a ".$dato,
-            "dato" => $dato,
+            "departamento" => " todos los departamentos"
         ];
 
         $pdf = PDF::loadView('pdf.tablaAlumnos', $data)->setOptions(['defaultFont' => 'sans-serif']);

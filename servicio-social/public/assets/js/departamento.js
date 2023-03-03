@@ -79,6 +79,7 @@ function filtroTipoDato(){
     document.getElementById('fecha_selector').style.display = "none";
     document.getElementById('estado_selector').style.display = "none";
     document.getElementById('titulo2').style.display = "none";
+    document.getElementById('becario_selector').style.display = "none";
     if(document.getElementById('Semestre').checked){
         document.getElementById('fecha_selector').style.display = "block";
         document.getElementById('titulo2').style.display = "block";
@@ -93,6 +94,9 @@ function filtroTipoDato(){
         document.getElementById('titulo2').style.display = "block";
     }if(document.getElementById('Estado').checked){
         document.getElementById('estado_selector').style.display = "block";
+        document.getElementById('titulo2').style.display = "block";
+    }if(document.getElementById('becario_unica').checked){
+        document.getElementById('becario_selector').style.display = "block";
         document.getElementById('titulo2').style.display = "block";
     }
 }
@@ -142,12 +146,21 @@ function filtroDato(){
         var selector = document.getElementById('estado_selector');
         if(filtros.includes('estado')){
             var index = filtros.indexOf("estado");
-            filtro_dato[index] = selector.options[selector.selectedIndex].text;
+            filtro_dato[index] = selector.options[selector.selectedIndex].text.toUpperCase();
         }else{
             filtros.push("estado");
-            filtro_dato.push(selector.options[selector.selectedIndex].text);
+            filtro_dato.push(selector.options[selector.selectedIndex].text.toUpperCase());
         }
 
         return [filtros,filtro_dato];
+    }else if(selected == 'Becario de UNICA'){
+        var selector = documento.getElementById('becario_selector')
+        if(filtros.includes('becario')){
+            var index = filtros.indexOf("becario");
+            filtro_dato[index] = selector.options[selector.selectedIndex].text;
+        }else{
+            filtros.push('becario');
+            filtro_dato.push(selector.options[selector.selectedIndex].text)
+        }
     }
 }

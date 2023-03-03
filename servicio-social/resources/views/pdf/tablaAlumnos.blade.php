@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="container">
-        <h4>Alumnos de con {{$estado}} del departamento {{$departamento}}</h4>
+        <h4>Alumnos del departamento {{$departamento}}</h4>
         <hr>
         <hr>
         <table class="table" id="TablaAlumnos">
@@ -20,6 +20,7 @@
                 <th>Depto.</th>
             @endif
             <th>Estado</th>
+            <th>Becario</th>
         </thead>
         <tbody>
             @foreach($alumnos as $data)
@@ -32,7 +33,12 @@
                 @if($departamento == 'DSA')
                     <td>{{$data->abreviatura_departamento}}</td>
                 @endif
-                <td>{{$dato}}</td>
+                <td>{{ucfirst(strtolower($data->estado))}}</td>
+                @if($data->becario_unica == 1)
+                    <td>Verdadero</td>
+                @else
+                    <td>Falso</td>
+                @endif
             </tr>
             @endforeach
         </tbody>
