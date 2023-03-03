@@ -14,36 +14,46 @@
                     <h4 class="name-coordinador">Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
                     <hr>
                         <div class="row row-main">
-                            @if ($departamento != 'DSA')
-                                <h6 class="alumnos-departamento">Alumnos de la {{$departamento}} - Pendientes</h6>
-                            @else
-                                <h5>Filtro por Datos</h5>
-                                <div class="col">
-                                <label>Filtro por division:</label>
-                                    <div class="container">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="DSA" name="DSA" value="DSA" onclick="getSelected()">
-                                            <label class="form-check-label" for="DSA">DSA</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="DID" name="DID" value="DID" onclick="getSelected()">
-                                            <label class="form-check-label" for="DID">DID</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="DSC" name="DSC" value="DSC" onclick="getSelected()">
-                                            <label class="form-check-label" for="DSC">DSC</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="DROS" name="DROS" value="DROS" onclick="getSelected()">
-                                            <label class="form-check-label" for="DROS">DROS</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="checkbox" id="Salas" name="Salas" value="Salas" onclick="getSelected()">
-                                            <label class="form-check-label" for="Salas">Salas</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+                        @if ($departamento != 'DSA')
+                    <h6 class="alumnos-departamento">Alumnos de la {{$departamento}} - Inscritos</h6>
+                @else
+                    <div class="row">
+                        <p>Filtro por Datos</p>
+                        <div class="space4"></div>
+                        <label>Filtro por division:</label>
+                        <div class="col-1">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="DSA" name="DSA" value="DSA" onclick="getSelected()">
+                                <label class="form-check-label" for="DSA">DSA</label>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="DID" name="DID" value="DID" onclick="getSelected()">
+                                <label class="form-check-label" for="DID">DID</label>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="DSC" name="DSC" value="DSC" onclick="getSelected()">
+                                <label class="form-check-label" for="DSC">DSC</label>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="DROS" name="DROS" value="DROS" onclick="getSelected()">
+                                <label class="form-check-label" for="DROS">DROS</label>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="Salas" name="Salas" value="Salas" onclick="getSelected()">
+                                <label class="form-check-label" for="Salas">Salas</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space3"></div>
+                @endif
                                 <div class="subcontainer1">
                                     <p>Nombre del alumno:</p>
                                     <div class="contain-excel">
