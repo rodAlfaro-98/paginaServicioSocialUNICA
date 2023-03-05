@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- Se copiaron y pegaron estilos por compatibilidad-->
     <style>
 <<<<<<< HEAD
 .container{flex-direction:column;width:1000px}.header{border:1px solid grey;border-collapse:collapse;margin:20px auto;width:90%}.header td,.header th{border:1px solid grey}.header__title{color:grey;font-size:18px;font-weight:700}.header__datos{padding-left:8px}.header__datos-title{color:grey;font-size:14px;font-weight:700}.header__datos-info{color:grey;font-size:16px;text-align:center}.table{border-collapse:collapse;font-size:14px;margin:25px auto;min-width:400px;overflow:hidden;width:90%}.table td,.table th{padding:8px 15px;text-align:center}.table__campos tr{background-color:#4f81bd;color:#fff;font-weight:700}.table__registros tr{border-bottom:1px solid #ddd}.table__registros tr:nth-last-of-type(2n){background-color:#f3f3f3}.table__registros tr:last-of-type{border-bottom:1px solid #000}
@@ -35,8 +36,12 @@
                 <td rowspan="3">
                     <picture>
 <<<<<<< HEAD
+<<<<<<< HEAD
                         <img class="unica_logo" src="data:image/png;base64,<?php echo base64_encode(file_get_contents(base_path('public/assets/img/unica.png'))); ?>" width="200" height="120">
 =======
+=======
+                        <!-- Se requiere colocar la imagen con ruta absoluta y codificado a base64 -->
+>>>>>>> 519b99c (Archivos basura eliminados y Estilos reorganizados)
                         <img class="unica_logo" src="data:image/png;base64,<?php echo base64_encode(file_get_contents(base_path('public/assets/img/unica.png'))); ?>" width="250" height="120">
 >>>>>>> 0b84520 (Vista alumnos DSA pdf estable)
                     </picture>
@@ -105,7 +110,7 @@
                 <th>Fecha de inicio</th>
                 <th>Fecha de terminación</th>
                 <th>Carrera</th>
-                @if ($departamento == 'DSA')    
+                @if ($departamento == 'DSA')
                     <th>Depto.</th>
                 @endif
                 <th>Estado</th>

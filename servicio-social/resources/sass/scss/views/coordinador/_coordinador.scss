@@ -2,7 +2,7 @@
     --verde-oscuro: #1D6F42;
     --rojo: rgb(255, 56, 86);
     --gris-claro: #e8e8e8;
-    --gris-fuerte: #cccccc;
+    --gris-fuerte: #dedede;
     --btn-verde: #329469;
     --btn-azul: #26b5e0;
     --btn-rojo: #cc2a0d;
@@ -11,20 +11,13 @@
     --gris-input: #E6E6E6;
 }
 
-p{
-    font-size: large;
-}
 
-.container{
-    position: relative;
-}
 /*   Alumnos Inscritos   */
 
 .container-main{
     width: 1200px;
-    margin-left: 140px;
-    margin-top: 35px;
-    padding-right: 60px;
+    margin: 0 auto;
+    margin-top: 40px;
 }
 
 
@@ -76,6 +69,7 @@ p{
 }
 
 .btn-excel{
+    width: 250px;
     cursor: pointer;
     padding: 8px 30px;
     border-radius: 10px;
@@ -112,6 +106,7 @@ p{
 }
 
 .btn-pdf{
+    width: 250px;
     cursor: pointer;
     padding: 8px 30px;
     border-radius: 10px;
@@ -148,7 +143,6 @@ p{
     border: none;
     padding: 1rem;
     border-radius: 1rem;
-    background: var(--gris-fuerte);
     transition: 0.3s;
 }
 
@@ -272,9 +266,8 @@ tr{
 
 .container-estadisticas{
     width: 1200px;
-    margin-left: 120px;
-    margin-top: 35px;
-    padding-right: 40px;
+    margin: 0 auto;
+    margin-top: 40px;
 }
 
 .title-estadisticas{
@@ -307,7 +300,8 @@ tr{
     width: 100%;
     padding: 10px;
     border-radius: 10px;
-    background: rgb(240, 240, 240);
+    border: solid 1px #c4c4c4;
+    background: #f3f3f3;
 }
 
 .input-select:hover{
@@ -346,6 +340,7 @@ tr{
 
 .input-select-estadisticas{
     margin-top: 20px;
+    border: solid 1px #c4c4c4;
 }
 
 .estadisticas-exportar-pdf-excel{
@@ -372,7 +367,8 @@ tr{
     margin-top: 20px;
     padding: 10px;
     border-radius: 10px;
-    background: rgb(240, 240, 240);
+    background: #f3f3f3;
+    border: solid 1px #c4c4c4;
 }
 
 .input-select-periodo{
@@ -425,7 +421,7 @@ tr{
         width: 100%;
         margin-bottom: 60px;
         margin-top: 10px;
-     }
+    }
 }
 @media(max-width:768px){
     .container-checkbox{
@@ -458,7 +454,7 @@ tr{
 
     .exportar-pdf-excel{
         flex-direction: column;
-        align-items: center;   
+        align-items: center;
     }
 }
 
@@ -468,117 +464,116 @@ tr{
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
     .checkbox-wrapper-13 input[type=checkbox] {
-      --active: #275EFE;
-      --active-inner: #fff;
-      --focus: 2px rgba(39, 94, 254, .3);
-      --border: #BBC1E1;
-      --border-hover: #275EFE;
-      --background: #fff;
-      --disabled: #F6F8FF;
-      --disabled-inner: #E1E6F9;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      height: 21px;
-      outline: none;
-      display: inline-block;
-      vertical-align: top;
-      position: relative;
-      margin: 0;
-      cursor: pointer;
-      border: 1px solid var(--bc, var(--border));
-      background: var(--b, var(--background));
-      transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+        --active: #275EFE;
+        --active-inner: #fff;
+        --focus: 2px rgba(39, 94, 254, .3);
+        --border: #BBC1E1;
+        --border-hover: #275EFE;
+        --background: #fff;
+        --disabled: #F6F8FF;
+        --disabled-inner: #E1E6F9;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        height: 21px;
+        outline: none;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0;
+        cursor: pointer;
+        border: 1px solid var(--bc, var(--border));
+        background: var(--b, var(--background));
+        transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:after {
-      content: "";
-      display: block;
-      left: 0;
-      top: 0;
-      position: absolute;
-      transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+        content: "";
+        display: block;
+        left: 0;
+        top: 0;
+        position: absolute;
+        transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:checked {
-      --b: var(--active);
-      --bc: var(--active);
-      --d-o: .3s;
-      --d-t: .6s;
-      --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
+        --b: var(--active);
+        --bc: var(--active);
+        --d-o: .3s;
+        --d-t: .6s;
+        --d-t-e: cubic-bezier(.2, .85, .32, 1.2);
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:disabled {
-      --b: var(--disabled);
-      cursor: not-allowed;
-      opacity: 0.9;
+        --b: var(--disabled);
+        cursor: not-allowed;
+        opacity: 0.9;
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:disabled:checked {
-      --b: var(--disabled-inner);
-      --bc: var(--border);
+        --b: var(--disabled-inner);
+        --bc: var(--border);
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:disabled + label {
-      cursor: not-allowed;
+        cursor: not-allowed;
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:hover:not(:checked):not(:disabled) {
-      --bc: var(--border-hover);
+        --bc: var(--border-hover);
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:focus {
-      box-shadow: 0 0 0 var(--focus);
+        box-shadow: 0 0 0 var(--focus);
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:not(.switch) {
-      width: 21px;
+        width: 21px;
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:not(.switch):after {
-      opacity: var(--o, 0);
+        opacity: var(--o, 0);
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:not(.switch):checked {
-      --o: 1;
+        --o: 1;
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox] + label {
-      display: inline-block;
-      vertical-align: middle;
-      cursor: pointer;
-      margin-left: 4px;
+        display: inline-block;
+        vertical-align: middle;
+        cursor: pointer;
+        margin-left: 4px;
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:not(.switch) {
-      border-radius: 7px;
+        border-radius: 7px;
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:not(.switch):after {
-      width: 5px;
-      height: 9px;
-      border: 2px solid var(--active-inner);
-      border-top: 0;
-      border-left: 0;
-      left: 7px;
-      top: 4px;
-      transform: rotate(var(--r, 20deg));
+        width: 5px;
+        height: 9px;
+        border: 2px solid var(--active-inner);
+        border-top: 0;
+        border-left: 0;
+        left: 7px;
+        top: 4px;
+        transform: rotate(var(--r, 20deg));
     }
-  
+
     .checkbox-wrapper-13 input[type=checkbox]:not(.switch):checked {
-      --r: 43deg;
+        --r: 43deg;
     }
 }
-  
+
 .checkbox-wrapper-13 * {
     box-sizing: inherit;
 }
-  
+
 .checkbox-wrapper-13 *:before,
 .checkbox-wrapper-13 *:after {
     box-sizing: inherit;
 }
-  
-  
+
+
 
 /*   Datos Alumno   */
 
@@ -648,7 +643,7 @@ tr{
         display: flex;
         justify-content: space-between;
     }
-    
+
     .title-register{
         margin-top: 50px;
         text-align: start;
@@ -690,7 +685,7 @@ tr{
 }
 
 @media (max-width:1024px){
-    
+
     .title-register{
         left: 0%;
         text-align: center;
@@ -724,7 +719,7 @@ tr{
         font-size: 17.5px;
         text-align: center;
         border-style: none;
-        z-index: -1; 
+        z-index: -1;
     }
 
     .radio-button-container{
