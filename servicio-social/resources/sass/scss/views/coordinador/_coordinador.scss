@@ -530,6 +530,8 @@ tr{
     }
 
     .checkbox-wrapper-13 input[type=checkbox]:not(.switch):after {
+        display: none;
+        position: relative;
         opacity: var(--o, 0);
     }
 
@@ -747,7 +749,3 @@ tr{
         width: 100%;
     }
 }
-
-
-
-/* Checkbox */

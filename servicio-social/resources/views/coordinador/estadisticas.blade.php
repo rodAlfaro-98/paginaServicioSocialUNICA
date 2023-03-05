@@ -7,18 +7,14 @@
 
 @section('contenido')
         <div class="container-estadisticas">
-<<<<<<< HEAD
             @if(Session::has('fail'))
                 <div class="alert alert-danger">{{Session::get('fail')}}</div>
             @endif
-=======
->>>>>>> ce67869 (Se añadieron las vistas del jefe)
             <h4 class="title-estadisticas">Estadísticas de los alumnos del {{$departamento}}</h4>
             <hr>
             <form action="{{route('departamento.descarga.estadistica')}}" onsubmit="return filtroDato();" method="post">
                 @csrf
                 <h5 class="tipo-dato">Seleccione el tipo de dato</h5>
-<<<<<<< HEAD
                 <div class="container-checkbox">
                     <div class="form-check-box">
                         <div class="checkbox-wrapper-13">
@@ -134,68 +130,6 @@
                     </div>
                     <div class="button-pdf-estadisticas">
                         <button type="submit" name="boton_descarga" class="btn-pdf" value="PDF"><img src="{{ URL::asset('assets/img/pdf_icon.svg')}}">Exportar PDF</Button>
-=======
-                <div class="select-type">
-                <select class="input-select" onchange="filtroTipoDato()" name="tipo_dato_selector" id="tipo_dato_selector">
-                    <option value="" disabled selected>Tipo de dato</option>
-                    <option class="option-select" id="tipo_semestre" name="tipo_dato" value="Semestre">Semestre de servicio</option>
-                    <option class="option-select" id="tipo_genero" name="tipo_dato" value="Genero">Género del alumno</option>
-                    <option class="option-select" id="tipo_interno" name="tipo_dato" value="Interno">Procedencia del alumno</option>
-                    <option class="option-select" id="tipo_carrera" name="tipo_dato" value="Carrera">Carrera del alumno</option>
-                </select>
-                </div>
-                <div id="titulo2" style="display: none">
-                    <h5 class="tipo-dato">Seleccione el dato</h5>
-                </div>
-                <select class="input-select" name="genero" id="genero_selector" style="width: 100%; display: none">
-                    <option value="" disabled selected>Genero</option>
-                    @foreach($generos as $genero)
-                        <option id="genero_{{$genero->genero}}" name="genero" value="{{$genero->genero}}">{{$genero->genero}}</option>
-                    @endforeach
-                </select>
-                <select class="input-select" name="carrera" id="carrera_selector" style="width: 100%; display: none">
-                    <option value="" disabled selected>Carrera</option>
-                    @foreach($carreras as $carrera)
-                        <option id="carrera_{{$carrera->carrera}}" name="genero" value="{{$carrera->carrera}}">{{$carrera->carrera}}</option>
-                    @endforeach
-                </select>
-                <select class="input-select" name="interno" id="procedencia_selector" style="width: 100%; display: none">
-                    <option value="" disabled selected>Procedencia</option>
-                    <option id="prodencia_interno" name="procedencia" value="Interno">Interno</option>
-                    <option id="prodencia_externo" name="procedencia" value="Externo">Externo</option>
-                </select>
-                <select class="input-select" name="fecha" id="fecha_selector" style="width: 100%; display: none">
-                    <option value="" disabled selected>Fecha</option>
-                    @foreach($años as $año)
-                        @if($año == $min_año)
-                            @if($semestre_min == 2)
-                                <option id="fecha_{{$año}}-2" name="fecha" value="{{$año}}-2">{{$año}}-2</option>
-                            @else
-                                <option id="fecha_{{$año}}-1" name="fecha" value="{{$año}}-1">{{$año}}-1</option>
-                                <option id="fecha_{{$año}}-2" name="fecha" value="{{$año}}-2">{{$año}}-2</option>
-                            @endif
-                        @elseif($año == $max_año)
-                            @if($semestre_max == 2)
-                                <option id="fecha_{{$año}}-2" name="fecha" value="{{$año}}-2">{{$año}}-2</option>
-                            @else
-                                <option id="fecha_{{$año}}-1" name="fecha" value="{{$año}}-1">{{$año}}-1</option>
-                                <option id="fecha_{{$año}}-2" name="fecha" value="{{$año}}-2">{{$año}}-2</option>
-                            @endif
-                        @else   
-                            <option id="fecha_{{$año}}-1" name="fecha" value="{{$año}}-1">{{$año}}-1</option>
-                            <option id="fecha_{{$año}}-2" name="fecha" value="{{$año}}-2">{{$año}}-2</option>
-                        @endif
-                    @endforeach
-                </select>
-                <div class="space2"></div>
-                <hr>
-                <div class = "exportar-pdf-excel">
-                    <div class="button-pdf-estadisticas">
-                        <button class="btn-excel" type="submit" name="boton_descarga" value="Excel"><img src="{{ URL::asset('assets/img/excel.svg')}}">Exportar Excel</Button>
-                    </div>
-                    <div class="button-pdf-estadisticas">
-                        <button class="btn-pdf" type="submit" name="boton_descarga" value="PDF"><img src="{{ URL::asset('assets/img/pdf_icon.svg')}}" >Exportar PDF</Button>
->>>>>>> ce67869 (Se añadieron las vistas del jefe)
                     </div>
                 </div>
             </form>

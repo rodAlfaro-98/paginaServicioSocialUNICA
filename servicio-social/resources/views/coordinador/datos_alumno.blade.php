@@ -7,17 +7,6 @@
 
 
 @section('contenido')
-    <!--
-    <link rel="preload" href="{{URL::asset('css/normalize.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/normalize.css')}}">
-    <link rel="preload" href="{{URL::asset('css/style.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
-    <link rel="preload" href="{{URL::asset('css/alumno_register.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/alumno_register.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    -->
-    <link rel="preload" href="{{URL::asset('css/main.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/main.css')}}">
     <div class="container-datos-alumno">
         <h4 class="title-register">Datos de {{$alumno->nombres}} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h4>
             <div class="barra"></div>
