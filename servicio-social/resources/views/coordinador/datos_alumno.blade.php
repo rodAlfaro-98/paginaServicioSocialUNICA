@@ -30,7 +30,6 @@
                             <input class="input" type="name" name="nombres" value="{{$alumno->nombres}}" disabled>
                         </div>
                     </div>
-
                     <div class="container-data">
                         <div class="row-size-text">
                             <label>Apellido Paterno: </label>
@@ -39,7 +38,6 @@
                             <input class="input" type="name" name="nombres" value="{{$alumno->apellido_paterno}}" disabled>
                         </div>
                     </div>
-
                     <div class="container-data">
                         <div class="row-size-text">
                             <label>Apellido Materno: </label>
