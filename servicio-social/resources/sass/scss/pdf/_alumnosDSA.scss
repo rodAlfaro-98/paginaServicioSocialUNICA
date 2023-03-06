@@ -1,0 +1,93 @@
+@use 'base/var' as v;
+@use 'base/mixins' as m;
+
+.container{
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header{
+    width: 90%;
+    margin: 20px auto;
+
+    //@include m.border-header(1,1,1,1);
+
+    border: 1px solid v.$gray-font-color;    
+    border-collapse: collapse;
+
+    td, th{
+        border: 1px solid v.$gray-font-color;    
+    }
+
+    &__title{
+        font-size: 18px;
+        font-weight: bold;
+        color: v.$gray-font-color;
+    }
+
+
+
+    &__datos{
+        padding-left: 8px;
+
+        &-title{
+            font-size: 14px;
+            font-weight: bold;
+            color: v.$gray-font-color;
+        }
+
+        &-info{
+            font-size: 16px;
+            color: v.$gray-font-color;
+            text-align: center;
+
+        }
+
+
+    }
+
+}
+
+
+
+
+.table{
+
+    width: 90%;
+    border-collapse: collapse;
+    margin: 25px auto;
+    font-size: 14px;
+    min-width: 400px;
+
+    //border-radius: 5px 5px 0 0;
+    overflow: hidden;
+
+    //box-shadow: 0 0 20px rgba(0, 0, 0, 0.10);
+
+    th, td
+    {
+        padding: 6px 15px;
+        text-align: center;
+
+    }
+
+    &__campos tr{
+        background-color: #4F81BD;
+        color: white;
+        font-weight: bold;
+    }
+
+    &__registros tr{
+        border-bottom: 1px solid #dddddd;
+    }
+
+    &__registros tr:nth-last-of-type(even){
+        background-color: #f3f3f3;
+    }
+
+    &__registros tr:last-of-type{
+        border-bottom: 1px solid black;
+    }
+
+}

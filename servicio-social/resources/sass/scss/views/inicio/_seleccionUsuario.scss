@@ -18,9 +18,8 @@ body {
 
 /*-----Index-----*/
 .container {
-    height: 52.75em;
     width: 60em;
-    margin: 3em auto;
+    margin: 1.5em auto;
     border-radius: 10px;
     display: flex;
     justify-content: space-between;
@@ -40,14 +39,14 @@ body {
 }
 
 .image-container {
-    height: 584px;
-    border-radius: 0px 10px 10px 0px;
-    background: url("https://upload.wikimedia.org/wikipedia/commons/f/fb/Entrada_de_la_Facultad.jpg") center no-repeat fixed;
-    background-size: 70% 100%;
+    /*height: 576px;*/
+    background: url("https://thelogisticsworld.com/wp-content/uploads/2020/10/0000069281-scaled.jpg") no-repeat;
+    background-size: cover;
     padding: 2rem;
     width: 50%;
     box-sizing: border-box;
     background-position: 90% 40%;
+    border-radius: 0px 10px 10px 0px;
 }
 
 .title {
@@ -113,21 +112,21 @@ body {
 @media screen and (max-width: 1000px) {
     .container {
         width: 70%;
-        margin-top: 3rem;
     }
     .info-container {
         width: 100%;
         border-radius: 5px;
     }
-    
+
     .image-container {
         display: none;
-    }  
+    }
 }
 
 @media screen and (max-width: 650px) {
     .container {
         width: 90%;
+
     }
 }
 
@@ -141,13 +140,14 @@ body {
 
 .return{
     margin-left: -0.20rem;
+    margin-bottom: 1rem;
 }
 
 .return1{
     padding: 0.2rem 0.3rem;
 }
 .return1:hover{
-    color: var(--azul-bg);  
+    color: var(--azul-bg);
 }
 
 .return1 a{
@@ -160,7 +160,7 @@ body {
 }
 
 .inputs-container {
-    margin-top: 1rem;
+    margin: 1rem;
     height: 100%;
     width: 85%;
     display: flex;
@@ -186,10 +186,15 @@ body {
     font-weight: 300;
     letter-spacing: 1px;
     box-sizing: border-box;
+    background-color: var(--blanco);
 }
 
 .input:hover {
     border: 1px solid var(--negro);
+}
+
+.input-select{
+    margin-top:1em;
 }
 
 .btn {
@@ -209,6 +214,45 @@ body {
     color: var(--negro);
 }
 
+.btn-container{
+    width: 90%;
+
+}
+
+.radio-button-container{
+    display: flex;
+    width: 20%;
+}
+
+.radio-button-container label{
+    margin-left: 10px;
+}
+
+.radio-button-container input{
+    transform: scale(1.5);
+}
+
+.btn-seleccion{
+    width: 80%;
+    padding: 1.375rem .75rem;
+    border: 1px solid #007bff;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out;
+    background-color: var(--login-bg);
+    margin: 2.5em 0 0 0;
+}
+
+.btn-seleccion:hover{
+    background-color: var(--azul-bg);
+    transition: all ease 0.3s;
+}
+
+
+.btn_border_opacity{
+    background-color: var(--login-bg);
+    border-color: transparent;
+}
+
 .span {
     padding: 0.5rem;
     color: var(--negro);
@@ -224,6 +268,11 @@ body {
     width: 80%;
     height: 0.1px;
     background-color: var(--gris-hr);
+}
+
+
+.pointer_button{
+    cursor: pointer;
 }
 
 /*-----Register-----*/
@@ -257,7 +306,7 @@ body {
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--negro);
-    }
+}
 
 .inputs-container-register{
     margin-bottom: 3rem;

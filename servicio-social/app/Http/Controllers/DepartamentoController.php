@@ -1,33 +1,34 @@
 <?php
 namespace App\Http\Controllers;
-use Redirect;
+use PDF;
 use Auth;
 use Input;
 use Session;
+use Redirect;
+use Mpdf\Mpdf;
+use App\Mail\Baja;
+use Carbon\Carbon;
+use App\Mail\Rechazo;
+use App\Models\Alumno;
+use App\Models\Estado;
+use App\Models\Carrera;
+use App\Mail\Aceptacion;
+use App\Mail\Finalizacion;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
+use App\Exports\AlumnosExport;
+use App\Models\HistoricoEstado;
+use App\Models\JefeDepartamento;
+use App\Exports\EstadisticaExport;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Html\HtmlServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
-use Illuminate\Html\HtmlServiceProvider;
-use App\Models\JefeDepartamento;
-use App\Models\Departamento;
-use App\Models\Alumno;
-use App\Models\Carrera;
-use App\Models\Estado;
-use App\Models\HistoricoEstado;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Finalizacion;
-use App\Mail\Aceptacion;
-use App\Mail\Baja;
-use App\Mail\Rechazo;
-use Carbon\Carbon;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\AlumnosExport;
-use App\Exports\EstadisticaExport;
-use PDF;
 
 class DepartamentoController extends Controller {
 

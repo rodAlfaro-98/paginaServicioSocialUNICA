@@ -1,10 +1,11 @@
 @extends('layouts.coordinador')
 
+@push('styles')
+    <link rel="preload" href="{{ asset('css/coordinador.css') }}" as="style">
+    <link rel="stylesheet" href="{{ asset('css/coordinador.css') }}">
+@endpush
+
 @section('contenido')
-    <link rel="preload" href="{{URL::asset('css/main.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/main.css')}}">
-    <link rel="preload" href="{{URL::asset('css/departamento.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/departamento.css')}}">
         <div class="container-estadisticas">
             @if(Session::has('fail'))
                 <div class="alert alert-danger">{{Session::get('fail')}}</div>
@@ -75,7 +76,7 @@
                                     <option id="fecha_{{$año}}-1" name="fecha" value="{{$año}}-1">{{$año}}-1</option>
                                     <option id="fecha_{{$año}}-2" name="fecha" value="{{$año}}-2">{{$año}}-2</option>
                                 @endif
-                            @else   
+                            @else
                                 <option id="fecha_{{$año}}-1" name="fecha" value="{{$año}}-1">{{$año}}-1</option>
                                 <option id="fecha_{{$año}}-2" name="fecha" value="{{$año}}-2">{{$año}}-2</option>
                             @endif
@@ -130,7 +131,7 @@
                     <div class="button-pdf-estadisticas">
                         <button type="submit" name="boton_descarga" class="btn-pdf" value="PDF"><img src="{{ URL::asset('assets/img/pdf_icon.svg')}}">Exportar PDF</Button>
                     </div>
-                </div>  
+                </div>
             </form>
             <hr>
             <h5 class="tipo-dato">Generación del documento de prestación del Servicio Social por departamento</h5>
@@ -173,7 +174,7 @@
                                         <option id="periodo_{{$año}}-1" name="periodo" value="{{$año}}-1">{{$año}}-1</option>
                                         <option id="periodo_{{$año}}-2" name="periodo" value="{{$año}}-2">{{$año}}-2</option>
                                     @endif
-                                @else   
+                                @else
                                     <option id="periodo_{{$año}}-1" name="periodo" value="{{$año}}-1">{{$año}}-1</option>
                                     <option id="periodo_{{$año}}-2" name="periodo" value="{{$año}}-2">{{$año}}-2</option>
                                 @endif

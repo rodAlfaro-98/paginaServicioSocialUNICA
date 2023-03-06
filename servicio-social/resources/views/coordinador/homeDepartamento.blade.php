@@ -1,8 +1,11 @@
 @extends('layouts.coordinador')
 
+@push('styles')
+    <link rel="preload" href="{{ asset('css/coordinador.css') }}" as="style">
+    <link rel="stylesheet" href="{{ asset('css/coordinador.css') }}">
+@endpush
+
 @section('contenido')
-    <link rel="preload" href="{{URL::asset('css/departamento.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/departamento.css')}}">
         <div class="container-main">
             @if(Session::has('success'))
                 <div class="alert alert-success">{{Session::get('success')}}</div>
@@ -11,49 +14,12 @@
                 <div class="alert alert-danger">{{Session::get('fail')}}</div>
             @endif
             @csrf
-            <h4 class="name-coordinador">Bienvenido Coordinador - {{$jefe->getNombre()}}</h4>
+            <h4 class="name-coordinador">Bienvenido Coordinador {{$jefe->getNombre()}}</h4>
             <hr>
             <div class="row-main">
-                @if ($departamento != 'DSA')
-                    <h6 class="alumnos-departamento">Alumnos de la {{$departamento}} - Inscritos</h6>
-                @else
-                    <div class="row">
-                        <p>Filtro por Datos</p>
-                        <div class="space4"></div>
-                        <label>Filtro por division:</label>
-                        <div class="col-1">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="DSA" name="DSA" value="DSA" onclick="getSelected()">
-                                <label class="form-check-label" for="DSA">DSA</label>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="DID" name="DID" value="DID" onclick="getSelected()">
-                                <label class="form-check-label" for="DID">DID</label>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="DSC" name="DSC" value="DSC" onclick="getSelected()">
-                                <label class="form-check-label" for="DSC">DSC</label>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="DROS" name="DROS" value="DROS" onclick="getSelected()">
-                                <label class="form-check-label" for="DROS">DROS</label>
-                            </div>
-                        </div>
-                        <div class="col-1">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" id="Salas" name="Salas" value="Salas" onclick="getSelected()">
-                                <label class="form-check-label" for="Salas">Salas</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="space3"></div>
-                @endif
+
+                @include('layouts.filtroCoordinador')
+
                 <div class="subcontainer1">
                     <p>Nombre del alumno:</p>
                     <div class="contain-excel">
@@ -79,7 +45,7 @@
                     <th class="fecha-inicio">Fecha de inicio</th>
                     <th class="fecha-fin">Fecha de terminación</th>
                     <th class="carrera">Carrera</th>
-                    @if ($departamento == 'DSA')    
+                    @if ($departamento == 'DSA')
                         <th>Depto.</th>
                     @endif
                     <th class="acciones">Acciones</th>
