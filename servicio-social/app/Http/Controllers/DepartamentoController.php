@@ -348,8 +348,7 @@ class DepartamentoController extends Controller {
 
         $pdf = PDF::loadView('pdf.tablaAlumnos', $data)->setOptions(['defaultFont' => 'sans-serif']);
 
-        //return $pdf->download('alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.pdf');
-        return $pdf->stream();
+        return $pdf->download('alumnos_'.$request['tipo_dato_selector'].'_'.$departamento.'_'.$date->format('Y_m_d').'.pdf');
     }
 
     public function getDocumentoDepartamento(Request $request){
