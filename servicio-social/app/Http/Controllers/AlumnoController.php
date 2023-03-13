@@ -22,6 +22,11 @@ use Illuminate\Support\Facades\Mail;
 
 class AlumnoController extends Controller
 {
+    /*
+    * @brief Función encargada de retornar el home del alumno en caso de que haya una sesión iniciada
+    * @return Si hay una sesión iniciada retorna la vista home del alumno
+    * @return Si no hay una sesión iniciada retorna el login del alumno
+    */
     public function home(){
         $data = array();
         if(Session::has('loginId')){
