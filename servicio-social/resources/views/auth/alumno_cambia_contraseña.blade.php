@@ -2,6 +2,11 @@
 
 @section('title','Cambio Contraseña')
 
+@push('styles')
+    <link href="{{ asset('css/alumno.css') }}" rel="stylesheet">
+@endpush
+
+
 @section('contenido')
 
 <main class="main">

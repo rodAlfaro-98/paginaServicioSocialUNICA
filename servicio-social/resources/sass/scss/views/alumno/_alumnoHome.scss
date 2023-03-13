@@ -78,7 +78,19 @@
             height: 40px;
             font-size: 20px;
             padding: 0 10px;
-            
+
+
+
+            &.bg-green{
+                background-color: v.$green_state;
+            }
+            &.bg-yellow{
+                background-color: v.$yellow_state;
+            }
+            &.bg-red{
+                background-color: v.$red_state;
+                color: white;
+            }
 
             @include m.mobile{
                 margin: auto;

@@ -1,19 +1,12 @@
 @extends('layouts.coordinador')
 
+@push('styles')
+    <link rel="preload" href="{{ asset('css/coordinador.css') }}" as="style">
+    <link rel="stylesheet" href="{{ asset('css/coordinador.css') }}">
+@endpush
+
+
 @section('contenido')
-    <!--
-    <link rel="preload" href="{{URL::asset('css/normalize.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/normalize.css')}}">
-    <link rel="preload" href="{{URL::asset('css/style.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
-    <link rel="preload" href="{{URL::asset('css/alumno_register.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/alumno_register.css')}}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    -->
-    <link rel="preload" href="{{URL::asset('css/main.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/main.css')}}">
-    <link rel="preload" href="{{URL::asset('css/departamento.css')}}" as="style">
-    <link rel="stylesheet" href="{{URL::asset('css/departamento.css')}}">
     <div class="container-datos-alumno">
         <h4 class="title-register">Datos de {{$alumno->nombres}} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h4>
             <div class="barra"></div>
@@ -37,7 +30,6 @@
                             <input class="input" type="name" name="nombres" value="{{$alumno->nombres}}" disabled>
                         </div>
                     </div>
-                    
                     <div class="container-data">
                         <div class="row-size-text">
                             <label>Apellido Paterno: </label>
@@ -46,7 +38,6 @@
                             <input class="input" type="name" name="nombres" value="{{$alumno->apellido_paterno}}" disabled>
                         </div>
                     </div>
-                    
                     <div class="container-data">
                         <div class="row-size-text">
                             <label>Apellido Materno: </label>
@@ -123,7 +114,7 @@
                             <input class="input" type="name" name="nombres" value="{{$alumno->telefono_celular}}" disabled>
                         </div>
                     </div>
-                    <!-- DATOS DE CARRERA -->    
+                    <!-- DATOS DE CARRERA -->
                     <div class="container-data">
                         <div class="row-size-text">
                             <label>Créditos pagados: </label>
@@ -140,8 +131,8 @@
                             <input class="input" type="name" name="nombres" value="{{$alumno->avance_porcentaje}}" disabled>
                         </div>
                     </div>
-                </div> 
-                
+                </div>
+
                 <div class="datos-flex">
                     <div class="container-data">
                         <div class="row-size-text">
@@ -236,7 +227,7 @@
                                 @endif
                                 <label for="interno">Externo</label>
                             </div>
-                        </div>  
+                        </div>
                     </div>
                 </div>
             </form>

@@ -18,3 +18,26 @@
         @content;
     }
 }
+
+@mixin grid($columns, $spacing) {
+    display: grid;
+    grid-template-columns: repeat($columns, 1fr);
+    gap: $spacing;
+}
+
+@mixin reset-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+@mixin border-header($top, $right, $bottom, $left){
+    border-color: v.$gray_font_color;
+    border-style: solid;
+    border-top: $top;
+    border-right: $right;
+    border-bottom: $bottom;
+    border-left: $left;
+    border-width: 2px;
+}
