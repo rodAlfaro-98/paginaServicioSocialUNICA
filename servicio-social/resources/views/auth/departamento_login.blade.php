@@ -3,7 +3,9 @@
     <head>
         <meta charset = "UTF-8">
         <!-- CSS only -->
+        <!--
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        -->
         <title>Departamento</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,10 +36,15 @@
                 </form>
                 <div class="hr1"></div>
                 <div class="return1 return">
-                    <i class="fa fa-arrow-circle-left" aria-hidden="true"></i><button class="return1 btn_border_opacity pointer_button" type="submit" onclick="location.href='/'">Volver al inicio</button>
+                    <button class="return1 btn_border_opacity pointer_button" type="submit" onclick="location.href='/'">
+                        <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+                        Volver al inicio
+                    </button>
                 </div>
             </div>
-            <div class="image-container"></div>
+            <div class="image-container">
+                <img class="biblioteca_central" src="{{ asset('assets/img/biblioteca_central.jpg') }}" alt="Imágen tren fi unam">
+            </div>
 
         </div>
         <!-- JavaScript Bundle with Popper -->

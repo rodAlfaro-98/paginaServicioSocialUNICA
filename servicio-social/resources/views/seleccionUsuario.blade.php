@@ -29,6 +29,7 @@
                 </div>
             </div>
             <div class="image-container">
+                <img class="imagen_fi" src="{{ asset('assets/img/tren_fi.png') }}" alt="Imágen tren fi unam">
             </div>
         </div>
     </body>

@@ -1,7 +1,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+@-webkit-keyframes slide-left {
+0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+}
+100% {
+    -webkit-transform: translateX(-200px);
+            transform: translateX(-200px);
+}
+}
+
+@keyframes slide-left {
+0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+}
+100% {
+    -webkit-transform: translateX(-200px);
+            transform: translateX(-200px);
+}
+}
+
+@-webkit-keyframes slide-right {
+0% {
+    -webkit-transform: translateX(-450px);
+            transform: translateX(-450px);
+}
+100% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+}
+}
+
+@keyframes slide-right {
+0% {
+    -webkit-transform: translateX(-450px);
+            transform: translateX(-450px);
+}
+100% {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+}
+}
+
+/*
+transform: scale(110%);
+*/
+
 :root {
-    --login-bg:#e9e7ec;
+    --login-bg:white;
     --image-bg:  #eadbff ;
     --azul-bg:#1EAEFF;
     --azul-claro: #9cd2f3;
@@ -12,8 +60,12 @@
 }
 
 body {
-    height: 80vh;
+    height: 100vh;
     font-family: 'Poppins', sans-serif;
+    background-color: #EFF1F6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*-----Index-----*/
@@ -24,10 +76,11 @@ body {
     display: flex;
     justify-content: space-between;
     overflow: hidden;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .info-container {
-    height: 36em;
+    height: 37em;
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -40,13 +93,29 @@ body {
 
 .image-container {
     /*height: 576px;*/
+    /*
     background: url("https://thelogisticsworld.com/wp-content/uploads/2020/10/0000069281-scaled.jpg") no-repeat;
     background-size: cover;
-    padding: 2rem;
+    */
     width: 50%;
     box-sizing: border-box;
-    background-position: 90% 40%;
     border-radius: 0px 10px 10px 0px;
+    /* Permite que la el contenedor de informacion se sobreponga sobre la transicion de la imagen*/
+    overflow: hidden; 
+
+}
+
+
+.imagen_fi{
+    width: 150%;
+    height: 100%;
+    transform: translateX(-170px);
+}
+
+.biblioteca_central{
+    width: 220%;
+    height: 100%;
+    transform: translateX(-270px);
 }
 
 .title {
@@ -130,12 +199,6 @@ body {
     }
 }
 
-@media screen and (max-width: 500px) {
-    .container {
-        height: 125%;
-    }
-}
-
 /*----Login----*/
 
 .return{
@@ -182,16 +245,20 @@ body {
 .input {
     padding-left: 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 5px 5px 0 0;
     font-weight: 300;
     letter-spacing: 1px;
     box-sizing: border-box;
     background-color: var(--blanco);
+    border-bottom: solid rgb(156, 156, 156) 1px;
+    outline: none;
+
 }
 
 .input:hover {
-    border: 1px solid var(--negro);
+    border-bottom: 1px solid var(--negro);
 }
+
 
 .input-select{
     margin-top:1em;
