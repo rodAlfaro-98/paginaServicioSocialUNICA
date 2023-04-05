@@ -2,17 +2,15 @@
 <html lang = "es">
     <head>
         <meta charset = "UTF-8">
+        <!--
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        -->
         <title>Registro Alumno</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preload" href="{{URL::asset('css/normalize.css')}}" as="style">
-        <link rel="stylesheet" href="{{URL::asset('css/normalize.css')}}">
-        <link rel="preload" href="{{URL::asset('css/style.css')}}" as="style">
-        <link rel="stylesheet" href="{{URL::asset('css/style.css')}}">
-        <link rel="preload" href="{{URL::asset('css/alumno_register.css')}}" as="style">
-        <link rel="stylesheet" href="{{URL::asset('css/alumno_register.css')}}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        @vite('resources/css/formulario.css')
 
     </head>
     <body>
@@ -49,7 +47,7 @@
                 <input class="input" type="number" placeholder="Número de cuenta" name="numero_cuenta" value="{{old('numero_cuenta')}}">
                 <span class="text-danger">@error('numero_cuenta') {{$message}} @enderror</span>
 
-                <div class="register-fac input-selec">
+                <div class="register-fac input-select">
                     <h5 class="register-date-fac">Fecha de Nacimiento:</h5>
                     <input class="input date-birthday" type="date" value="fecha_nacimiento" name="fecha_nacimiento" value="{{old('fecha_nacimiento')}}">
                     <span class="text-danger">@error('fecha_nacimiento') {{$message}} @enderror</span>

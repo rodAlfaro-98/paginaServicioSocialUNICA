@@ -7,7 +7,7 @@
     <!-- Titulo -->
     <title>@yield('title') | Alumno</title>
     <!-- Estilos -->
-    @stack('styles')
+    @vite('resources/css/alumno.css')
     <!-- Iconos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <!-- Fuentes -->

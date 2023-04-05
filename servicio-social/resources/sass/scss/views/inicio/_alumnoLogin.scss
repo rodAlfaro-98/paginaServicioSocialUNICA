@@ -1,0 +1,91 @@
+@use 'base/var' as v;
+@use 'base/mixins' as m;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* estilo exclusivo del login de alumno */
+.alumno-container{
+    .title{
+        margin-top: 50px;
+    }
+}
+
+
+/* IMAGEN */
+.biblioteca_central{
+    width: 200%;
+    max-width: 200%;
+    height: 100%;
+    transform: translateX(-210px);
+}
+
+.form-container {
+    margin: 1rem;
+    height: 100%;
+    width: 85%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.input, .btn {
+    width: 90%;
+    height: 4.9rem;
+    font-size: 1em;
+}
+
+.input {
+    padding-left: 20px;
+    border: none;
+    border-radius: 5px 5px 0 0;
+    font-weight: 300;
+    letter-spacing: 1px;
+    box-sizing: border-box;
+    background-color: v.$white;
+    border-bottom: solid rgb(156, 156, 156) 1px;
+    outline: none;
+    margin-top: 40px;
+
+    &:hover{
+        border-bottom: 1px solid black;
+    }
+}
+
+.btn {
+    width: 80%;
+    margin-top: 20px;
+
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: v.$white;
+    border: none;
+    border-radius: 5px;
+    background-color: v.$blue_bg;
+    cursor: pointer;
+
+    &:hover{
+        background-color: v.$gray_bg;
+        transition: all ease 0.3s;
+        color: black;
+    }
+}
+
+
+
+.span {
+    background-color: v.$white;
+    border-color: transparent;
+
+    padding: 0.5rem;
+    margin-bottom: 5px;
+    color: black;
+    font-weight: 300;
+    cursor: pointer;
+
+    &:hover{
+        color: v.$blue_bg;
+    }
+
+}

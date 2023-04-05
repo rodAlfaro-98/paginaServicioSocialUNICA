@@ -18,7 +18,7 @@ const { auto } = require("@popperjs/core");
 
 // Paths
 const sourceCss = 'sass/scss/**/*.scss';
-const targetCss = '../public/css';
+const targetCss = 'css';
 const sourceJS = 'js/**/*.js';
 const targetJS = '../public/assets/js';
 const sourceImages = 'img/**/*.{jpg,png}';

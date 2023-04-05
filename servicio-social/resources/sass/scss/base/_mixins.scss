@@ -7,6 +7,12 @@
     }
 }
 
+@mixin mobileS{
+    @media (max-width: v.$phoneS) {
+        @content;
+    }
+}
+
 @mixin desktop {
     @media (min-width: v.$desktop) {
         @content;
@@ -40,4 +46,12 @@
     border-bottom: $bottom;
     border-left: $left;
     border-width: 2px;
+}
+
+
+@mixin flex-center($direction){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: $direction;
 }

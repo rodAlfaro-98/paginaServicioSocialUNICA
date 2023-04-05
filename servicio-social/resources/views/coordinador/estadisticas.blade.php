@@ -1,10 +1,5 @@
 @extends('layouts.coordinador')
 
-@push('styles')
-    <link rel="preload" href="{{ asset('css/coordinador.css') }}" as="style">
-    <link rel="stylesheet" href="{{ asset('css/coordinador.css') }}">
-@endpush
-
 @section('contenido')
         <div class="container-estadisticas">
             @if(Session::has('fail'))

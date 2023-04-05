@@ -1,11 +1,5 @@
 @extends('layouts.coordinador')
 
-@push('styles')
-    <link rel="preload" href="{{ asset('css/coordinador.css') }}" as="style">
-    <link rel="stylesheet" href="{{ asset('css/coordinador.css') }}">
-@endpush
-
-
 @section('contenido')
     <div class="container-datos-alumno">
         <h4 class="title-register">Datos de {{$alumno->nombres}} {{ $alumno->apellido_paterno }} {{ $alumno->apellido_materno }}</h4>
