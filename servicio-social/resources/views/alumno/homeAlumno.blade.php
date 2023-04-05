@@ -2,10 +2,6 @@
 
 @section('title','Home')
 
-@push('styles')
-    <link href="{{ asset('css/alumno.css') }}" rel="stylesheet">
-@endpush
-
 
 @section('contenido')
 <main class="main">

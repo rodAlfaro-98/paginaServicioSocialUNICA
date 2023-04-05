@@ -1,2 +1,10 @@
+/* Archivo que compila estilos del pdf
+ *
+ * Estos estilos deben ser agregados sobre la etiqueta
+ * <style> del <head> en el respectivo export de pdf
+ * esto por compatibilidad con DomPDF.
+*/
+
+
 @use 'base';
 @use 'pdf';

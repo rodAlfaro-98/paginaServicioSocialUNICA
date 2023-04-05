@@ -1,0 +1,208 @@
+@use 'base/var' as v;
+@use 'base/mixins' as m;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: v.$gray_bg;
+}
+
+.container {
+    height: 100%;
+    width: 60em;
+    margin: 2em auto;
+
+    @include m.mobile{
+        width: 70%;
+    }
+
+    @include m.mobileS{
+        width: 90%;
+    }
+
+
+}
+
+
+.return1{
+    background-color: v.$white;
+    padding: 0.2rem 0.3rem;
+
+    border-color: transparent;
+
+    cursor: pointer;
+
+    &:hover{
+        color: v.$blue_bg;  
+    }
+}
+
+.input, .btn {
+    width: 90%;
+    height: 3.5rem;
+    font-size: 1em;
+}
+
+.input {
+    background-color: v.$white;
+
+    padding-left: 20px;
+
+    border: none;
+    border-radius: 5px 5px 0 0;
+    outline: none;
+
+    font-weight: 300;
+    letter-spacing: 1px;
+
+    box-sizing: border-box;
+    border-bottom: solid rgb(156, 156, 156) 1px;
+
+    &:hover{
+        border-bottom: 1px solid v.$black;
+    }
+
+}
+
+.input-select{
+    margin-top:1em;
+}
+
+.btn {
+    background-color: v.$blue_bg;
+
+    width: 80%;
+    height: 4rem;
+
+    color: v.$white;
+    border: none;
+    border-radius: 5px;
+
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    &:hover{
+        background-color: v.$gray_bg;
+        transition: all ease 0.3s;
+        color: v.$black;
+    }
+}
+
+.radio-button-container{
+    display: flex;
+    width: 20%;
+}
+
+.radio-button-container label{
+    margin-left: 10px;
+}
+
+.radio-button-container input{
+    transform: scale(1.5);
+}
+
+
+/*-----Register-----*/
+.info-container-register {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: v.$white;
+    margin-bottom: 4rem;
+    border-radius: 10px;
+    padding: 3em 0;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+    @include m.mobile{
+        width: 100%;
+        border-radius: 5px;
+    }
+
+}
+
+.title-register{
+    margin-bottom: 2rem;
+    text-transform: capitalize;
+    font-size: 3.25rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color:v.$black;
+}
+
+.inputs-container-register{
+    margin-bottom: 3rem;
+    height: 120rem;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.register{
+    margin-top: 4rem;
+}
+
+.info-container-register option:hover{
+    background-color: v.$blue_bg;
+}
+
+
+.date-birthday{
+    width: 100%;
+
+    @include m.mobileS{
+        width: 82.5%;
+    }
+}
+
+.register-fac{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.register-date-fac{
+    margin-left: 1.5em;
+    text-align: left;
+    width: 40%;
+    font-size: 1em;
+    font-weight: 300;
+
+    @include m.mobile{
+        margin-left: 0;
+    }
+}
+
+.date-birthday2{
+    width: 70%;
+
+    @include m.mobile{
+        margin-left: 0;
+    }
+
+
+    @include m.mobileS{
+        width: 65%;
+    }
+}
+
+
+.especificacion{
+    display: none;
+}
+.especificacion_externo{
+    display: none;
+}
+.especificacion_interno{
+    display: none;
+}

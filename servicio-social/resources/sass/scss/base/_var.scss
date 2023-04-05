@@ -2,17 +2,23 @@
 // FONTS
 $main-font: 'Open Sans', sans-serif, Arial;
 
+
+// BACKGROUNDS
+$gray_bg: #EFF1F6;
+$blue_bg: #1EAEFF;
+
 // COLORS
 $red: rgb(245, 77, 77);
 $black: rgb(25, 25, 25);
 $gray: rgb(35, 35, 35);
 $white: white;
 
+// HOVERS
 $white_hover: rgb(210, 210, 210);
 $black_hover: rgb(40, 40, 40);
 
-$white_op_mid: rgba(255, 0, 0, 0.5);
 
+// FONT COLOR
 $gray_font_color: rgb(128, 128, 128);
 
 // STATES
@@ -21,8 +27,11 @@ $yellow_state: rgb(252, 252, 59);
 $red_state: rgb(247, 70, 70);
 
 // SIZES
+$phoneS: 650px;
 $phone: 1000px;
 $desktop: 1100px;
 $desktopXL: 1200px;
 
 
+
+$white_op_mid: rgba(255, 0, 0, 0.5);
