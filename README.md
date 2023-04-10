@@ -23,19 +23,21 @@
   ```sh
    composer install
   ```
-
+  
 3. Instala los modulos de `npm`
   ```sh
   npm install
   ```
+ 
+4. Configura el archivo de configuracion `.env`
   
-4. Crea las imágenes de docker por medio de artisan `sail`
+  
+5. Crea las imágenes de docker por medio de artisan `sail`
   ```sh
-  php artisan sail up
+  php artisan sail:install
   ```
   
-5. Configura el archivo de configuracion `.env`
-  
+
 6. Inicia los contenedores con `sail`
   ```sh
   ./vendor/bin/sail up
